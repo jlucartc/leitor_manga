@@ -1,0 +1,12 @@
+<div id="root">
+	{{ message }}
+	<button @click="clickme" :ref="print_ref">Click me!</button>
+	<div id="posts">
+		<%= @posts.each do |post|%>
+			<div class="post">
+				<h1><%= post.titulo %></h1>
+				<p><%= post.mensagem %></p>
+			</div>
+		<% end %>
+	</div>
+</div>
