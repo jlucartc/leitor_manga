@@ -8,7 +8,7 @@ module Helper
   end
 
   def pega_conteudo_imagem
-    File.open('test/fixtures/files/images/naruto.jpeg').read()
+    File.open('test/fixtures/files/images/naruto.jpeg','rb').read()
   end
 
 end
