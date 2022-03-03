@@ -48,6 +48,7 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "rubycritic"
 gem "devise"
 
 group :development, :test do
@@ -71,4 +72,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "simplecov"
 end
