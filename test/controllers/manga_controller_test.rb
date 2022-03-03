@@ -26,7 +26,15 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert Capitulo.where(manga_id: 1).present? and Capitulo.where(manga_id: 1).last.titulo == 'Capitulo 2'
   end
 
-  test "ao deletar um mangá, todos os seus capítulos e sua capa devem ser deletados do banco" do
+  test "ao destruir um capítulo, todas as suas imagens devem ser destruídas" do
+    sign_in(usuarios(:one))
+    imagens = Imagem.where(capitulo_id: 1)
+    imagens.each{|imagem| imagem.arquivo = pega_conteudo_imagem; imagem.save}
+    Capitulo.find(1).destroy
+    assert Imagem.where(capitulo_id: 1).empty?
+  end
+
+  test "ao destruir um mangá, todos os seus capítulos e sua capa devem ser deletados do banco" do
     sign_in(usuarios(:one))
     Capa.find(1).update(arquivo: pega_conteudo_imagem)
     Manga.find(1).destroy
