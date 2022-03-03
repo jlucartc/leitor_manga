@@ -1,0 +1,10 @@
+<h1>Novo mangá</h1>
+
+<div>
+	<form style="display: flex; flex-direction: column; width: 500px;" action="<%= cadastrar_manga_path %>" method="post" enctype="multipart/form-data">
+		<input type="text" name="titulo" placeholder="Título">
+		<input type="file" name="cover" placeholder="Capa do mangá">
+		<textarea name="descricao" placeholder="descricao"></textarea>
+		<button type="submit">Criar</button>
+	</form>
+</div>
