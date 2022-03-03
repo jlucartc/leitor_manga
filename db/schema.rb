@@ -10,35 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_03_000636) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
   create_table "capas", force: :cascade do |t|
+    t.integer "manga_id"
+    t.binary "arquivo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "capitulos", force: :cascade do |t|
+    t.integer "manga_id"
+    t.string "titulo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "favoritos", force: :cascade do |t|
+    t.integer "manga_id"
+    t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "imagens", force: :cascade do |t|
+    t.integer "capitulo_id"
+    t.integer "sequencia"
+    t.binary "arquivo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "mangas", force: :cascade do |t|
+    t.string "titulo"
+    t.integer "autor_id"
+    t.text "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "titulo"
-    t.string "mensagem"
+  create_table "tokens", force: :cascade do |t|
+    t.integer "usuario_id"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
