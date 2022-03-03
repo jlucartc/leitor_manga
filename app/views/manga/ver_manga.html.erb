@@ -1,7 +1,7 @@
 <h1>Ver mangá</h1>
 <div>
 	<h2><%= @manga.titulo %></h2>
-	<h3><%= @manga.autor %></h3>
+	<h3><%= @manga.usuario.email %></h3>
 	<h2><%= @manga.descricao %></h2>
 	<% if @manga.finalizado %>
 		<h2>Finalizado</h2>

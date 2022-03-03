@@ -1,7 +1,9 @@
 class Manga < ApplicationRecord
-	validates :titulo, :descricao, :autor_id, presence: true
+	validates :titulo, :descricao, :usuario_id, presence: true
 	after_destroy :destroy_capitulos, :destroy_capa
 	has_one :capa
+	has_many :favoritos
+	belongs_to :usuario
 
 	def destroy_capitulos
 		Capitulo.where(manga_id: self.id).destroy_all
@@ -13,7 +15,7 @@ class Manga < ApplicationRecord
 
 	def capa_path
 		if self.capa.present?
-			folder_path = "public/tmp/#{self.autor_id}"
+			folder_path = "public/tmp/#{self.usuario_id}"
 			capa = Capa.where(manga_id: self.id).first
 			
 			if !Dir.exist?(folder_path)
@@ -31,10 +33,6 @@ class Manga < ApplicationRecord
 		else
 			"/dummy.png"
 		end
-	end
-
-	def autor
-		Usuario.find(self.autor_id).email
 	end
 
 end

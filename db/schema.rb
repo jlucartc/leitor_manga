@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
 
   create_table "mangas", force: :cascade do |t|
     t.string "titulo"
-    t.integer "autor_id"
+    t.integer "usuario_id"
     t.text "descricao"
     t.boolean "finalizado", default: false
     t.datetime "created_at", null: false

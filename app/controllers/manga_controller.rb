@@ -4,7 +4,7 @@ class MangaController < ApplicationController
 
 
 	def meus_mangas
-		@mangas = Manga.where(autor_id: current_usuario.id)
+		@mangas = Manga.where(usuario_id: current_usuario.id)
 	end
 	
 	def favoritos
@@ -21,7 +21,7 @@ class MangaController < ApplicationController
 	end
 
 	def desfavoritar_manga
-		favorito = Favorito.where(manga_id: params[:manga_id], usuario_id: current_usuario).first
+		favorito = Favorito.where(manga_id: params[:manga_id], usuario_id: current_usuario.id).first
 		if favorito.present?
 			favorito.destroy
 			flash[:success] = "Mangá foi removido dos favoritos!"
@@ -51,7 +51,7 @@ class MangaController < ApplicationController
 	end
 	
 	def editar_manga
-		@manga = Manga.where(id: params[:id], autor_id: current_usuario.id).first
+		@manga = Manga.where(id: params[:id], usuario_id: current_usuario.id).first
 		@capitulos = Capitulo.where(manga_id: @manga.id)
 	end
 	
@@ -60,7 +60,7 @@ class MangaController < ApplicationController
 	end
 	
 	def cadastrar_manga
-		manga = Manga.new(titulo: params[:titulo], autor_id: current_usuario.id ,descricao: params[:descricao])
+		manga = Manga.new(titulo: params[:titulo], usuario_id: current_usuario.id ,descricao: params[:descricao])
 		if manga.save
 
 			if params[:capa].present?
@@ -115,7 +115,7 @@ class MangaController < ApplicationController
 	
 	def excluir_capitulo
 		capitulo = Capitulo.find(params[:capitulo_id])
-		manga = Manga.where(id: capitulo.manga_id, autor_id: current_usuario.id)
+		manga = Manga.where(id: capitulo.manga_id, usuario_id: current_usuario.id)
 		if manga.present?
 			capitulo.destroy
 			flash[:success] = "Capítulo excluído com sucesso!"
@@ -127,7 +127,7 @@ class MangaController < ApplicationController
 	end
 	
 	def excluir_manga
-		manga = Manga.where(id: params[:manga_id], autor_id: current_usuario.id).first
+		manga = Manga.where(id: params[:manga_id], usuario_id: current_usuario.id).first
 		if manga.present?
 			manga.destroy
 			flash[:success] = "Mangá excluído com sucesso!"
