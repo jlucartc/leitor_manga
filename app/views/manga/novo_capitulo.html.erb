@@ -1,0 +1,9 @@
+<div>
+	<form action="<%= cadastrar_capitulo_path %>" method="post" enctype="multipart/form-data">
+		<%= token_tag %>
+		<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+		<input type="text" name="titulo" placeholder="titulo">
+		<input type="file" name="imagens[]" multiple>
+		<button type="submit">Criar capítulo</button>
+	</form>
+</div>

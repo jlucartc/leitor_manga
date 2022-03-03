@@ -15,6 +15,7 @@ class MangaController < ApplicationController
 	
 	def ver_manga
 		@manga = Manga.find(params[:id])
+		@capitulos = Capitulo.where(manga_id: @manga.id)
 	end
 	
 	def ler_manga
@@ -24,22 +25,28 @@ class MangaController < ApplicationController
 	end
 	
 	def novo_capitulo
+		@manga = Manga.find(params[:manga_id])
 	end
 	
 	def editar_manga
+		@manga = Manga.where(id: params[:id], autor_id: current_usuario.id).first
+		@capitulos = Capitulo.where(manga_id: @manga.id)
 	end
 	
 	def editar_capitulo
+		@capitulo = Capitulo.find(params[:id])
 	end
 	
 	def cadastrar_manga
 		manga = Manga.new(titulo: params[:titulo], autor_id: current_usuario.id ,descricao: params[:descricao])
 		if manga.save
-			
-			cover = Capa.new(manga_id: manga.id,arquivo: params[:capa].tempfile.read)
 
-			if !cover.save
-				flash[:danger] = "Erro no upload da capa do mangá."
+			if params[:capa].present?
+				capa = Capa.new(manga_id: manga.id,arquivo: params[:capa].tempfile.read)
+
+				if !capa.save
+					flash[:danger] = "Erro no upload da capa do mangá."
+				end
 			end
 
 			flash[:success] = "Mangá criado com sucesso!"
@@ -54,24 +61,62 @@ class MangaController < ApplicationController
 		capitulo = Capitulo.new(titulo: params[:titulo], manga_id: params[:manga_id])
 		if capitulo.save
 			flash[:success] = 'Capitulo criado com sucesso'
-			imagens = params[:imagens].map{|imagem| Imagem.create(capitulo_id: capitulo.id, sequencia: imagem[:sequencia], arquivo: imagem[:arquivo])}
+			params[:imagens].each_with_index{|imagem,index| Imagem.create(capitulo_id: capitulo.id, sequencia: index, arquivo: imagem.tempfile.read)}
 			redirect_to ver_manga_path(params[:manga_id])
 		else
 			flash[:danger] = 'Erro na criação do capítulo'
-			redirect_to novo_capitulo_path
+			redirect_to novo_capitulo_path(params[:manga_id])
 		end
 	end
 	
 	def atualizar_manga
+		manga = Manga.find(params[:manga_id])
+		manga.titulo = params[:titulo]
+		manga.descricao = params[:descricao]
+		manga.finalizado = params[:finalizado]
+		if manga.save
+			flash[:success] = 'Mangá foi atualizado com sucesso!'
+			redirect_to ver_manga_path(manga.id)
+		else
+			flash[:danger] = 'Erro na atualização do mangá.'
+			redirect_to editar_manga_path(manga.id)
+		end
 	end
 	
 	def atualizar_capitulo
+		capitulo = Capitulo.find(params[:capitulo_id])
+		capitulo.titulo = params[:titulo]
+		if capitulo.save
+			flash[:success] = "Capítulo atualizado com sucesso!"
+			redirect_to ver_manga_path(capitulo.manga_id)
+		else
+			flash[:danger] = "Erro na atualização do capítulo."
+			redirect_to editar_capitulo_path(capitulo.id)
+		end
 	end
 	
 	def excluir_capitulo
+		capitulo = Capitulo.find(params[:capitulo_id])
+		manga = Manga.where(id: capitulo.manga_id, autor_id: current_usuario.id)
+		if manga.present?
+			capitulo.destroy
+			flash[:success] = "Capítulo excluído com sucesso!"
+			redirect_to ver_manga_path(capitulo.id)
+		else
+			flash[:danger] = "Não foi possível excluir capítulo."
+			redirect_to ver_manga_path(capitulo.manga_id)
+		end
 	end
 	
 	def excluir_manga
+		manga = Manga.where(id: params[:manga_id], autor_id: current_usuario.id).first
+		if manga.present?
+			manga.destroy
+			flash[:success] = "Mangá excluído com sucesso!"
+		else
+			flash[:danger] = "Não foi possível excluir mangá."
+		end
+		redirect_to meus_mangas_path
 	end
 	
 

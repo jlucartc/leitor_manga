@@ -1,0 +1,26 @@
+<h1>Ver mangá</h1>
+<div>
+	<h2><%= @manga.titulo %></h2>
+	<h3><%= @manga.autor %></h3>
+	<h2><%= @manga.descricao %></h2>
+	<% if @manga.finalizado %>
+		<h2>Finalizado</h2>
+	<% else %>
+		<h2>Em andamento</h2>
+	<% end %>
+</div>
+<% if @capitulos.present? %>
+	<div>
+		<% @capitulos.each do |capitulo|%>
+			<h4><%= capitulo.titulo %></h4>
+			<a href="<%= editar_capitulo_path(capitulo.id) %>">Editar capitulo</a>
+			<form action="<%= excluir_capitulo_path %>" method="post">
+				<%= token_tag %>
+				<input type="hidden" name="capitulo_id" value="<%= capitulo.id %>">
+				<button>Excluir capitulo</button>
+			</form>
+		<% end %>
+	</div>
+<% else %>
+	Não há capítulos
+<% end %>

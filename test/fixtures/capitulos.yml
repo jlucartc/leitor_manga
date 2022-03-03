@@ -9,3 +9,9 @@ one: {
   manga_id: 1,
   titulo: 'Capítulo 1'
 }
+
+two: {
+  id: 2,
+  manga_id: 2,
+  titulo: 'Capítulo 1'
+}

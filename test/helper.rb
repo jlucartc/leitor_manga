@@ -1,4 +1,5 @@
 module Helper
+
   def desabilita_autenticacao_csrf
     ActionController::Base.allow_forgery_protection = false
   end

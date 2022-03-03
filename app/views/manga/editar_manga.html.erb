@@ -1,0 +1,39 @@
+<h1>Editar mangá</h1>
+<div>
+	<form action="<%= atualizar_manga_path %>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+		<input type="text" name="titulo" value="<%= @manga.titulo %>" placeholder="Título">
+		<textarea name="descricao" placeholder="Descrição do mangá"><%= @manga.descricao %></textarea>
+		<select name="finalizado">
+			<% if @manga.finalizado %>
+				<option value="false">Em andamento</option>
+				<option value="true" selected>Finalizado</option>
+			<% else %>
+				<option value="false" selected>Em andamento</option>
+				<option value="true">Finalizado</option>
+			<% end %>
+		</select>
+		<input type="file" name="manga[capa]">
+		<button type="submit">Salvar</button>
+	</form>
+	<form action="<%= novo_capitulo_path(@manga.id) %>" method="get">
+		<button type="submit">Novo capítulo</button>
+	</form>
+	<% if @capitulos.present? %>
+		<div>
+			<% @capitulos.each do |capitulo|%>
+				<div>
+					<h2><%= capitulo.titulo %></h2>
+					<a href="<%= editar_capitulo_path(capitulo.id) %>">Editar capítulo</a>
+					<form action="<%= excluir_capitulo_path %>" method="post">
+						<%= token_tag %>
+						<input type="hidden" name="capitulo_id" value="<%= capitulo.id %>">
+						<button type="submit">Excluir capítulo</button>
+					</form>
+				</div>
+			<% end %>
+		</div>
+	<% else %>
+		<div>Não há capítulos</div>
+	<% end %>
+</div>

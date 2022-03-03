@@ -4,6 +4,7 @@ class CreateMangas < ActiveRecord::Migration[7.0]
       t.string :titulo
       t.integer :autor_id
       t.text :descricao
+      t.boolean :finalizado, default: false
       t.timestamps
     end
   end

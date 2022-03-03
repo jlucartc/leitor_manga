@@ -1,0 +1,9 @@
+<h1>Editar capítulo</h1>
+<div>
+	<form action="<%= atualizar_capitulo_path %>" method="post">
+		<%= token_tag %>
+		<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
+		<input type="text" name="capitulo[titulo]" value="<%= @capitulo.titulo %>" placeholder="titulo">
+		<button type="submit">Salvar capítulo</button>
+	</form>
+</div>

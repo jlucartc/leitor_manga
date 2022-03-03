@@ -12,5 +12,10 @@ one: {
 }
 # column: value
 #
-two: {}
+two: {
+  id: 2,
+  titulo: 'Outro mangá',
+  autor_id: 2,
+  descricao: 'Slice of life'
+}
 # column: value
