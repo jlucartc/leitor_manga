@@ -42,11 +42,7 @@ class MangaController < ApplicationController
 		if manga.save
 
 			if params[:capa].present?
-				capa = Capa.new(manga_id: manga.id,arquivo: params[:capa].tempfile.read)
-
-				if !capa.save
-					flash[:danger] = "Erro no upload da capa do mangá."
-				end
+				capa = Capa.create(manga_id: manga.id,arquivo: params[:capa].tempfile.read)
 			end
 
 			flash[:success] = "Mangá criado com sucesso!"
