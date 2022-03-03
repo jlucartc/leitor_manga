@@ -28,6 +28,21 @@ class MangaController < ApplicationController
 	end
 	
 	def cadastrar_manga
+		manga = Manga.new(titulo: params[:titulo], autor_id: current_usuario.id ,descricao: params[:descricao])
+		if manga.save
+			
+			cover = Capa.new(manga_id: manga.id,arquivo: params[:capa].tempfile.read)
+
+			if !cover.save
+				flash[:danger] = "Erro no upload da capa do mangá."
+			end
+
+			flash[:success] = "Mangá criado com sucesso!"
+			redirect_to meus_mangas_path
+		else
+			flash[:danger] = "Erro na criação do mangá"
+			redirect_to novo_manga_path
+		end
 	end
 	
 	def cadastrar_capitulo
