@@ -10,12 +10,34 @@ class MangaController < ApplicationController
 	def favoritos
 	end
 	
+	def favoritar_manga
+		favorito = Favorito.new(manga_id: params[:manga_id],usuario_id: current_usuario.id)
+		if favorito.save
+			flash[:success] = "Mangá favoritado com sucesso!"
+		else
+			flash[:danger] = "Mangá não pode ser favoritado novamente."
+		end
+		redirect_to favoritos_path
+	end
+
+	def desfavoritar_manga
+		favorito = Favorito.where(manga_id: params[:manga_id], usuario_id: current_usuario).first
+		if favorito.present?
+			favorito.destroy
+			flash[:success] = "Mangá foi removido dos favoritos!"
+		else
+			flash[:danger] = "Mangá não pertence aos favoritos."
+		end
+		redirect_to favoritos_path
+	end
+
 	def buscar
 	end
 	
 	def ver_manga
 		@manga = Manga.find(params[:id])
 		@capitulos = Capitulo.where(manga_id: @manga.id)
+		@favorito = Favorito.where(manga_id: @manga.id, usuario_id: current_usuario.id)
 	end
 	
 	def ler_manga

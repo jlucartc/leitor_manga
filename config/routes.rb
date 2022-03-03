@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root "application#index"
   get "/manga", to: "manga#meus_mangas", as: "meus_mangas"
   get "/manga/favoritos", to: "manga#favoritos", as: "favoritos"
+  get "/manga/favoritar", to: "manga#favoritar_manga", as: "favoritar_manga"
+  get "/manga/desfavoritar", to: "manga#desfavoritar_manga", as: "desfavoritar_manga"
   get "/manga/buscar", to: "manga#buscar", as: "buscar_manga"
   get "/manga/ver/:id", to: "manga#ver_manga", as: "ver_manga"
   get "/capitulo/ler/:id", to: "manga#ler_capitulo", as: "ler_capitulo"

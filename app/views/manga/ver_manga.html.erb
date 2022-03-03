@@ -9,6 +9,11 @@
 		<h2>Em andamento</h2>
 	<% end %>
 </div>
+<% if @favorito.present? %>
+	<a href="<%= desfavoritar_manga_path(@manga.id) %>">Desfavoritar mangá</a>
+<% else %>
+	<a href="<%= favoritar_manga_path(@manga.id) %>">Favoritar mangá</a>
+<% end %>
 <% if @capitulos.present? %>
 	<div>
 		<% @capitulos.each do |capitulo|%>
