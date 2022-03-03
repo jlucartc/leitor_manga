@@ -4,6 +4,7 @@ class MangaController < ApplicationController
 
 
 	def meus_mangas
+		@mangas = Manga.where(autor_id: current_usuario.id)
 	end
 	
 	def favoritos
@@ -13,8 +14,12 @@ class MangaController < ApplicationController
 	end
 	
 	def ver_manga
+		@manga = Manga.find(params[:id])
 	end
 	
+	def ler_manga
+	end
+
 	def novo_manga
 	end
 	
@@ -46,6 +51,15 @@ class MangaController < ApplicationController
 	end
 	
 	def cadastrar_capitulo
+		capitulo = Capitulo.new(titulo: params[:titulo], manga_id: params[:manga_id])
+		if capitulo.save
+			flash[:success] = 'Capitulo criado com sucesso'
+			imagens = params[:imagens].map{|imagem| Imagem.create(capitulo_id: capitulo.id, sequencia: imagem[:sequencia], arquivo: imagem[:arquivo])}
+			redirect_to ver_manga_path(params[:manga_id])
+		else
+			flash[:danger] = 'Erro na criação do capítulo'
+			redirect_to novo_capitulo_path
+		end
 	end
 	
 	def atualizar_manga

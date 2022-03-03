@@ -4,4 +4,25 @@
 	<form action="<%= novo_manga_path %>" method="get">
 		<button>Novo mangá</button>
 	</form>
+
+	<div>
+		<% if @mangas.present? %>
+			<% @mangas.each do |manga| %>
+				<div>
+					<img src="<%= manga.capa_path %>">
+					<h2><%= manga.titulo %></h2>
+					<p><%= manga.descricao %></p>
+					<a href="<%= ver_manga_path(manga.id) %>">Ver mangá</a>
+					<a href="<%= editar_manga_path(manga.id) %>">Editar mangá</a>
+					<form action="<%= excluir_manga_path %>" method="post">
+						<%= token_tag %>
+						<input type="hidden" name="manga_id" value="<%= manga.id%>">
+						<button>Excluir mangá</button>
+					</form>
+				</div>
+			<% end %>
+		<% else %>
+		<% end %>
+	</div>
+
 </div>
