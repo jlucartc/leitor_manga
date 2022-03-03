@@ -50,6 +50,13 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert Manga.find(1).titulo == 'Novo titulo do primeiro mangá'
   end
 
+  test "atualiza capitulo" do
+    sign_in(usuarios(:one))
+    capitulo = Capitulo.find(1)
+    post atualizar_capitulo_path, params: {capitulo_id: 1, titulo: 'Novo titulo do capitulo'}
+    assert Capitulo.find(1).titulo == 'Novo titulo do capitulo'
+  end
+
   test "deve rejeitar atualizar mangá sem titulo" do
     sign_in(usuarios(:one))
     post atualizar_manga_path, params: {manga_id: 1}
@@ -60,23 +67,6 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     sign_in(usuarios(:one))
     post atualizar_capitulo_path, params: {capitulo_id: 1}
     assert flash[:danger].present?
-  end
-
-  test "ao destruir um capítulo, todas as suas imagens devem ser destruídas" do
-    sign_in(usuarios(:one))
-    imagens = Imagem.where(capitulo_id: 1)
-    imagens.each{|imagem| imagem.arquivo = pega_conteudo_imagem; imagem.save}
-    Capitulo.find(1).destroy
-    assert Imagem.where(capitulo_id: 1).empty?
-  end
-
-  test "ao destruir um mangá, todos os seus capítulos e sua capa devem ser deletados do banco" do
-    sign_in(usuarios(:one))
-    capa = Capa.find(1)
-    capa.arquivo = pega_conteudo_imagem
-    capa.save
-    Manga.find(1).destroy
-    assert Manga.where(id: 1).empty? and Capa.where(manga_id: 1).empty? and Capitulo.where(manga_id: 1).empty?
   end
 
   test "deve excluir capitulo de um mangá do usuário" do
@@ -91,7 +81,13 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert Capitulo.where(id: 2).present?
   end
 
-  test "não deve excluir mangá de outro autor" do
+  test "deve excluir mangá criado pelo usuario" do
+    sign_in(usuarios(:one))
+    post excluir_manga_path, params: {manga_id: 1}
+    assert Manga.where(id: 1).empty?
+  end
+
+  test "não deve excluir mangá de outro usuario" do
     sign_in(usuarios(:one))
     post excluir_manga_path, params: {manga_id: 2}
     assert Manga.where(id: 2).present?
