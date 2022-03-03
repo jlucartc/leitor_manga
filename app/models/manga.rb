@@ -1,4 +1,5 @@
 class Manga < ApplicationRecord
+	validates :titulo, :descricao, :autor_id, presence: true
 	after_destroy :destroy_capitulos, :destroy_capa
 
 	def destroy_capitulos
