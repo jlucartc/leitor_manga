@@ -17,6 +17,12 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert Manga.where(titulo: 'Novo Mangá').present?
   end
 
+  test "deve rejeitar criar um mangá sem titulo" do
+    sign_in(usuarios(:one))
+    post cadastrar_manga_path, params: {descricao: 'Descrição do mangá', capa: fixture_file_upload('images/naruto.jpeg','image/jpeg')}
+    assert flash[:danger].present?
+  end
+
   test "cria um capítulo em um mangá existente" do
     sign_in(usuarios(:one))
     post cadastrar_capitulo_path, params: {manga_id: 1, titulo: 'Capítulo 2', imagens: [
