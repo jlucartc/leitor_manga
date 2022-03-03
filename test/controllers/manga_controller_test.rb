@@ -33,6 +33,16 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert Capitulo.where(manga_id: 1).present? and Capitulo.where(manga_id: 1).last.titulo == 'Capitulo 2'
   end
 
+  test "deve rejeitar criar um capitulo sem titulo" do
+    sign_in(usuarios(:one))
+    post cadastrar_capitulo_path, params: {manga_id: 1, imagens: [
+      fixture_file_upload('images/naruto.jpeg','image/jpeg'),
+      fixture_file_upload('images/bleach.jpeg','image/jpeg'),
+      fixture_file_upload('images/onepiece.jpeg','image/jpeg')
+    ]}
+    assert flash[:danger].present?
+  end
+
   test "atualiza manga" do
     sign_in(usuarios(:one))
     manga = Manga.find(1)
