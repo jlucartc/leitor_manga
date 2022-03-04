@@ -33,6 +33,13 @@ class MangaController < ApplicationController
 	end
 
 	def buscar
+		if params[:busca].present?
+			palavras = params[:busca].split(' ')
+			palavras.each do |palavra|
+				@resultados = Manga.where('titulo like ?',"%#{palavra}%") if @resultados.nil?
+				@resultados = @resultados.or(Manga.where('titulo like ?',"%#{palavra}%")) if @resultados.present?
+			end
+		end
 	end
 	
 	def ver_manga

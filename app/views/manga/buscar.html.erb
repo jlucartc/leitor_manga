@@ -1,6 +1,18 @@
 <h1>Buscar mangás</h1>
-
 <form action="<%= buscar_manga_path %>" method="get">
 	<input type="text" name="busca">
 	<button type="submit">Buscar</button>
+	<div>
+		<% if @resultados.present? %>
+			<% @resultados.each do |resultado| %>
+				<div>
+					<h3><%= resultado.titulo %></h3>
+					<img src="<%= resultado.capa_path %>">
+					<a href="<%= ver_manga_path(resultado.id) %>">Ver mangá</a>
+				</div>
+			<% end %>
+		<% else %>
+			Não há resultados
+		<% end %>
+	</div>
 </form>

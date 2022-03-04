@@ -7,3 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 Usuario.create(email: 'teste@gmail.com', password: '123456', password_confirmation: '123456')
+
+
+Manga.create(usuario_id: 1, titulo: 'Naruto Classic', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Naruto Shippuden', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Nanatsu no Taizai', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Monster', descricao: 'Seinen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Boku no Hero Academia', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Berserk', descricao: 'Seinen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Gantz', descricao: 'Seinen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'Bleach', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'One Piece', descricao: 'Shounen', finalizado: true)
+Manga.create(usuario_id: 1, titulo: 'The Breaker', descricao: 'Seinen', finalizado: true)
+
