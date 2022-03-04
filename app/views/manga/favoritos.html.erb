@@ -1,1 +1,10 @@
-Favoritos
+<h1>Favoritos</h1>
+<div>
+	<% if @favoritos.present? %>
+		<% @favoritos.each do |favorito|%>
+			<h3><%= favorito.manga.titulo%></h3>
+		<% end %>
+	<% else %>
+		<h2>Não há favoritos</h2>
+	<% end %>
+</div>

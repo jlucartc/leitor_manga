@@ -8,6 +8,7 @@ class MangaController < ApplicationController
 	end
 	
 	def favoritos
+		@favoritos = Favorito.where(usuario_id: current_usuario.id)
 	end
 	
 	def favoritar_manga
