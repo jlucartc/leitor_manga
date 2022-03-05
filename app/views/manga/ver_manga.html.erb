@@ -34,7 +34,11 @@
 			<div id="capitulos-container">
 				<% if @capitulos.present? %>
 					<% @capitulos.each do |capitulo| %>
-						<div class="capitulo"><%= capitulo.titulo %></div>
+						<div class="capitulo">
+							<%= capitulo.titulo %>
+							<form action="<%= ver_capitulo_path(capitulo) %>" method="get" hidden>
+							</form>		
+						</div>
 					<% end %>
 				<% end %>
 			</div>

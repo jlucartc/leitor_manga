@@ -47,6 +47,9 @@ class MangaController < ApplicationController
 		@capitulos = Capitulo.where(manga_id: @manga.id)
 		@favorito = Favorito.where(manga_id: @manga.id, usuario_id: current_usuario.id)
 	end
+
+	def ver_capitulo
+	end
 	
 	def ler_manga
 	end
