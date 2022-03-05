@@ -27,9 +27,13 @@
 	</div>
 	<div id="apresentacao-manga-editar">
 		<div id="imagem-container">
-			<img id="capa-manga" src="<%= @manga.capa_path %>">
+			<% if @manga.capa.present? %>
+				<img id="capa-manga" src="<%= @manga.capa.path %>">
+			<% else %>
+				<img id="capa-manga" src="/dummy.png">
+			<% end %>
 			<div id="capa-cover">
-				<input form="confirmar" type="file" name="capa" hidden>
+				<input id="input-capa" form="confirmar" type="file" name="capa" hidden>
 				<button id="botao-trocar-capa">Trocar capa</button>
 			</div>
 		</div>

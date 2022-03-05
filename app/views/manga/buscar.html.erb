@@ -7,7 +7,11 @@
 			<% @resultados.each do |resultado| %>
 				<div>
 					<h3><%= resultado.titulo %></h3>
-					<img src="<%= resultado.capa_path %>">
+					<% if resultado.capa.present? %>
+						<img src="<%= resultado.capa.path %>">
+					<% else %>
+						<img src="/dummy.png">
+					<% end %>
 					<a href="<%= ver_manga_path(resultado.id) %>">Ver mangá</a>
 				</div>
 			<% end %>

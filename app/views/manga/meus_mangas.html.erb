@@ -14,7 +14,11 @@
 			<% @mangas.each do |manga| %>
 				<div class="manga-item-lista">
 					<div class="manga-imagem-container">
-						<img class="manga-imagem" src="<%= manga.capa_path %>">
+						<% if manga.capa.present? %>
+							<img class="manga-imagem" src="<%= manga.capa.path %>">
+						<% else %>
+							<img class="manga-imagem" src="/dummy.png">
+						<% end %>
 					</div>
 					<div class="manga-informacoes">
 						<div class="manga-titulo"><%= manga.titulo %></div>

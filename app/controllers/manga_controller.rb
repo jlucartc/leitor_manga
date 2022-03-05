@@ -2,7 +2,6 @@ class MangaController < ApplicationController
 
 	before_action :authenticate_usuario!
 
-
 	def meus_mangas
 		@mangas = Manga.where(usuario_id: current_usuario.id)
 	end
@@ -104,6 +103,17 @@ class MangaController < ApplicationController
 		manga.titulo = params[:titulo]
 		manga.descricao = params[:descricao]
 		manga.finalizado = params[:finalizado]
+
+		if params[:capa].present?
+			if manga.capa.present?
+				capa = manga.capa
+				capa.arquivo = params[:capa].tempfile.read
+				capa.save
+			else
+				Capa.create(manga_id: manga.id, arquivo: params[:capa].tempfile.read)
+			end
+		end
+
 		if manga.save
 			flash[:success] = 'Mangá foi atualizado com sucesso!'
 			redirect_to ver_manga_path(manga.id)

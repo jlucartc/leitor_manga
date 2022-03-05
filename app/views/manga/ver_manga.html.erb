@@ -21,7 +21,11 @@
 	</div>
 	<div id="apresentacao-manga">
 		<div id="imagem-container">
-			<img id="capa-manga" src="<%= @manga.capa_path %>">
+			<% if @manga.capa.present? %>
+				<img id="capa-manga" src="<%= @manga.capa.path %>">
+			<% else %>
+				<img id="capa-manga" src="/dummy.png">
+			<% end %>
 			<% if @favorito.present? %>
 				<div id="manga-favorito">
 					<form id="desfavoritar" action="<%= desfavoritar_manga_path(@manga.id) %>" method="get"></form>
