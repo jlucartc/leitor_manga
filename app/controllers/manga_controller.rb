@@ -131,7 +131,7 @@ class MangaController < ApplicationController
 		if manga.present?
 			capitulo.destroy
 			flash[:success] = "Capítulo excluído com sucesso!"
-			redirect_to ver_manga_path(capitulo.id)
+			redirect_to ver_manga_path(capitulo.manga_id)
 		else
 			flash[:danger] = "Não foi possível excluir capítulo."
 			redirect_to ver_manga_path(capitulo.manga_id)
