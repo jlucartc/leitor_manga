@@ -1,31 +1,43 @@
-<h1>Ver mangá</h1>
-<div>
-	<h2><%= @manga.titulo %></h2>
-	<h3><%= @manga.usuario.email %></h3>
-	<h2><%= @manga.descricao %></h2>
-	<% if @manga.finalizado %>
-		<h2>Finalizado</h2>
-	<% else %>
-		<h2>Em andamento</h2>
-	<% end %>
-</div>
-<% if @favorito.present? %>
-	<a href="<%= desfavoritar_manga_path(@manga.id) %>">Desfavoritar mangá</a>
-<% else %>
-	<a href="<%= favoritar_manga_path(@manga.id) %>">Favoritar mangá</a>
-<% end %>
-<% if @capitulos.present? %>
-	<div>
-		<% @capitulos.each do |capitulo|%>
-			<h4><%= capitulo.titulo %></h4>
-			<a href="<%= editar_capitulo_path(capitulo.id) %>">Editar capitulo</a>
-			<form action="<%= excluir_capitulo_path %>" method="post">
-				<%= token_tag %>
-				<input type="hidden" name="capitulo_id" value="<%= capitulo.id %>">
-				<button>Excluir capitulo</button>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina"><%= @manga.titulo %></div>
+			<% if @manga.finalizado %>
+				<div id="status-pagina">Finalizado</div>
+			<% else %>
+				<div id="status-pagina">Em andamento</div>
+			<% end %>
+		</div>
+		<div id="ver-manga-controles">
+			<form class="formulario-controle" action="<%= editar_manga_path(@manga.id) %>" method="get">
+				<button id="botao-editar">Editar</button>
 			</form>
-		<% end %>
+			<form class="formulario-controle" action="<%= excluir_manga_path %>" method="post">
+				<%= token_tag %>
+				<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+				<button id="botao-excluir">Excluir</button>
+			</form>
+		</div>
 	</div>
-<% else %>
-	Não há capítulos
-<% end %>
+	<div id="apresentacao-manga">
+		<div id="imagem-container">
+			<img id="capa-manga" src="<%= @manga.capa_path %>">
+			<div id="manga-favorito">Fav</div>
+		</div>
+		<div id="lista-capitulos">
+			<div id="lista-cabecalho">
+				<div id="lista-titulo">Capítulos</div>
+				<form class="formulario-controle" action="<%= novo_capitulo_path(@manga.id)%>" method="get">
+					<button id="botao-novo-capitulo">Novo capítulo</button>	
+				</form>
+			</div>
+			<div id="capitulos-container">
+				<% if @capitulos.present? %>
+					<% @capitulos.each do |capitulo| %>
+						<div class="capitulo"><%= capitulo.titulo %></div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

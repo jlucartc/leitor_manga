@@ -1,0 +1,581 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ 
+ /*
+  Funciona decentemente até 950px
+ */
+
+ $default_width: 1920px;
+ $default_height: 900px;
+
+ $conteudo_left_width: calc(1/8.5 * #{$default_width});
+ $conteudo_principal_width: calc(6.5/8.5 * #{$default_width});
+ $conteudo_right_width: calc(1/8.5 * #{$default_width});
+
+ $conteudo_principal_height: calc(1.8/4 * #{$default_height});
+
+ $conteudo_left_column_weight: 0.12fr;
+ $conteudo_principal_column_weight: 0.76fr;
+ $conteudo_right_column_weight: 0.12fr;
+
+ $titulo_pagina_column_weight: 0.62fr;
+ $cabecalho_free_column_weight: 0.23fr;
+ $menu_apresentacao_column_weight: 0.15fr;
+
+ $item_lista_row_height: calc(1/6.5 * #{$conteudo_principal_width});
+
+ $manga_item_imagem_container_width: calc(2/3*#{$item_lista_row_height});
+
+
+ html{
+  width: 100%;
+  height: 100%;
+ }
+
+ body{
+  width:  100%;
+  height:  100%;
+  margin:  0;
+ }
+
+ #menu{
+  padding: 10px 10px 10px 40px;
+  display: flex;
+  flex-diretion: row;
+  width:  100%;
+  height:  calc((0.5/4) * #{$default_height});
+  background-color: #cccccc;
+  box-sizing: border-box;
+ }
+
+ .menu-link{
+    border: none;
+    background: none;
+    font-family: helvetica;
+    margin: 0px 40px 0px 0px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      font-weight: bold;
+    }
+ }
+
+ .menu-logout-form{
+    margin: 0px 40px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+
+ .menu-logout-button{
+    border: none;
+    background: none;
+    font-family: helvetica;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      font-weight: bold;
+    }  
+ }
+
+ #conteudo{
+  padding: 0px 0px 60px 0px;
+  min-height: #{$default_height};
+  background-color: #f0f0f0;
+  display: grid;
+  grid-template-columns: #{$conteudo_left_column_weight} #{$conteudo_principal_column_weight} #{$conteudo_right_column_weight};
+  grid-template-rows: calc(0.5/4 * #{$default_height}) calc(0.5/4 * #{$default_height}) calc(0.3/4 * #{$default_height}) 1fr;
+ }
+
+ #cabecalho{
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+ }
+
+ #apresentacao-manga{
+  box-shadow: 1px 2px 5px 0px #999999;
+  border-radius: 5px;
+  overflow: hidden;
+  width:  100%;
+  height:  #{$conteudo_principal_height};
+  grid-column:  2;
+  grid-row: 4;
+  background-color: #ff3355;
+  display: grid;
+  grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
+  grid-template-rows: #{$conteudo_principal_height};
+
+  #imagem-container{
+    position: relative;
+    grid-column: 1;
+    background-color: #7700ff;
+    overflow: hidden;
+  }
+
+  #manga-favorito{
+    width: calc(0.3/1.8 * #{$conteudo_principal_height});
+    height: calc(0.3/1.8 * #{$conteudo_principal_height});
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(#999999,0.3);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      background-color: rgba(#999999,0.8);
+    }
+  }
+
+  #capa-manga{
+    width: 100%;
+    aspect-ratio: 2/3;
+  }
+
+  #lista-capitulos{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
+
+    #lista-cabecalho{
+      padding:  10px 10px 10px 10px;
+      background-color: #5500ff;
+      display: grid;
+      grid-template-columns: 8fr 2fr;
+    }
+
+    #lista-titulo{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      font-family: helvetica;
+      font-size: 2em;
+    }
+
+    #botao-novo-capitulo{
+      padding: 10px 10px 10px 10px;
+      font-family: helvetica;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      background-color: #33dd55;
+
+      &:hover{
+        background-color: #00bb33;
+        color: #ffffff;
+      }
+
+    }
+
+    #capitulos-container{
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: calc(0.2/1.8 * #{$conteudo_principal_height});
+
+      .capitulo{
+        font-family: helvetica;
+        padding: 10px 10px 10px 10px;
+        height: 100%;
+        background-color: #3300dd;
+        color: #ffffff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
+        box-sizing: border-box;
+
+        &:hover{
+          background-color: #7700ff;
+        }
+      }
+    }
+  }
+ }
+
+ #cabecalho-pagina{
+  width: 100%;
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 1fr;
+ }
+
+ #titulo-pagina{
+  font-family: helvetica;
+  font-size: 4em;
+  width: 100%;
+  //background-color: #ff3355;
+ }
+
+ #status-pagina{
+  font-family: helvetica;
+  font-size: 1.5em;
+  width: 100%;
+  max-height: 100%;
+  //background-color: #ff3355;
+ }
+
+ #menu-apresentacao{
+  width: 100%;
+  max-height: 100%;
+  grid-column: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  gap: 10px;
+ }
+
+ #botao-apresentacao-lista{
+  color: #ffffff;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #111111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  &:hover{
+    background-color: #333333;
+  }
+ }
+
+ #botao-apresentacao-grade{
+  color: #ffffff;
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #111111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  &:hover{
+    background-color: #333333;
+  }
+
+ }
+
+ #ver-manga-controles{
+    width: 100%;
+    grid-column: 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 10px;
+
+    #botao-editar{
+      padding: 10px 10px 10px 10px;
+      font-family: helvetica;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.5em;
+      background-color: #33dd55;
+
+      &:hover{
+        background-color: #00bb33;
+        color: #ffffff;
+      }
+
+    }
+
+    #botao-excluir{
+      padding: 10px 10px 10px 10px;
+      font-family: helvetica;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.5em;
+      background-color: #ff5555;
+
+      &:hover{
+        background-color: #ff3333;
+        color: #ffffff;
+      }
+
+    }
+
+ }
+
+ .formulario-controle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ }
+
+ #itens-container-grade{
+  width:  100%;
+  min-height:  #{$conteudo_principal_height};
+  grid-column:  2;
+  grid-row: 4;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+  grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+ }
+
+ #itens-container-lista{
+  width:  100%;
+  min-height:  #{$conteudo_principal_height};
+  grid-column:  2;
+  grid-row: 4;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: #{$item_lista_row_height};
+  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+ }
+
+ .item{
+   background-color: #1144bb;
+   border-radius: 5px;
+ }
+
+ .manga-item-lista{
+   overflow: hidden;
+   background-color: #dddddd;
+   border-radius: 5px;
+   display: grid;
+   grid-template-columns: #{$manga_item_imagem_container_width} 1fr;
+   grid-template-rows: 1fr;
+   box-shadow: 1px 1px 2px 0px #999999;
+
+   .manga-imagem-container{
+     background-color: #333333;
+     width: 100%;
+     height: 100%;
+   }
+
+   .manga-imagem{
+     width: 100%;
+     aspect-ratio: 2/3;
+   }
+
+   .manga-informacoes{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      padding: 10px 10px 10px 20px;
+   }
+
+   .manga-titulo{
+      font-family: helvetica;
+      font-size: 2em;
+   }
+
+   .manga-status{
+      font-family: helvetica;
+      font-size: 1.2em;
+   }
+
+   .manga-controles{
+      position: absolute;
+      bottom: 20px;
+      padding: 10px 0px 0px 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+   }
+
+   .manga-ver{
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #5555ff;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #3333ff;
+     }
+   }
+
+   .manga-editar{
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #11cc66;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #00aa33;
+     }
+
+   }
+
+   .manga-excluir{
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #ff5555;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #ff3333;
+     }
+
+   }
+
+ }
+
+ .manga-item-grade{
+   overflow: hidden;
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 1fr;
+   box-shadow: 1px 1px 2px 0px #999999;
+   border-radius: 5px;
+
+   .manga-imagem-container{
+     background-color: #333333;
+     width: 100%;
+     height: 100%;
+
+     &:hover{
+      filter: opacity(0.8);
+     }
+   }
+
+   .manga-imagem{
+     width: 100%;
+     aspect-ratio: 2/3;
+   }
+
+   .manga-informacoes{
+      display: none;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      padding: 10px 10px 10px 20px;
+   }
+
+   .manga-titulo{
+      display: none;
+      font-family: helvetica;
+      font-size: 2em;
+   }
+
+   .manga-status{
+      display: none;
+      font-family: helvetica;
+      font-size: 1.2em;
+   }
+
+   .manga-controles{
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      padding: 10px 0px 0px 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+   }
+
+   .manga-ver{
+     display: none;
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #5555ff;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #3333ff;
+     }
+   }
+
+   .manga-editar{
+     display: none;
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #11cc66;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #00aa33;
+     }
+
+   }
+
+   .manga-excluir{
+     display: none;
+     width: 80px;
+     margin: 0px 10px 0px 0px;
+     padding: 5px 5px 5px 5px;
+     background-color: #ff5555;
+     color: #ffffff;
+     font-size: 1.2em;
+     border: none;
+     border-radius: 5px;
+     box-shadow: 1px 1px 2px 0px #999999;
+
+     &:hover{
+      background-color: #ff3333;
+     }
+
+   }
+
+ }

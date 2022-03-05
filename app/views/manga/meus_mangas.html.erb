@@ -1,28 +1,43 @@
-<h1>Meus mangás</h1>
-
-<div>
-	<form action="<%= novo_manga_path %>" method="get">
-		<button>Novo mangá</button>
-	</form>
-
-	<div>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina">Meus mangás</div>
+			<div id="status-pagina"><%= @mangas.count %> mangás</div>
+		</div>
+		<div id="menu-apresentacao">
+			<div id="botao-apresentacao-lista">Lista</div>
+			<div id="botao-apresentacao-grade">Grade</div>
+		</div>
+	</div>
+	<div id="itens-container-lista">
 		<% if @mangas.present? %>
 			<% @mangas.each do |manga| %>
-				<div>
-					<img src="<%= manga.capa_path %>">
-					<h2><%= manga.titulo %></h2>
-					<p><%= manga.descricao %></p>
-					<a href="<%= ver_manga_path(manga.id) %>">Ver mangá</a>
-					<a href="<%= editar_manga_path(manga.id) %>">Editar mangá</a>
-					<form action="<%= excluir_manga_path %>" method="post">
-						<%= token_tag %>
-						<input type="hidden" name="manga_id" value="<%= manga.id%>">
-						<button>Excluir mangá</button>
-					</form>
+				<div class="manga-item-lista">
+					<div class="manga-imagem-container">
+						<img class="manga-imagem" src="<%= manga.capa_path %>">
+					</div>
+					<div class="manga-informacoes">
+						<div class="manga-titulo"><%= manga.titulo %></div>
+						<% if manga.finalizado %>
+							<div class="manga-status">Finalizado</div>
+						<% else %>
+							<div class="manga-status">Em andamento</div>
+						<% end %>
+						<div class="manga-controles">
+							<form action="<%= ver_manga_path(manga.id) %>" method="get">
+								<button class="manga-ver">Ver</button>
+							</form>
+							<form action="<%= editar_manga_path(manga.id) %>" method="get">
+								<button class="manga-editar">Editar</button>
+							</form>
+							<form action="<%= excluir_manga_path %>" method="post">
+								<input type="hidden" name="manga_id" value="<%= manga.id %>">
+								<button class="manga-excluir">Excluir</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			<% end %>
-		<% else %>
 		<% end %>
 	</div>
-
 </div>

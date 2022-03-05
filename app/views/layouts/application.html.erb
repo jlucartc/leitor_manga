@@ -11,17 +11,17 @@
   </head>
 
   <body>
-    <div style="display:flex;flex-direction:row">
+    <div id="menu">
       <% if current_usuario.present? %>
-        <a style="margin-right:10px;" href="<%= meus_mangas_path %>">Meus mangás</a>
-        <a style="margin-right:10px;" href="<%= favoritos_path %>">Favoritos</a>
-        <a style="margin-right:10px;" href="<%= buscar_manga_path %>">Buscar mangás</a>
-        <form action="<%= destroy_usuario_session_path %>" method="delete" data-turbo-method="delete">
-          <button type="submit">Logout</button>
+        <a class="menu-link" href="<%= meus_mangas_path %>">Meus mangás</a>
+        <a class="menu-link" href="<%= favoritos_path %>">Favoritos</a>
+        <a class="menu-link" href="<%= buscar_manga_path %>">Buscar mangás</a>
+        <form class="menu-logout-form" action="<%= destroy_usuario_session_path %>" method="delete" data-turbo-method="delete">
+          <button class="menu-logout-button" type="submit">Logout</button>
         </form>
       <% else %>
-        <a style="margin-right:10px;" href="<%= new_usuario_session_path %>">Login</a>
-        <a style="margin-right:10px;" href="<%= new_usuario_registration_path %>">Cadastro</a>
+        <a class="menu-link" href="<%= new_usuario_session_path %>">Login</a>
+        <a class="menu-link" href="<%= new_usuario_registration_path %>">Cadastro</a>
       <% end %>
     </div>
     <%= yield %>

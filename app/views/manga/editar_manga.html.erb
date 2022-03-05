@@ -1,39 +1,50 @@
-<h1>Editar mangá</h1>
-<div>
-	<form action="<%= atualizar_manga_path %>" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="manga_id" value="<%= @manga.id %>">
-		<input type="text" name="titulo" value="<%= @manga.titulo %>" placeholder="Título">
-		<textarea name="descricao" placeholder="Descrição do mangá"><%= @manga.descricao %></textarea>
-		<select name="finalizado">
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<input id="manga-titulo-editar" type="text" placeholder="Título do mangá" value="<%= @manga.titulo %>">
 			<% if @manga.finalizado %>
-				<option value="false">Em andamento</option>
-				<option value="true" selected>Finalizado</option>
+				<select id="status-pagina-editar">
+					<option value="true" selected>Finalizado</option>
+					<option value="false">Em andamento</option>
+				</select>
 			<% else %>
-				<option value="false" selected>Em andamento</option>
-				<option value="true">Finalizado</option>
-			<% end %>
-		</select>
-		<input type="file" name="manga[capa]">
-		<button type="submit">Salvar</button>
-	</form>
-	<form action="<%= novo_capitulo_path(@manga.id) %>" method="get">
-		<button type="submit">Novo capítulo</button>
-	</form>
-	<% if @capitulos.present? %>
-		<div>
-			<% @capitulos.each do |capitulo|%>
-				<div>
-					<h2><%= capitulo.titulo %></h2>
-					<a href="<%= editar_capitulo_path(capitulo.id) %>">Editar capítulo</a>
-					<form action="<%= excluir_capitulo_path %>" method="post">
-						<%= token_tag %>
-						<input type="hidden" name="capitulo_id" value="<%= capitulo.id %>">
-						<button type="submit">Excluir capítulo</button>
-					</form>
-				</div>
+				<select id="status-pagina-editar">
+					<option value="true">Finalizado</option>
+					<option value="false" selected>Em andamento</option>
+				</select>
 			<% end %>
 		</div>
-	<% else %>
-		<div>Não há capítulos</div>
-	<% end %>
+		<div id="ver-manga-controles">
+			<form id="confirmar" class="formulario-controle" action="<%= atualizar_manga_path %>" method="post" enctype="multipart/form-data">
+				<%= token_tag %>
+				<input type="file" name="capa" hidden>
+				<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+				<button form="confirmar" type="submit" id="botao-editar">Salvar</button>
+			</form>
+			<form id="cancelar" class="formulario-controle" action="<%= ver_manga_path(@manga.id) %>" method="get">
+				<button form="cancelar" type="submit" id="botao-excluir">Cancelar</button>
+			</form>
+		</div>
+	</div>
+	<div id="apresentacao-manga">
+		<div id="imagem-container">
+			<img id="capa-manga" src="<%= @manga.capa_path %>">
+			<div id="manga-editar-capa">Trocar capa</div>
+		</div>
+		<div id="lista-capitulos">
+			<div id="lista-cabecalho">
+				<div id="lista-titulo">Capítulos</div>
+				<form class="formulario-controle" action="<%= novo_capitulo_path(@manga.id)%>" method="get">
+					<button id="botao-novo-capitulo">Novo capítulo</button>	
+				</form>
+			</div>
+			<div id="capitulos-container">
+				<% if @capitulos.present? %>
+					<% @capitulos.each do |capitulo| %>
+						<div class="capitulo"><%= capitulo.titulo %></div>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
