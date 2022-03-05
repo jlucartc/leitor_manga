@@ -31,11 +31,11 @@ function troca_paginas(evento){
 		fonte_input.value = JSON.stringify(fonte_data)
 		destino_input.value = JSON.stringify(destino_data)
 
-		var pagina = pagina_destino.parentElement
-		auxiliar = pagina.removeChild(pagina_arrastada)
-		pagina.insertBefore(auxiliar,pagina.children[fonte_data.sequencia-1])
-		auxiliar = pagina.parentElement.removeChild(pagina_destino)
-		pagina.insertBefore(auxiliar,pagina.parentElement.children[destino_data.sequencia-1])
+		var paginas_container = pagina_destino.parentElement
+		auxiliar = paginas_container.removeChild(pagina_arrastada)
+		paginas_container.insertBefore(auxiliar,paginas_container.children[fonte_data.sequencia-1])
+		auxiliar = paginas_container.removeChild(pagina_destino)
+		paginas_container.insertBefore(auxiliar,paginas_container.children[destino_data.sequencia-1])
 
 	}
 
