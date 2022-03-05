@@ -29,7 +29,7 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
       fixture_file_upload('images/naruto.jpeg','image/jpeg'),
       fixture_file_upload('images/bleach.jpeg','image/jpeg'),
       fixture_file_upload('images/onepiece.jpeg','image/jpeg')
-    ]}
+    ], sequencia_imagens: [{nome: "naruto.jpeg",sequencia: 1}.to_json,{nome: "bleach.jpeg",sequencia: 2}.to_json,{nome: "onepiece.jpeg",sequencia: 3}.to_json]}
     assert Capitulo.where(manga_id: 1).present? and Capitulo.where(manga_id: 1).last.titulo == 'Capitulo 2'
   end
 

@@ -1,9 +1,27 @@
-<div>
-	<form action="<%= cadastrar_capitulo_path %>" method="post" enctype="multipart/form-data">
-		<%= token_tag %>
-		<input type="hidden" name="manga_id" value="<%= @manga.id %>">
-		<input type="text" name="titulo" placeholder="titulo">
-		<input type="file" name="imagens[]" multiple>
-		<button type="submit">Criar capítulo</button>
-	</form>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina">Novo capítulo</div>
+			<div id="status-pagina"><%= @manga.titulo %></div>
+		</div>
+	</div>
+	<div id="formulario-novo-capitulo">
+		<div id="grupo-input">
+			<form id="salvar-capitulo" action="<%= cadastrar_capitulo_path %>" method="post" enctype="multipart/form-data" hidden>
+				<%= token_tag %>
+				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="imagens[]" multiple hidden>
+				<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+			</form>
+			<input id="titulo" form="salvar-capitulo" type="text" name="titulo" placeholder="Título do capítulo">
+			<button id="escolher-paginas">Adicionar páginas</button>	
+		</div>
+		<div id="paginas-container">
+			
+		</div>
+		<div id="controles">
+			<form id="cancelar-edicao" action="<%= ver_manga_path(@manga.id) %>" method="get"></form>
+			<button form="salvar-capitulo" type="submit" id="botao-salvar">Salvar</button>
+			<button form="cancelar-edicao" type="submit" id="botao-cancelar">Cancelar</button>
+		</div>
+	</div>
 </div>

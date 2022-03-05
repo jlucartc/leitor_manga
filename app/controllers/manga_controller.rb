@@ -87,7 +87,7 @@ class MangaController < ApplicationController
 		capitulo = Capitulo.new(titulo: params[:titulo], manga_id: params[:manga_id])
 		if capitulo.save
 			flash[:success] = 'Capitulo criado com sucesso'
-			params[:imagens].each_with_index{|imagem,index| Imagem.create(capitulo_id: capitulo.id, sequencia: index, arquivo: imagem.tempfile.read)}
+			params[:imagens].each_with_index{|imagem| Imagem.create(capitulo_id: capitulo.id, sequencia: sequencia_imagem(params,imagem.original_filename), arquivo: imagem.tempfile.read)}
 			redirect_to ver_manga_path(params[:manga_id])
 		else
 			flash[:danger] = 'Erro na criação do capítulo'
@@ -145,5 +145,11 @@ class MangaController < ApplicationController
 		redirect_to meus_mangas_path
 	end
 	
+	private
+
+		def sequencia_imagem(params,filename)
+			sequencia = params[:sequencia_imagens].map{|sequencia| JSON.parse(sequencia) }
+			sequencia.filter{|sequencia| sequencia["nome"] == filename}.first["sequencia"]
+		end
 
 end
