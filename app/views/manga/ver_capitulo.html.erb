@@ -1,0 +1,28 @@
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina"><%= @capitulo.titulo %></div>
+			<div id="status-pagina"><%= @capitulo.imagens.count %> imagens</div>
+		</div>
+		<div id="ver-manga-controles">
+			<form class="formulario-controle" action="<%= editar_capitulo_path(@capitulo.id) %>" method="get">
+				<button id="botao-editar">Editar</button>
+			</form>
+			<form class="formulario-controle" action="<%= excluir_capitulo_path %>" method="post">
+				<%= token_tag %>
+				<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
+				<button id="botao-excluir">Excluir</button>
+			</form>
+		</div>
+	</div>
+	<div id="conteudo_ver_capitulo">
+		<% if @capitulo.imagens.present? %>
+			<% @capitulo.imagens.order(:sequencia).each do |imagem| %>
+				<div class="pagina">
+					<img class="pagina-imagem" src="<%= imagem.path %>">
+					<div class="pagina-cover"><%= imagem.sequencia %></div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

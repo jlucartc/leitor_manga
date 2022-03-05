@@ -22,7 +22,15 @@
 	<div id="apresentacao-manga">
 		<div id="imagem-container">
 			<img id="capa-manga" src="<%= @manga.capa_path %>">
-			<div id="manga-favorito">Fav</div>
+			<% if @favorito.present? %>
+				<div id="manga-favorito">
+					<form id="desfavoritar" action="<%= desfavoritar_manga_path(@manga.id) %>" method="get"></form>
+				</div>
+			<% else %>
+				<div id="manga-nao-favorito">
+					<form id="favoritar" action="<%= favoritar_manga_path(@manga.id) %>" method="get"></form>
+				</div>
+			<% end %>
 		</div>
 		<div id="lista-capitulos">
 			<div id="lista-cabecalho">
@@ -36,7 +44,7 @@
 					<% @capitulos.each do |capitulo| %>
 						<div class="capitulo">
 							<%= capitulo.titulo %>
-							<form action="<%= ver_capitulo_path(capitulo) %>" method="get" hidden>
+							<form action="<%= ver_capitulo_path(capitulo.id) %>" method="get" hidden>
 							</form>		
 						</div>
 					<% end %>

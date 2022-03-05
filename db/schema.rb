@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
   end
 
   create_table "imagens", force: :cascade do |t|
+    t.string "nome"
     t.integer "capitulo_id"
     t.integer "sequencia"
     t.binary "arquivo"

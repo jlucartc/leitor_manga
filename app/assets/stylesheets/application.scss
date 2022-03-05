@@ -142,12 +142,13 @@ body{
   }
 
   #manga-favorito{
-    width: calc(0.3/1.8 * #{$conteudo_principal_height});
-    height: calc(0.3/1.8 * #{$conteudo_principal_height});
+    width: calc(0.2/1.8 * #{$conteudo_principal_height});
+    height: calc(0.2/1.8 * #{$conteudo_principal_height});
     position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgba(#999999,0.3);
+    top: 10px;
+    right: 10px;
+    background-image: url('/fav.png');
+    background-size: cover;
     color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -155,7 +156,26 @@ body{
     justify-content: center;
 
     &:hover{
-      background-color: rgba(#999999,0.8);
+      background-image: url('/not_fav.png');
+    }
+  }
+
+  #manga-nao-favorito{
+    width: calc(0.2/1.8 * #{$conteudo_principal_height});
+    height: calc(0.2/1.8 * #{$conteudo_principal_height});
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-image: url('/not_fav.png');
+    background-size: cover;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+      background-image: url('/fav.png');
     }
   }
 
@@ -674,6 +694,47 @@ body{
 
       &:hover{
         background-color: #dd3333;
+      }
+    }
+  }
+
+}
+
+#conteudo_ver_capitulo{
+  grid-column:  2;
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+  grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+  .pagina{
+    position: relative;
+    box-shadow: 1px 1px 2px 0px #999999;
+
+    .pagina-imagem{
+      width: 100%;
+      aspect-ratio: 2/3;
+    }
+
+    .pagina-cover{
+      user-select: none;
+      font-family: helvetica;
+      font-size: 3em;
+      top: 0;
+      position: absolute;
+      width: 100%;
+      aspect-ratio: 2/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background-color: rgba(#999999,0.4);
+
+      &:hover{
+        filter: none;
+        background-color: rgba(#999999,0.7);
       }
     }
   }

@@ -18,7 +18,7 @@ class MangaController < ApplicationController
 		else
 			flash[:danger] = "Mangá não pode ser favoritado novamente."
 		end
-		redirect_to favoritos_path
+		redirect_to ver_manga_path(params[:manga_id])
 	end
 
 	def desfavoritar_manga
@@ -29,7 +29,7 @@ class MangaController < ApplicationController
 		else
 			flash[:danger] = "Mangá não pertence aos favoritos."
 		end
-		redirect_to favoritos_path
+		redirect_to ver_manga_path(params[:manga_id])
 	end
 
 	def buscar
@@ -49,6 +49,7 @@ class MangaController < ApplicationController
 	end
 
 	def ver_capitulo
+		@capitulo = Capitulo.find(params[:id])
 	end
 	
 	def ler_manga

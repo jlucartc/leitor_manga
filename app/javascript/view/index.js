@@ -1,4 +1,6 @@
 import * as novo_capitulo_callbacks from './novo_capitulo_callbacks';
+import * as ver_capitulo_callbacks from './ver_capitulo_callbacks';
+import * as ver_manga_callbacks from './ver_manga_callbacks';
 import * as helpers from './helpers';
 
 function remove_event_listener(item){
@@ -38,10 +40,13 @@ function adiciona_event_listener(item){
 }
 
 var mapa_classe_eventos_turbo_load = [
-	{classe:'excluir-produto-cancelar',evento:'click',callbacks:[]},
+	{classe:'capitulo',evento:'click',callbacks:[ver_capitulo_callbacks.ver_capitulo]},
+	{classe:'excluir-produto-cancelar',evento:'click',callbacks:[]}
 ]
 
 var mapa_id_eventos_turbo_load = [
+	{id:'manga-nao-favorito',evento:'click',callbacks:[ver_manga_callbacks.favoritar]},
+	{id:'manga-favorito',evento:'click',callbacks:[ver_manga_callbacks.desfavoritar]},
 	{id:'escolher-paginas',evento:'click',callbacks:[novo_capitulo_callbacks.abre_seletor_paginas]},
 	{id:'seletor-imagens',evento:'change',callbacks:[novo_capitulo_callbacks.insere_paginas]}
 ]

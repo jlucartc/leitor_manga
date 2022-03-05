@@ -1,13 +1,3 @@
-<!-- <h1>Favoritos</h1>
-<div>
-	<% if @favoritos.present? %>
-		<% @favoritos.each do |favorito|%>
-			<h3><%= favorito.manga.titulo%></h3>
-		<% end %>
-	<% else %>
-		<h2>Não há favoritos</h2>
-	<% end %>
-</div> -->
 <div id="conteudo">
 	<div id="cabecalho">
 		<div id="cabecalho-pagina">
@@ -21,8 +11,8 @@
 	</div>
 	<div id="itens-container-lista">
 		<% if @favoritos.present? %>
-			<% @favoritos.each do %>
-				<div id="manga-item-grade"></div>
+			<% @favoritos.each do |favorito|%>
+				<div id="manga-item-grade"><%= favorito.manga.titulo %></div>
 			<% end %>
 		<% end %>
 	</div>
