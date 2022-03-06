@@ -1,3 +1,5 @@
+import * as helpers from './helpers'
+
 var pagina_arrastada = null
 var pagina_destino = null
 
@@ -53,15 +55,6 @@ function remove_paginas(){
 	})
 }
 
-function refaz_contagem(){
-	console.log('refazendo contagem...')
-	var paginas = Array.from(document.getElementsByClassName('pagina-capitulo-cover'))
-	
-	paginas.forEach((pagina,indice)=>{
-		pagina.innerText = indice + 1
-	})
-}
-
 function cria_pagina(imagem,indice){
 	var pagina = document.createElement('div')
 	var pagina_imagem = document.createElement('img')
@@ -105,7 +98,7 @@ function ultimo_indice_paginas(){
 function insere_paginas(evento){
 
 	remove_paginas()
-	refaz_contagem()
+	helpers.refaz_contagem()
 
 	var ultimo_indice = ultimo_indice_paginas()
 	var paginas = Array.from(evento.target.files)

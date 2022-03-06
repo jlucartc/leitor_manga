@@ -2,9 +2,33 @@ function exists(elemento){
 	return (elemento != null && elemento != undefined)
 }
 
+function refaz_contagem(){
+	var paginas_existentes = Array.from(document.getElementsByClassName('pagina-capitulo'))
+	var paginas_novas = Array.from(document.getElementsByClassName('pagina-nova'))
+	var paginas = paginas_existentes.concat(paginas_novas)
+
+	paginas.forEach((pagina,indice)=>{
+		var pagina_existente_cover = Array.from(pagina.getElementsByClassName('pagina-capitulo-cover'))[0]
+		var pagina_nova_cover = Array.from(pagina.getElementsByClassName('pagina-nova-cover'))[0]
+		var pagina_input = Array.from(pagina.getElementsByTagName('input'))[0]
+		var pagina_input_data = JSON.parse(pagina_input.value)
+
+		if(exists(pagina_existente_cover)){
+			pagina_existente_cover.innerText = indice + 1
+		}else if(exists(pagina_nova_cover)){
+			pagina_nova_cover.innerText = indice + 1
+		}
+
+		pagina_input_data.sequencia = indice + 1
+		pagina_input.value = JSON.stringify(pagina_input_data)
+	})
+}
+
 function remover_pagina(evento){
 	var pagina = evento.target.parentElement
 	pagina.parentElement.removeChild(pagina)
+
+	refaz_contagem()
 }
 
 function apresentar_lista(evento){
@@ -42,5 +66,6 @@ export {
 	apresentar_lista,
 	apresentar_grade,
 	ver_manga,
-	remover_pagina
+	remover_pagina,
+	refaz_contagem
 }

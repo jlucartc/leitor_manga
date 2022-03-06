@@ -17,7 +17,7 @@
 		</div>
 		<div id="paginas-container">
 			<% if @capitulo.imagens.present? %>
-				<% @capitulo.imagens.each do |pagina|%>
+				<% @capitulo.imagens.order(:sequencia).each do |pagina|%>
 					<div class="pagina-capitulo" draggable="true">
 						<img class="pagina-capitulo-imagem" src="<%= pagina.path %>">
 						<div class="pagina-capitulo-cover"><%= pagina.sequencia %></div>

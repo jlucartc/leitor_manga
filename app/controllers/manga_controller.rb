@@ -88,7 +88,8 @@ class MangaController < ApplicationController
 	
 	def cadastrar_capitulo
 		capitulo = Capitulo.new(titulo: params[:titulo], manga_id: params[:manga_id])
-		if capitulo.save
+		
+		if capitulo.manga.usuario_id == current_usuario.id and capitulo.save
 			flash[:success] = 'Capitulo criado com sucesso'
 			params[:imagens].each_with_index do |imagem|
 				Imagem.create({
