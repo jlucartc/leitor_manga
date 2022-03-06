@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/manga/buscar", to: "manga#buscar", as: "buscar_manga"
   get "/manga/ver/:id", to: "manga#ver_manga", as: "ver_manga"
   get "/capitulo/ver/:id", to: "manga#ver_capitulo", as: "ver_capitulo"
-  get "/capitulo/ler/:id", to: "manga#ler_capitulo", as: "ler_capitulo"
+  get "/manga/ler/:manga_id/:sequencia_capitulo/:sequencia_pagina", to: "manga#ler_manga", as: "ler_manga"
   get "/manga/novo", to: "manga#novo_manga", as: "novo_manga"
   get "/capitulo/novo/:manga_id", to: "manga#novo_capitulo", as: "novo_capitulo"
   get "/manga/editar/:id", to: "manga#editar_manga", as: "editar_manga"
