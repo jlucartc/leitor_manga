@@ -14,7 +14,22 @@
 			</div>
 			<div id="status-pagina"><%= @capitulo.titulo %> - Página <%= @pagina.sequencia %></div>
 		</div>
+		<div id="ler-manga-controles">
+			<button id="botao-zoom-mais">+</button>
+			<button id="botao-zoom-menos">-</button>
+		</div>
 	</div>
-	<div id="apresentacao-manga">
+	<div id="leitor-manga">
+		<img id="pagina-imagem" src="<%= @pagina.path %>">
+		<div id="proxima-pagina">
+			<a href="<%= ler_manga_path(@manga.id,@capitulo.sequencia,@pagina.sequencia+1) %>" hidden></a>
+		</div>
+		<div id="pagina-anterior">
+			<% if @pagina.sequencia > 1 %>
+				<a href="<%= ler_manga_path(@manga.id,@capitulo.sequencia,@pagina.sequencia-1) %>" hidden></a>
+			<% else %>
+				<a href="<%= ver_manga_path(@manga.id) %>" hidden></a>
+			<% end %>
+		</div>
 	</div>
 </div>

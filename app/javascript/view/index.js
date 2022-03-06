@@ -54,6 +54,10 @@ var mapa_classe_eventos_turbo_load = [
 ]
 
 var mapa_id_eventos_turbo_load = [
+	{id:'proxima-pagina',evento:'click',callbacks:[helpers.proxima_pagina]},
+	{id:'pagina-anterior',evento:'click',callbacks:[helpers.pagina_anterior]},
+	{id:'botao-zoom-mais',evento:'mousedown',callbacks:[helpers.aumenta_leitor]},
+	{id:'botao-zoom-menos',evento:'mousedown',callbacks:[helpers.diminui_leitor]},
 	{id:'botao-excluir',evento:'click',callbacks:[helpers.ativa_modal_exclusao]},
 	{id:'botao-apresentacao-grade',evento:'click',callbacks:[helpers.apresentar_grade]},
 	{id:'botao-apresentacao-lista',evento:'click',callbacks:[helpers.apresentar_lista]},

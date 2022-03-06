@@ -2,6 +2,28 @@ function exists(elemento){
 	return (elemento != null && elemento != undefined)
 }
 
+function aumenta_leitor(evento){
+	var leitor = document.getElementById('leitor-manga')
+	if(leitor.offsetWidth < 1447){
+		leitor.style.width = (leitor.offsetWidth + 100)+'px'
+	}
+}
+
+function proxima_pagina(evento){
+	var link = Array.from(evento.target.getElementsByTagName('a'))[0]
+	link.click()
+}
+
+function pagina_anterior(evento){
+	var link = Array.from(evento.target.getElementsByTagName('a'))[0]
+	link.click()
+}
+
+function diminui_leitor(evento){
+	var leitor = document.getElementById('leitor-manga')
+	leitor.style.width = (leitor.offsetWidth - 100)+'px'
+}
+
 function ativa_modal_exclusao(evento){
 	console.log('ativa_modal_exclusao')
 	var indice = evento.target.id.split('-')[2]
@@ -101,5 +123,9 @@ export {
 	refaz_contagem,
 	ativa_modal_exclusao,
 	cancela_exclusao,
-	confirma_exclusao
+	confirma_exclusao,
+	aumenta_leitor,
+	diminui_leitor,
+	proxima_pagina,
+	pagina_anterior
 }
