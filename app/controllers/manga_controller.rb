@@ -45,10 +45,12 @@ class MangaController < ApplicationController
 		@manga = Manga.find(params[:id])
 		@capitulos = Capitulo.where(manga_id: @manga.id)
 		@favorito = Favorito.where(manga_id: @manga.id, usuario_id: current_usuario.id)
+		@autorizado = true if @manga.usuario_id == current_usuario.id
 	end
 
 	def ver_capitulo
 		@capitulo = Capitulo.find(params[:id])
+		@autorizado = true if @capitulo.manga.usuario_id == current_usuario.id
 	end
 	
 	def ler_manga
@@ -58,16 +60,35 @@ class MangaController < ApplicationController
 	end
 	
 	def novo_capitulo
-		@manga = Manga.find(params[:manga_id])
+		@manga = Manga.where(id: params[:manga_id],usuario_id: current_usuario.id).first
+
+		if @manga.nil?
+			flash[:danger] = "Usuário não possui permissão para criar novo capítulo neste mangá."
+			redirect_to ver_manga_path(params[:manga_id])
+		end
+
 	end
 	
 	def editar_manga
 		@manga = Manga.where(id: params[:id], usuario_id: current_usuario.id).first
-		@capitulos = Capitulo.where(manga_id: @manga.id)
+
+		if @manga.present?
+			@capitulos = Capitulo.where(manga_id: @manga.id)
+		else
+			flash[:danger] = 'Usuário não possui permissao para editar mangá.'
+			redirect_to ver_manga_path(params[:id])
+		end	
+
 	end
 	
 	def editar_capitulo
 		@capitulo = Capitulo.find(params[:id])
+
+		if @capitulo.manga.usuario_id != current_usuario.id
+			flash[:danger] = 'Usuário não possui permissao para editar capítulo.'
+			redirect_to ver_manga_path(@capitulo.manga.id)
+		end
+
 	end
 	
 	def cadastrar_manga
@@ -183,10 +204,11 @@ class MangaController < ApplicationController
 		if manga.present?
 			manga.destroy
 			flash[:success] = "Mangá excluído com sucesso!"
+			redirect_to meus_mangas_path
 		else
 			flash[:danger] = "Não foi possível excluir mangá."
+			redirect_to ver_manga_path(params[:manga_id])
 		end
-		redirect_to meus_mangas_path
 	end
 	
 	private

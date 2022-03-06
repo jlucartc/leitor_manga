@@ -1,3 +1,9 @@
+<% if flash[:success].present? %>
+	<div id="flash-success"><%= flash[:success] %></div>
+<% end %>
+<% if flash[:danger].present? %>
+	<div id="flash-danger"><%= flash[:danger] %></div>
+<% end %>
 <div id="conteudo">
 	<div id="cabecalho">
 		<div id="cabecalho-pagina">

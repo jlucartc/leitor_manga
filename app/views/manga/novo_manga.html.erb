@@ -1,10 +1,41 @@
-<h1>Novo mangá</h1>
-
-<div>
-	<form style="display: flex; flex-direction: column; width: 500px;" action="<%= cadastrar_manga_path %>" method="post" enctype="multipart/form-data">
-		<input type="text" name="titulo" placeholder="Título">
-		<input type="file" name="capa" placeholder="Capa do mangá">
-		<textarea name="descricao" placeholder="descricao"></textarea>
-		<button type="submit">Criar</button>
-	</form>
+<% if flash[:success].present? %>
+	<div id="flash-success"><%= flash[:success] %></div>
+<% end %>
+<% if flash[:danger].present? %>
+	<div id="flash-danger"><%= flash[:danger] %></div>
+<% end %>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<input id="manga-titulo-editar" type="text" name="titulo" form="confirmar" placeholder="Título do mangá">
+			<select id="manga-status-editar" form="confirmar" name="finalizado">
+				<option value="true">Finalizado</option>
+				<option value="false" selected>Em andamento</option>
+			</select>
+		</div>
+		<div id="ver-manga-controles">
+			<form id="confirmar" class="formulario-controle" action="<%= cadastrar_manga_path %>" method="post" enctype="multipart/form-data">
+				<%= token_tag %>
+				<button form="confirmar" type="submit" id="botao-editar">Salvar</button>
+			</form>
+			<form id="cancelar" class="formulario-controle" action="<%= meus_mangas_path %>" method="get">
+				<button form="cancelar" type="submit" id="botao-excluir">Cancelar</button>
+			</form>
+		</div>
+	</div>
+	<div id="apresentacao-manga-editar">
+		<div id="imagem-container">
+			<img id="capa-manga" src="/dummy.png">
+			<div id="capa-cover">
+				<input id="input-capa" form="confirmar" type="file" name="capa" hidden>
+				<button id="botao-trocar-capa">Escolher capa</button>
+			</div>
+		</div>
+		<div id="descricao">
+			<div id="descricao-cabecalho">
+				Descrição
+			</div>
+			<textarea form="confirmar" name="descricao" id="editar-descricao" placeholder="Descrição do mangá"></textarea>
+		</div>
+	</div>
 </div>

@@ -52,6 +52,23 @@ body{
   margin:  0;
 }
 
+#flash-success{
+  padding: 10px 10px 10px 10px;
+  font-family: helvetica;
+  width: 100%;
+  font-size: 1.5em;
+  background-color: #33dd55;
+}
+
+#flash-danger{
+  padding: 10px 10px 10px 10px;
+  font-family: helvetica;
+  width: 100%;
+  font-size: 1.2em;
+  background-color: #ff5555;
+  color: #ffffff;
+}
+
 #menu{
   padding: 10px 10px 10px 40px;
   display: flex;
@@ -137,7 +154,6 @@ body{
   #imagem-container{
     position: relative;
     grid-column: 1;
-    background-color: #7700ff;
     overflow: hidden;
   }
 
@@ -262,7 +278,6 @@ body{
   #imagem-container{
     position: relative;
     grid-column: 1;
-    background-color: #7700ff;
     overflow: hidden;
   }
 
@@ -373,11 +388,34 @@ body{
   grid-template-rows: 3fr 1fr;
 }
 
-#titulo-pagina{
-  font-family: helvetica;
-  font-size: 4em;
+#titulo{
   width: 100%;
-  //background-color: #ff3355;
+  display: flex;
+  flex-direction: row;
+
+  #titulo-texto{
+    font-family: helvetica;
+    font-size: 4em;
+  }
+
+  #novo-manga{
+    align-self: center;
+    height: 60%;
+    border: none;
+    box-shadow: 1px 1px 2px 0px #999999;
+    border-radius: 5px;
+    background-color: #33dd55;
+    margin: 0px 0px 0px 20px;
+    font-size: 1.5em;
+    padding: 0px 20px 0px 20px;
+
+    &:hover{
+      color: #ffffff;
+      background-color: #00bb33;
+    }
+
+  }
+
 }
 
 #status-pagina{
@@ -385,7 +423,6 @@ body{
   font-size: 1.5em;
   width: 100%;
   max-height: 100%;
-  //background-color: #ff3355;
 }
 
 #manga-titulo-editar{

@@ -1,7 +1,17 @@
+<% if flash[:success].present? %>
+	<div id="flash-success"><%= flash[:success] %></div>
+<% end %>
+<% if flash[:danger].present? %>
+	<div id="flash-danger"><%= flash[:danger] %></div>
+<% end %>
 <div id="conteudo">
 	<div id="cabecalho">
 		<div id="cabecalho-pagina">
-			<div id="titulo-pagina">Editar capítulo</div>
+			<div id="titulo">
+				<div id="titulo-texto">
+					Editar capítulo
+				</div>
+			</div>
 			<div id="status-pagina"><%= @capitulo.titulo %> - <%= @capitulo.manga.titulo %></div>
 		</div>
 	</div>
