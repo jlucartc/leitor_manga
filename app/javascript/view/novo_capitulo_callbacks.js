@@ -66,7 +66,7 @@ function cria_pagina(imagem,indice){
 	pagina_cover.innerText = indice+1
 	pagina_imagem.src = URL.createObjectURL(imagem)
 
-	input_nome_sequencia.name = "sequencia_imagens[]"
+	input_nome_sequencia.name = "sequencia_paginas[]"
 	input_nome_sequencia.value = JSON.stringify({nome: imagem.name, sequencia: indice+1})
 	input_nome_sequencia.setAttribute('form','salvar-capitulo')
 	input_nome_sequencia.style.display = 'none'
