@@ -21,14 +21,14 @@
 			<% end %>
 		</div>
 		<div id="ver-manga-controles">
-			<form id="confirmar" class="formulario-controle" action="<%= atualizar_manga_path %>" method="post" enctype="multipart/form-data">
+			<form id="confirmar" action="<%= atualizar_manga_path %>" method="post" enctype="multipart/form-data" hidden>
 				<%= token_tag %>
 				<input form="confirmar" type="hidden" name="manga_id" value="<%= @manga.id %>">
-				<button form="confirmar" type="submit" id="botao-editar">Salvar</button>
 			</form>
-			<form id="cancelar" class="formulario-controle" action="<%= ver_manga_path(@manga.id) %>" method="get">
-				<button form="cancelar" type="submit" id="botao-excluir">Cancelar</button>
+			<form id="cancelar" action="<%= ver_manga_path(@manga.id) %>" method="get" hidden>
 			</form>
+			<button form="confirmar" type="submit" id="botao-editar">Salvar</button>
+			<button form="cancelar" type="submit" id="botao-excluir">Cancelar</button>
 		</div>
 	</div>
 	<div id="apresentacao-manga-editar">

@@ -5,8 +5,15 @@ function exists(elemento){
 function ativa_modal_exclusao(evento){
 	console.log('ativa_modal_exclusao')
 	var indice = evento.target.id.split('-')[2]
-	var modal = document.getElementById('modal-exclusao-'+indice)
-	modal.className = 'modal-exclusao'
+
+	if(parseInt(indice) != parseInt(indice)){
+		var modal = Array.from(document.getElementsByClassName('modal-exclusao-escondido'))[0]
+		modal.className = 'modal-exclusao'
+	}else{
+		var modal = document.getElementById('modal-exclusao-'+indice)
+		modal.className = 'modal-exclusao'
+	}
+
 }
 
 function cancela_exclusao(evento){
@@ -16,8 +23,15 @@ function cancela_exclusao(evento){
 
 function confirma_exclusao(evento){
 	var indice = evento.target.parentElement.parentElement.parentElement.id.split('-').pop()
-	var form = document.getElementById('excluir-manga-'+indice)
-	form.submit()
+
+	if(parseInt(indice) != parseInt(indice)){
+		var form = document.getElementById('excluir')
+		form.submit()
+	}else{
+		var form = document.getElementById('excluir-manga-'+indice)
+		form.submit()
+	}
+
 }
 
 function refaz_contagem(){

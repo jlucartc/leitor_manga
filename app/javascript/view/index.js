@@ -53,6 +53,7 @@ var mapa_classe_eventos_turbo_load = [
 ]
 
 var mapa_id_eventos_turbo_load = [
+	{id:'botao-excluir',evento:'click',callbacks:[helpers.ativa_modal_exclusao]},
 	{id:'botao-apresentacao-grade',evento:'click',callbacks:[helpers.apresentar_grade]},
 	{id:'botao-apresentacao-lista',evento:'click',callbacks:[helpers.apresentar_lista]},
 	{id:'input-capa',evento:'change',callbacks:[editar_manga_callbacks.mudar_capa]},

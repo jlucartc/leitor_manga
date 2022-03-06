@@ -20,14 +20,27 @@
 		</div>
 		<% if @autorizado %>
 			<div id="ver-manga-controles">
-				<form class="formulario-controle" action="<%= editar_manga_path(@manga.id) %>" method="get">
-					<button id="botao-editar">Editar</button>
-				</form>
-				<form class="formulario-controle" action="<%= excluir_manga_path %>" method="post">
+				<form id="editar" action="<%= editar_manga_path(@manga.id) %>" method="get" hidden></form>
+				<form id="excluir" action="<%= excluir_manga_path %>" method="post" hidden>
 					<%= token_tag %>
 					<input type="hidden" name="manga_id" value="<%= @manga.id %>">
-					<button id="botao-excluir">Excluir</button>
 				</form>
+				<button form="editar" id="botao-editar">Editar</button>
+				<button id="botao-excluir">Excluir</button>
+				<div class="modal-exclusao-escondido" hidden>
+					<div class="modal-exclusao-card">
+						<div class="modal-exclusao-header">
+							Confirmar exclusao
+						</div>
+						<div class="modal-exclusao-body">
+							Deseja excluir o mangá "<%= @manga.titulo %>"?
+						</div>
+						<div class="modal-exclusao-footer">
+							<button class="modal-confirmar-exclusao">Excluir</button>
+							<button class="modal-cancelar-exclusao">Cancelar</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		<% end %>
 	</div>

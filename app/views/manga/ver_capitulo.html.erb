@@ -15,16 +15,29 @@
 			<div id="status-pagina"><%= @capitulo.imagens.count %> páginas</div>
 		</div>
 		<% if @autorizado %>
-		<div id="ver-manga-controles">
-			<form class="formulario-controle" action="<%= editar_capitulo_path(@capitulo.id) %>" method="get">
-				<button id="botao-editar">Editar</button>
-			</form>
-			<form class="formulario-controle" action="<%= excluir_capitulo_path %>" method="post">
-				<%= token_tag %>
-				<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
+			<div id="ver-manga-controles">
+				<form id="editar" action="<%= editar_capitulo_path(@capitulo.id) %>" method="get" hidden></form>
+				<form id="excluir" action="<%= excluir_capitulo_path %>" method="post" hidden>
+					<%= token_tag %>
+					<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
+				</form>
+				<button form="editar" id="botao-editar">Editar</button>
 				<button id="botao-excluir">Excluir</button>
-			</form>
-		</div>
+				<div class="modal-exclusao-escondido" hidden>
+					<div class="modal-exclusao-card">
+						<div class="modal-exclusao-header">
+							Confirmar exclusao
+						</div>
+						<div class="modal-exclusao-body">
+							Deseja excluir o capitulo "<%= @capitulo.titulo %>"?
+						</div>
+						<div class="modal-exclusao-footer">
+							<button class="modal-confirmar-exclusao">Excluir</button>
+							<button class="modal-cancelar-exclusao">Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		<% end %>
 	</div>
 	<div id="conteudo_ver_capitulo">

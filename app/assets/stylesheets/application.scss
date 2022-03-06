@@ -526,14 +526,17 @@ body{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  gap: 10px;
+  align-items: center;
+  justify-items: center;
 }
 
 #botao-apresentacao-lista{
   color: #ffffff;
-  width: 100%;
+  width: 80%;
   aspect-ratio: 1;
   background-color: #111111;
+  background-image: url('/lista_ativa.png');
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -542,14 +545,17 @@ body{
 
   &:hover{
     background-color: #333333;
+    width: 85%;
   }
 }
 
 #botao-apresentacao-grade{
   color: #ffffff;
-  width: 100%;
+  width: 80%;
   aspect-ratio: 1;
   background-color: #111111;
+  background-image: url('/grade_ativa.png');
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -558,6 +564,7 @@ body{
 
   &:hover{
     background-color: #333333;
+    width: 85%;
   }
 }
 
@@ -570,6 +577,7 @@ body{
   gap: 10px;
 
   #botao-editar{
+    height: 60%;
     padding: 10px 10px 10px 10px;
     font-family: helvetica;
     border: none;
@@ -584,6 +592,7 @@ body{
   }
 
   #botao-excluir{
+    height: 60%;
     padding: 10px 10px 10px 10px;
     font-family: helvetica;
     border: none;
@@ -639,7 +648,6 @@ body{
   box-shadow: 1px 1px 2px 0px #999999;
 
   .manga-imagem-container{
-    background-color: #333333;
     width: 100%;
     height: 100%;
   }
@@ -704,7 +712,7 @@ body{
     width: 80px;
     margin: 0px 10px 0px 0px;
     padding: 5px 5px 5px 5px;
-    background-color: #11cc66;
+    background-color: #33dd55;
     color: #ffffff;
     font-size: 1.2em;
     border: none;
@@ -712,7 +720,7 @@ body{
     box-shadow: 1px 1px 2px 0px #999999;
 
     &:hover{
-      background-color: #00aa33;
+      background-color: #00bb33;
     }
   }
 
@@ -744,7 +752,6 @@ body{
 
   .manga-imagem-container{
     position: relative;
-    background-color: #333333;
     width: 100%;
     height: 100%;
   }
