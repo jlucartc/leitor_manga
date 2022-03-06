@@ -90,7 +90,13 @@ class MangaController < ApplicationController
 		capitulo = Capitulo.new(titulo: params[:titulo], manga_id: params[:manga_id])
 		if capitulo.save
 			flash[:success] = 'Capitulo criado com sucesso'
-			params[:imagens].each_with_index{|imagem| Imagem.create(capitulo_id: capitulo.id, sequencia: sequencia_imagem(params,imagem.original_filename), arquivo: imagem.tempfile.read)}
+			params[:imagens].each_with_index do |imagem|
+				Imagem.create({
+					capitulo_id: capitulo.id,
+					sequencia: sequencia_imagem(params,imagem.original_filename),
+					arquivo: imagem.tempfile.read
+				})
+			end
 			redirect_to ver_manga_path(params[:manga_id])
 		else
 			flash[:danger] = 'Erro na criação do capítulo'
@@ -126,9 +132,16 @@ class MangaController < ApplicationController
 	def atualizar_capitulo
 		capitulo = Capitulo.find(params[:capitulo_id])
 		capitulo.titulo = params[:titulo]
+		remove_paginas_inexistentes(params)
+		atualiza_paginas_existentes(params)
+
+		if params[:imagens].present?
+			insere_novas_paginas(params)
+		end
+
 		if capitulo.save
 			flash[:success] = "Capítulo atualizado com sucesso!"
-			redirect_to ver_manga_path(capitulo.manga_id)
+			redirect_to ver_capitulo_path(capitulo.id)
 		else
 			flash[:danger] = "Erro na atualização do capítulo."
 			redirect_to editar_capitulo_path(capitulo.id)
@@ -161,9 +174,42 @@ class MangaController < ApplicationController
 	
 	private
 
+		def cria_hash_sequencia(params)
+			params[:sequencia_imagens].map{|sequencia| JSON.parse(sequencia) }
+		end
+
 		def sequencia_imagem(params,filename)
-			sequencia = params[:sequencia_imagens].map{|sequencia| JSON.parse(sequencia) }
+			sequencia = cria_hash_sequencia(params)
 			sequencia.filter{|sequencia| sequencia["nome"] == filename}.first["sequencia"]
+		end
+
+		def imagem_por_nome(params,nome)
+			params[:imagens].filter{|imagem| imagem.original_filename == nome}.first
+		end
+
+		def atualiza_paginas_existentes(params)
+			sequencia = cria_hash_sequencia(params)
+			sequencia.each do |sequencia|
+				Imagem.where(nome: sequencia["nome"]).update(sequencia: sequencia["sequencia"])
+			end
+		end
+
+		def remove_paginas_inexistentes(params)
+			sequencia = cria_hash_sequencia(params)
+			nomes = sequencia.pluck("nome")
+			capitulo_id = params[:capitulo_id]
+			Imagem.where(capitulo_id: capitulo_id).each do |imagem|
+				imagem.destroy if nomes.exclude?(imagem.nome)
+			end
+		end
+
+		def insere_novas_paginas(params)
+			sequencia = cria_hash_sequencia(params)
+			sequencia.each do |sequencia|
+				capitulo_id = params[:capitulo_id]
+				imagem = imagem_por_nome(params,sequencia["nome"])
+				Imagem.create(capitulo_id: capitulo_id, sequencia: sequencia["sequencia"], arquivo: imagem.tempfile.read) if Imagem.where(capitulo_id: capitulo_id, sequencia: sequencia["sequencia"]).empty?
+			end
 		end
 
 end

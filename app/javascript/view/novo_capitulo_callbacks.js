@@ -6,19 +6,24 @@ function inicia_drag(evento){
 }
 
 function passa_por_pagina(evento){
-	if(evento.target.className == 'pagina-nova-cover'){
+	if(evento.target.className == 'pagina-nova-cover' || evento.target.className == 'pagina-capitulo-cover'){
 		pagina_destino = evento.target.parentElement
 	}
 }
 
 function troca_paginas(evento){
 	if(pagina_destino != null){
+		console.log(pagina_arrastada)
+		console.log(pagina_destino)
+		var fonte_capa = Array.from(pagina_arrastada.getElementsByClassName(pagina_arrastada.className+'-cover'))[0]
+		var destino_capa = Array.from(pagina_destino.getElementsByClassName(pagina_destino.className+'-cover'))[0]
 		var fonte_data = JSON.parse(Array.from(pagina_arrastada.getElementsByTagName('input'))[0].value)
-		var fonte_capa = Array.from(pagina_arrastada.getElementsByClassName('pagina-nova-cover'))[0]
 		var destino_data = JSON.parse(Array.from(pagina_destino.getElementsByTagName('input'))[0].value)
-		var destino_capa = Array.from(pagina_destino.getElementsByClassName('pagina-nova-cover'))[0]
 		var fonte_input = Array.from(pagina_arrastada.getElementsByTagName('input'))[0]
 		var destino_input = Array.from(pagina_destino.getElementsByTagName('input'))[0]
+
+		console.log(fonte_data)
+		console.log(destino_data)
 
 		var auxiliar = null
 		auxiliar = fonte_data.sequencia
@@ -48,16 +53,28 @@ function remove_paginas(){
 	})
 }
 
+function refaz_contagem(){
+	console.log('refazendo contagem...')
+	var paginas = Array.from(document.getElementsByClassName('pagina-capitulo-cover'))
+	
+	paginas.forEach((pagina,indice)=>{
+		pagina.innerText = indice + 1
+	})
+}
+
 function cria_pagina(imagem,indice){
 	var pagina = document.createElement('div')
 	var pagina_imagem = document.createElement('img')
 	var pagina_cover = document.createElement('div')
 	var input_nome_sequencia = document.createElement('input')
+	var pagina_remover = document.createElement('div')
 
 	pagina.className = "pagina-nova"
 	pagina.draggable = true
 	pagina_imagem.className = "pagina-nova-imagem"
 	pagina_cover.className = "pagina-nova-cover"
+	pagina_remover.className = "pagina-remover"
+	pagina_remover.innerText = 'X'
 	pagina_cover.innerText = indice+1
 	pagina_imagem.src = URL.createObjectURL(imagem)
 
@@ -68,11 +85,10 @@ function cria_pagina(imagem,indice){
 
 	pagina.appendChild(pagina_imagem)
 	pagina.appendChild(pagina_cover)
+	pagina.appendChild(pagina_remover)
 	pagina.appendChild(input_nome_sequencia)
 
-
 	return pagina
-
 }
 
 function ultimo_indice_paginas(){
@@ -84,12 +100,12 @@ function ultimo_indice_paginas(){
 	}else{
 		return 0
 	}
-
 }
 
 function insere_paginas(evento){
 
 	remove_paginas()
+	refaz_contagem()
 
 	var ultimo_indice = ultimo_indice_paginas()
 	var paginas = Array.from(evento.target.files)

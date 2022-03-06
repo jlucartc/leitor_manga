@@ -2,6 +2,11 @@ function exists(elemento){
 	return (elemento != null && elemento != undefined)
 }
 
+function remover_pagina(evento){
+	var pagina = evento.target.parentElement
+	pagina.parentElement.removeChild(pagina)
+}
+
 function apresentar_lista(evento){
 	var container = document.getElementById('itens-container-grade')
 	var itens = Array.from(document.getElementsByClassName('manga-item-grade'))
@@ -36,5 +41,6 @@ export {
 	exists,
 	apresentar_lista,
 	apresentar_grade,
-	ver_manga
+	ver_manga,
+	remover_pagina
 }

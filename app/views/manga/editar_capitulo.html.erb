@@ -9,8 +9,8 @@
 		<div id="grupo-input">
 			<form id="salvar-capitulo" action="<%= atualizar_capitulo_path %>" method="post" enctype="multipart/form-data" hidden>
 				<%= token_tag %>
-				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="novas_imagens[]" multiple hidden>
-				<input type="hidden" name="manga_id" value="<%= @capitulo.manga.id %>">
+				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="imagens[]" multiple hidden>
+				<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
 			</form>
 			<input id="titulo" form="salvar-capitulo" type="text" name="titulo" placeholder="Título do capítulo" value="<%= @capitulo.titulo %>">
 			<button id="escolher-paginas">Adicionar páginas</button>	
@@ -21,6 +21,8 @@
 					<div class="pagina-capitulo" draggable="true">
 						<img class="pagina-capitulo-imagem" src="<%= pagina.path %>">
 						<div class="pagina-capitulo-cover"><%= pagina.sequencia %></div>
+						<div class="pagina-remover">X</div>
+						<input type="hidden" name="sequencia_imagens[]" form="salvar-capitulo" value="<%= pagina.sequencia_data %>">
 					</div>
 				<% end %>
 			<% end %>

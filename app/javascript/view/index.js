@@ -41,6 +41,7 @@ function adiciona_event_listener(item){
 }
 
 var mapa_classe_eventos_turbo_load = [
+	{classe:'pagina-remover',evento:'click',callbacks:[helpers.remover_pagina]},
 	{classe:'manga-nao-favorito',evento:'click',callbacks:[ver_manga_callbacks.favoritar]},
 	{classe:'manga-favorito',evento:'click',callbacks:[ver_manga_callbacks.desfavoritar]},
 	{classe:'manga-imagem-cover',evento:'click',callbacks:[helpers.ver_manga]},

@@ -53,7 +53,7 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
   test "atualiza capitulo" do
     sign_in(usuarios(:one))
     capitulo = Capitulo.find(1)
-    post atualizar_capitulo_path, params: {capitulo_id: 1, titulo: 'Novo titulo do capitulo'}
+    post atualizar_capitulo_path, params: {capitulo_id: 1, titulo: 'Novo titulo do capitulo', sequencia_imagens: gera_sequencia_imagens(capitulo)}
     assert Capitulo.find(1).titulo == 'Novo titulo do capitulo'
   end
 
@@ -65,7 +65,8 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
 
   test "deve rejeitar atualizar capitulo sem titulo" do
     sign_in(usuarios(:one))
-    post atualizar_capitulo_path, params: {capitulo_id: 1}
+    capitulo = Capitulo.find(1)
+    post atualizar_capitulo_path, params: {capitulo_id: 1, sequencia_imagens: gera_sequencia_imagens(capitulo)}
     assert flash[:danger].present?
   end
 
