@@ -6,7 +6,7 @@ function inicia_drag(evento){
 }
 
 function passa_por_pagina(evento){
-	if(evento.target.className == 'pagina-cover'){
+	if(evento.target.className == 'pagina-nova-cover'){
 		pagina_destino = evento.target.parentElement
 	}
 }
@@ -14,9 +14,9 @@ function passa_por_pagina(evento){
 function troca_paginas(evento){
 	if(pagina_destino != null){
 		var fonte_data = JSON.parse(Array.from(pagina_arrastada.getElementsByTagName('input'))[0].value)
-		var fonte_capa = Array.from(pagina_arrastada.getElementsByClassName('pagina-cover'))[0]
+		var fonte_capa = Array.from(pagina_arrastada.getElementsByClassName('pagina-nova-cover'))[0]
 		var destino_data = JSON.parse(Array.from(pagina_destino.getElementsByTagName('input'))[0].value)
-		var destino_capa = Array.from(pagina_destino.getElementsByClassName('pagina-cover'))[0]
+		var destino_capa = Array.from(pagina_destino.getElementsByClassName('pagina-nova-cover'))[0]
 		var fonte_input = Array.from(pagina_arrastada.getElementsByTagName('input'))[0]
 		var destino_input = Array.from(pagina_destino.getElementsByTagName('input'))[0]
 
@@ -42,7 +42,7 @@ function troca_paginas(evento){
 }
 
 function remove_paginas(){
-	var paginas = Array.from(document.getElementsByClassName('pagina'))
+	var paginas = Array.from(document.getElementsByClassName('pagina-nova'))
 	paginas.forEach((pagina)=>{
 		pagina.parentElement.removeChild(pagina)
 	})
@@ -54,12 +54,11 @@ function cria_pagina(imagem,indice){
 	var pagina_cover = document.createElement('div')
 	var input_nome_sequencia = document.createElement('input')
 
-	pagina.className = "pagina"
+	pagina.className = "pagina-nova"
 	pagina.draggable = true
-	pagina_imagem.className = "pagina-imagem"
-	pagina_cover.className = "pagina-cover"
+	pagina_imagem.className = "pagina-nova-imagem"
+	pagina_cover.className = "pagina-nova-cover"
 	pagina_cover.innerText = indice+1
-	//pagina_cover.draggable = true
 	pagina_imagem.src = URL.createObjectURL(imagem)
 
 	input_nome_sequencia.name = "sequencia_imagens[]"
@@ -76,16 +75,29 @@ function cria_pagina(imagem,indice){
 
 }
 
+function ultimo_indice_paginas(){
+	var ultima_pagina = Array.from(document.getElementsByClassName('pagina-capitulo')).pop()
+
+	if(ultima_pagina != null && ultima_pagina != undefined){
+		var ultimo_indice = Array.from(ultima_pagina.getElementsByClassName('pagina-capitulo-cover'))[0].innerText
+		return parseInt(ultimo_indice)
+	}else{
+		return 0
+	}
+
+}
+
 function insere_paginas(evento){
 
 	remove_paginas()
 
+	var ultimo_indice = ultimo_indice_paginas()
 	var paginas = Array.from(evento.target.files)
 	var paginas_container = document.getElementById('paginas-container')
 	console.log(paginas.files)
 
 	paginas.forEach((pagina,indice) => {
-		var pagina_tag = cria_pagina(pagina,indice)
+		var pagina_tag = cria_pagina(pagina,(ultimo_indice+indice))
 		paginas_container.appendChild(pagina_tag)
 	})
 

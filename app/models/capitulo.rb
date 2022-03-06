@@ -1,5 +1,6 @@
 class Capitulo < ApplicationRecord
 	has_many :imagens
+	belongs_to :manga
 	validates :manga_id, presence: true
 	validates :titulo, presence: true
 	after_destroy :destroy_imagens

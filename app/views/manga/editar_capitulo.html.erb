@@ -1,9 +1,34 @@
-<h1>Editar capítulo</h1>
-<div>
-	<form action="<%= atualizar_capitulo_path %>" method="post">
-		<%= token_tag %>
-		<input type="hidden" name="capitulo_id" value="<%= @capitulo.id %>">
-		<input type="text" name="titulo" value="<%= @capitulo.titulo %>" placeholder="titulo">
-		<button type="submit">Salvar capítulo</button>
-	</form>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina">Editar capítulo</div>
+			<div id="status-pagina"><%= @capitulo.titulo %> - <%= @capitulo.manga.titulo %></div>
+		</div>
+	</div>
+	<div id="formulario-editar-capitulo">
+		<div id="grupo-input">
+			<form id="salvar-capitulo" action="<%= atualizar_capitulo_path %>" method="post" enctype="multipart/form-data" hidden>
+				<%= token_tag %>
+				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="novas_imagens[]" multiple hidden>
+				<input type="hidden" name="manga_id" value="<%= @capitulo.manga.id %>">
+			</form>
+			<input id="titulo" form="salvar-capitulo" type="text" name="titulo" placeholder="Título do capítulo" value="<%= @capitulo.titulo %>">
+			<button id="escolher-paginas">Adicionar páginas</button>	
+		</div>
+		<div id="paginas-container">
+			<% if @capitulo.imagens.present? %>
+				<% @capitulo.imagens.each do |pagina|%>
+					<div class="pagina-capitulo" draggable="true">
+						<img class="pagina-capitulo-imagem" src="<%= pagina.path %>">
+						<div class="pagina-capitulo-cover"><%= pagina.sequencia %></div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<div id="controles">
+			<form id="cancelar-edicao" action="<%= ver_capitulo_path(@capitulo.id) %>" method="get"></form>
+			<button form="salvar-capitulo" type="submit" id="botao-salvar">Salvar</button>
+			<button form="cancelar-edicao" type="submit" id="botao-cancelar">Cancelar</button>
+		</div>
+	</div>
 </div>
