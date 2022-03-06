@@ -18,4 +18,10 @@ two: {
   usuario_id: 2,
   descricao: 'Slice of life'
 }
-# column: value
+
+sem_capa: {
+  id: 3,
+  titulo: 'Mangá sem capa',
+  usuario_id: 1,
+  descricao: 'shounen'
+}

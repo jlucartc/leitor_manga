@@ -15,3 +15,9 @@ two: {
   manga_id: 2,
   titulo: 'Capítulo 1'
 }
+
+naruto_capitulo_1: {
+  id: 3,
+  manga_id: 3,
+  titulo: "Naruto - capítulo 1"
+}

@@ -70,6 +70,47 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
     assert flash[:danger].present?
   end
 
+  test "adiciona capa em um mangá" do
+    sign_in(usuarios(:one))
+    assert Capa.where(manga_id: 3).empty?
+    post atualizar_manga_path, params: {manga_id: 3, capa: fixture_file_upload('images/naruto.jpeg')}
+    assert Capa.where(manga_id: 3).present?
+  end
+
+  test "troca capa em um mangá" do
+    sign_in(usuarios(:one))
+    capa = Capa.where(manga_id: 1).first
+    assert capa.present?
+    updated_at = capa.updated_at
+    post atualizar_manga_path, params: {manga_id: 1, capa: fixture_file_upload('images/naruto.jpeg')}
+    assert Capa.where(manga_id: 1).first.updated_at > updated_at
+  end
+
+  test "remove paginas de um capitulo de manga" do
+    sign_in(usuarios(:one))
+    capitulo = Capitulo.find(capitulos(:naruto_capitulo_1).id)
+    total_paginas_inicial = capitulo.imagens.count
+    post atualizar_capitulo_path, params: {capitulo_id: capitulo.id, sequencia_imagens: gera_sequencia_imagens(capitulo).first(3)}
+    assert capitulo.imagens.count < total_paginas_inicial
+  end
+
+  test "insere nova pagina em um capitulo" do
+    sign_in(usuarios(:one))
+    capitulo = Capitulo.find(capitulos(:naruto_capitulo_1).id)
+    primeira_pagina_updated_at = capitulo.imagens.where(sequencia: 1).first.updated_at
+    ultima_sequencia = capitulo.imagens.order(:sequencia).last.sequencia
+    post atualizar_capitulo_path, params: {capitulo_id: capitulo.id, sequencia_imagens: gera_sequencia_imagens(capitulo) + [{nome: 'naruto_2.jpeg', sequencia: ultima_sequencia+1}.to_json] , imagens: [fixture_file_upload('images/naruto_2.jpeg','image/jpeg')]}
+    assert capitulo.imagens.order(:sequencia).last.sequencia = ultima_sequencia+1
+  end
+
+  test "insere pagina com sequencia duplicada em um capitulo " do
+    sign_in(usuarios(:one))
+    capitulo = Capitulo.find(capitulos(:naruto_capitulo_1).id)
+    primeira_pagina_updated_at = capitulo.imagens.where(sequencia: 1).first.updated_at
+    post atualizar_capitulo_path, params: {capitulo_id: capitulo.id, sequencia_imagens: gera_sequencia_imagens(capitulo) + [{nome: 'naruto_2.jpeg', sequencia: 1}.to_json] , imagens: [fixture_file_upload('images/naruto_2.jpeg','image/jpeg')]}
+    assert capitulo.imagens.where(sequencia: 1).first.updated_at == primeira_pagina_updated_at
+  end
+
   test "deve excluir capitulo de um mangá do usuário" do
     sign_in(usuarios(:one))
     post excluir_capitulo_path, params: {capitulo_id: 1}

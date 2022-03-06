@@ -6,12 +6,58 @@
 #
 one: {
   capitulo_id: 1,
-  sequencia: 1
+  nome: "imagem1",
+  sequencia: 1,
+  arquivo: 'bytesbytesytes'
 }
 # column: value
 #
 two: {
   capitulo_id: 1,
-  sequencia: 2
+  nome: "imagem2",
+  sequencia: 2,
+  arquivo: 'bytesbytesytes'
 }
 # column: value
+
+naruto_capitulo_1_pagina_1: {
+  capitulo_id: 3,
+  nome: "pg1",
+  sequencia: 1,
+  arquivo: 'bytesbytesytes'
+}
+
+naruto_capitulo_1_pagina_2: {
+  capitulo_id: 3,
+  nome: "pg2",
+  sequencia: 2,
+  arquivo: 'bytesbytesytes'
+}
+
+naruto_capitulo_1_pagina_3: {
+  capitulo_id: 3,
+  nome: "pg3",
+  sequencia: 3,
+  arquivo: 'bytesbytesytes'
+}
+
+naruto_capitulo_1_pagina_4: {
+  capitulo_id: 3,
+  nome: "pg4",
+  sequencia: 4,
+  arquivo: 'bytesbytesytes'
+}
+
+naruto_capitulo_1_pagina_5: {
+  capitulo_id: 3,
+  nome: "pg5",
+  sequencia: 5,
+  arquivo: 'bytesbytesytes'
+}
+
+naruto_capitulo_1_pagina_6: {
+  capitulo_id: 3,
+  nome: "pg6",
+  sequencia: 6,
+  arquivo: 'bytesbytesytes'
+}

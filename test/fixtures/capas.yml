@@ -6,12 +6,14 @@
 #
 one: {
   id: 1,
+  nome: 'capa1',
   manga_id: 1
 }
 # column: value
 #
 two: {
   id: 2,
+  nome: 'capa2',
   manga_id: 2
 }
 # column: value
