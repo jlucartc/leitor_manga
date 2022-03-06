@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_06_215349) do
   create_table "capas", force: :cascade do |t|
     t.string "nome"
     t.integer "manga_id"
@@ -34,20 +34,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "imagens", force: :cascade do |t|
-    t.string "nome"
-    t.integer "capitulo_id"
-    t.integer "sequencia"
-    t.binary "arquivo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "mangas", force: :cascade do |t|
     t.string "titulo"
     t.integer "usuario_id"
     t.text "descricao"
     t.boolean "finalizado", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "paginas", force: :cascade do |t|
+    t.string "nome"
+    t.integer "capitulo_id"
+    t.integer "sequencia"
+    t.binary "arquivo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

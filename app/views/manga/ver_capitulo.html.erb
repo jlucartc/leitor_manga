@@ -12,7 +12,7 @@
 					<%= @capitulo.manga.titulo.capitalize %> - <%= @capitulo.titulo %>
 				</div>
 			</div>
-			<div id="status-pagina"><%= @capitulo.imagens.count %> páginas</div>
+			<div id="status-pagina"><%= @capitulo.paginas.count %> páginas</div>
 		</div>
 		<% if @autorizado %>
 			<div id="ver-manga-controles">
@@ -41,11 +41,11 @@
 		<% end %>
 	</div>
 	<div id="conteudo_ver_capitulo">
-		<% if @capitulo.imagens.present? %>
-			<% @capitulo.imagens.order(:sequencia).each do |imagem| %>
+		<% if @capitulo.paginas.present? %>
+			<% @capitulo.paginas.order(:sequencia).each do |pagina| %>
 				<div class="pagina">
-					<img class="pagina-imagem" src="<%= imagem.path %>">
-					<div class="pagina-cover"><%= imagem.sequencia %></div>
+					<img class="pagina-imagem" src="<%= pagina.path %>">
+					<div class="pagina-cover"><%= pagina.sequencia %></div>
 				</div>
 			<% end %>
 		<% end %>

@@ -19,7 +19,7 @@
 		<div id="grupo-input">
 			<form id="salvar-capitulo" action="<%= cadastrar_capitulo_path %>" method="post" enctype="multipart/form-data" hidden>
 				<%= token_tag %>
-				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="imagens[]" multiple hidden>
+				<input id="seletor-imagens" form="salvar-capitulo" type="file" name="paginas[]" multiple hidden>
 				<input type="hidden" name="manga_id" value="<%= @manga.id %>">
 			</form>
 			<input id="titulo" form="salvar-capitulo" type="text" name="titulo" placeholder="Título do capítulo">

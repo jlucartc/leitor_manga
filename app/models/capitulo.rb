@@ -1,11 +1,11 @@
 class Capitulo < ApplicationRecord
-	has_many :imagens
+	has_many :paginas
 	belongs_to :manga
 	validates :manga_id, presence: true
 	validates :titulo, presence: true
 	validates :sequencia, uniqueness: {scope: :manga_id}
 	before_create :atribui_sequencia
-	after_destroy :destroy_imagens, :ajusta_sequencia
+	after_destroy :destroy_paginas, :ajusta_sequencia
 
 	def atribui_sequencia
 		capitulos = Capitulo.where(manga_id: self.manga_id)
@@ -22,8 +22,8 @@ class Capitulo < ApplicationRecord
 		end
 	end
 
-	def destroy_imagens
-		Imagem.where(capitulo_id: self.id).destroy_all
+	def destroy_paginas
+		Pagina.where(capitulo_id: self.id).destroy_all
 	end
 
 end

@@ -1,7 +1,7 @@
 module Helper
 
-  def gera_sequencia_imagens(capitulo)
-    Imagem.where(capitulo_id: capitulo.id).map{|imagem| {nome: imagem.nome, sequencia: imagem.sequencia}.to_json }
+  def gera_sequencia_paginas(capitulo)
+    Pagina.where(capitulo_id: capitulo.id).map{|pagina| {nome: pagina.nome, sequencia: pagina.sequencia}.to_json }
   end
 
   def desabilita_autenticacao_csrf

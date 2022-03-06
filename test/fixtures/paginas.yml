@@ -6,7 +6,7 @@
 #
 one: {
   capitulo_id: 1,
-  nome: "imagem1",
+  nome: "pagina1",
   sequencia: 1,
   arquivo: 'bytesbytesytes'
 }
@@ -14,7 +14,7 @@ one: {
 #
 two: {
   capitulo_id: 1,
-  nome: "imagem2",
+  nome: "pagina2",
   sequencia: 2,
   arquivo: 'bytesbytesytes'
 }
