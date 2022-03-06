@@ -27,11 +27,11 @@
 				<img id="capa-manga" src="/dummy.png">
 			<% end %>
 			<% if @favorito.present? %>
-				<div id="manga-favorito">
+				<div class="manga-favorito">
 					<form id="desfavoritar" action="<%= desfavoritar_manga_path(@manga.id) %>" method="get"></form>
 				</div>
 			<% else %>
-				<div id="manga-nao-favorito">
+				<div class="manga-nao-favorito">
 					<form id="favoritar" action="<%= favoritar_manga_path(@manga.id) %>" method="get"></form>
 				</div>
 			<% end %>

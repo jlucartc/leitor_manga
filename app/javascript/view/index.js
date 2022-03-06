@@ -41,15 +41,18 @@ function adiciona_event_listener(item){
 }
 
 var mapa_classe_eventos_turbo_load = [
+	{classe:'manga-nao-favorito',evento:'click',callbacks:[ver_manga_callbacks.favoritar]},
+	{classe:'manga-favorito',evento:'click',callbacks:[ver_manga_callbacks.desfavoritar]},
+	{classe:'manga-imagem-cover',evento:'click',callbacks:[helpers.ver_manga]},
 	{classe:'capitulo',evento:'click',callbacks:[ver_capitulo_callbacks.ver_capitulo]},
 	{classe:'excluir-produto-cancelar',evento:'click',callbacks:[]}
 ]
 
 var mapa_id_eventos_turbo_load = [
+	{id:'botao-apresentacao-grade',evento:'click',callbacks:[helpers.apresentar_grade]},
+	{id:'botao-apresentacao-lista',evento:'click',callbacks:[helpers.apresentar_lista]},
 	{id:'input-capa',evento:'change',callbacks:[editar_manga_callbacks.mudar_capa]},
 	{id:'botao-trocar-capa',evento:'click',callbacks:[editar_manga_callbacks.escolher_capa]},
-	{id:'manga-nao-favorito',evento:'click',callbacks:[ver_manga_callbacks.favoritar]},
-	{id:'manga-favorito',evento:'click',callbacks:[ver_manga_callbacks.desfavoritar]},
 	{id:'escolher-paginas',evento:'click',callbacks:[novo_capitulo_callbacks.abre_seletor_paginas]},
 	{id:'seletor-imagens',evento:'change',callbacks:[novo_capitulo_callbacks.insere_paginas]}
 ]

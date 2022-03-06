@@ -4,15 +4,41 @@
 			<div id="titulo-pagina">Favoritos</div>
 			<div id="status-pagina"><%= @favoritos.count %> favoritos</div>
 		</div>
-		<div id="ver-manga-controles">
-			<button id="botao-editar">Editar</button>
-			<button id="botao-excluir">Excluir</button>
+		<div id="menu-apresentacao">
+			<div id="botao-apresentacao-lista">Lista</div>
+			<div id="botao-apresentacao-grade">Grade</div>
 		</div>
 	</div>
-	<div id="itens-container-lista">
+	<div id="itens-container-grade">
 		<% if @favoritos.present? %>
-			<% @favoritos.each do |favorito|%>
-				<div id="manga-item-grade"><%= favorito.manga.titulo %></div>
+			<% @favoritos.each_with_index do |favorito,indice|%>
+				<div class="manga-item-grade">
+					<div class="manga-imagem-container">
+						<% if favorito.manga.capa.present? %>
+							<img class="manga-imagem" src="<%= favorito.manga.capa.path %>">
+						<% else %>
+							<img class="manga-imagem" src="/dummy.png">
+						<% end %>
+						<div class="manga-imagem-cover"></div>
+						<div class="manga-favorito">
+							<form id="desfavoritar" action="<%= desfavoritar_manga_path(favorito.manga.id) %>" method="get"></form>
+						</div>
+					</div>
+					<div class="manga-informacoes">
+						<div class="manga-titulo"><%= favorito.manga.titulo %></div>
+						<% if favorito.manga.finalizado %>
+							<div class="manga-status">Finalizado</div>
+						<% else %>
+							<div class="manga-status">Em andamento</div>
+						<% end %>
+						<div class="manga-controles">
+							<form id="ver-<%= indice %>" action="<%= ver_manga_path(favorito.manga.id) %>" method="get"></form hidden>
+								<input type="hidden" name="manga_id" value="<%= favorito.manga.id %>">
+							</form hidden>
+							<button form="ver-<%= indice %>" type="submit" class="manga-ver">Ver</button>
+						</div>
+					</div>
+				</div>
 			<% end %>
 		<% end %>
 	</div>
