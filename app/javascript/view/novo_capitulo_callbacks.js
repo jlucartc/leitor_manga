@@ -15,17 +15,12 @@ function passa_por_pagina(evento){
 
 function troca_paginas(evento){
 	if(pagina_destino != null){
-		console.log(pagina_arrastada)
-		console.log(pagina_destino)
 		var fonte_capa = Array.from(pagina_arrastada.getElementsByClassName(pagina_arrastada.className+'-cover'))[0]
 		var destino_capa = Array.from(pagina_destino.getElementsByClassName(pagina_destino.className+'-cover'))[0]
 		var fonte_data = JSON.parse(Array.from(pagina_arrastada.getElementsByTagName('input'))[0].value)
 		var destino_data = JSON.parse(Array.from(pagina_destino.getElementsByTagName('input'))[0].value)
 		var fonte_input = Array.from(pagina_arrastada.getElementsByTagName('input'))[0]
 		var destino_input = Array.from(pagina_destino.getElementsByTagName('input'))[0]
-
-		console.log(fonte_data)
-		console.log(destino_data)
 
 		var auxiliar = null
 		auxiliar = fonte_data.sequencia
@@ -103,7 +98,6 @@ function insere_paginas(evento){
 	var ultimo_indice = ultimo_indice_paginas()
 	var paginas = Array.from(evento.target.files)
 	var paginas_container = document.getElementById('paginas-container')
-	console.log(paginas.files)
 
 	paginas.forEach((pagina,indice) => {
 		var pagina_tag = cria_pagina(pagina,(ultimo_indice+indice))
@@ -115,7 +109,6 @@ function insere_paginas(evento){
 }
 
 function abre_seletor_paginas(evento){
-	console.log('Abre seletor paginas...')
 	var input = document.getElementById('seletor-imagens')
 	input.click()
 }
