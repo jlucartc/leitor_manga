@@ -105,45 +105,61 @@ class MangaController < ApplicationController
 	end
 	
 	def atualizar_manga
-		manga = Manga.find(params[:manga_id])
-		manga.titulo = params[:titulo]
-		manga.descricao = params[:descricao]
-		manga.finalizado = params[:finalizado]
+		manga = Manga.where(id: params[:manga_id],usuario_id: current_usuario.id).first
 
-		if params[:capa].present?
-			if manga.capa.present?
-				capa = manga.capa
-				capa.arquivo = params[:capa].tempfile.read
-				capa.save
-			else
-				Capa.create(manga_id: manga.id, arquivo: params[:capa].tempfile.read)
+		if manga.present?
+		
+			manga.titulo = params[:titulo]
+			manga.descricao = params[:descricao]
+			manga.finalizado = params[:finalizado]
+
+			if params[:capa].present?
+				if manga.capa.present?
+					capa = manga.capa
+					capa.arquivo = params[:capa].tempfile.read
+					capa.save
+				else
+					Capa.create(manga_id: manga.id, arquivo: params[:capa].tempfile.read)
+				end
 			end
-		end
 
-		if manga.save
-			flash[:success] = 'Mangá foi atualizado com sucesso!'
-			redirect_to ver_manga_path(manga.id)
+			if manga.save
+				flash[:success] = 'Mangá foi atualizado com sucesso!'
+				redirect_to ver_manga_path(manga.id)
+			else
+				flash[:danger] = 'Erro na atualização do mangá.'
+				redirect_to editar_manga_path(manga.id)
+			end
+
 		else
-			flash[:danger] = 'Erro na atualização do mangá.'
-			redirect_to editar_manga_path(manga.id)
+			flash[:danger] = 'Usuário não possui permissão para editar mangá.'
+			redirect_to editar_manga_path(params[:manga_id])
 		end
 	end
 	
 	def atualizar_capitulo
 		capitulo = Capitulo.find(params[:capitulo_id])
-		capitulo.titulo = params[:titulo]
-		remove_paginas_inexistentes(params)
-		atualiza_paginas_existentes(params)
 
-		if params[:imagens].present?
-			insere_novas_paginas(params)
-		end
+		if capitulo.manga.usuario_id == current_usuario.id
+		
+			capitulo.titulo = params[:titulo]
+			remove_paginas_inexistentes(params)
+			atualiza_paginas_existentes(params)
 
-		if capitulo.save
-			flash[:success] = "Capítulo atualizado com sucesso!"
-			redirect_to ver_capitulo_path(capitulo.id)
+			if params[:imagens].present?
+				insere_novas_paginas(params)
+			end
+
+			if capitulo.save
+				flash[:success] = "Capítulo atualizado com sucesso!"
+				redirect_to ver_capitulo_path(capitulo.id)
+			else
+				flash[:danger] = "Erro na atualização do capítulo."
+				redirect_to editar_capitulo_path(capitulo.id)
+			end
+
 		else
-			flash[:danger] = "Erro na atualização do capítulo."
+			flash[:danger] = "Usuário não possui permissão para editar capítulo."
 			redirect_to editar_capitulo_path(capitulo.id)
 		end
 	end

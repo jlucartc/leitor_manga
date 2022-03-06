@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Usuario.create(email: 'teste@gmail.com', password: '123456', password_confirmation: '123456')
-
+Usuario.create(email: 'user1@gmail.com', password: '123456', password_confirmation: '123456')
+Usuario.create(email: 'user2@gmail.com', password: '123456', password_confirmation: '123456')
 
 Manga.create(usuario_id: 1, titulo: 'Naruto Classic', descricao: 'Shounen', finalizado: true)
 Manga.create(usuario_id: 1, titulo: 'Naruto Shippuden', descricao: 'Shounen', finalizado: true)
