@@ -24,3 +24,10 @@ naruto_capitulo_1: {
   titulo: "Naruto - capítulo 1",
   sequencia: 1
 }
+
+naruto_capitulo_2: {
+  id: 4,
+  manga_id: 3,
+  titulo: "Naruto - capítulo 2",
+  sequencia: 2
+}

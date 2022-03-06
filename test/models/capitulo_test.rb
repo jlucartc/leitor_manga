@@ -5,4 +5,12 @@ class CapituloTest < ActiveSupport::TestCase
     Capitulo.find(1).destroy
     assert Imagem.where(capitulo_id: 1).empty?
   end
+
+  test "ao destruir um capítulo, os capítulos seguintes do mesmo mangá devem ter sua sequência ajustada" do
+    capitulo_atual = Capitulo.find(capitulos(:naruto_capitulo_1).id)
+    capitulo_seguinte_sequencia_inicial = capitulos(:naruto_capitulo_2).sequencia
+    capitulo_atual.destroy
+    assert Capitulo.find(capitulos(:naruto_capitulo_2).id).sequencia == capitulo_seguinte_sequencia_inicial-1
+  end
+
 end
