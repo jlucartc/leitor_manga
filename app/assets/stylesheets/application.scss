@@ -153,6 +153,7 @@ body{
 }
 
 .modal-exclusao-card{
+  box-shadow: 1px 1px 5px 0px #999999;
   padding: 20px 20px 20px 20px;
   font-family: helvetica;
   width: 600px;
@@ -181,11 +182,12 @@ body{
       border-radius: 5px;
       border: none;
       color: #ffffff;
-      background-color: #333333;
+      background-color: #33dd55;
       font-size: 1.2em;
 
       &:hover{
-        background-color: #555555;
+        background-color: #00bb33;
+        color: #ffffff;
       }
 
     }
@@ -195,11 +197,12 @@ body{
       border-radius: 5px;
       border: none;
       color: #ffffff;
-      background-color: #333377;
+      background-color: #ff5555;
       font-size: 1.2em;
 
       &:hover{
-        background-color: #555599;
+        background-color: #ff3333;
+        color: #ffffff;
       }
 
     }
@@ -908,6 +911,7 @@ body{
     max-height: 100%;
     display: grid;
     grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+    gap: 30px;
 
     #titulo{
       padding: 0px 0px 0px 10px;
@@ -926,7 +930,7 @@ body{
       box-shadow: 1px 1px 2px 0px #999999;
       background-color: #55bb55;
       font-size: 1.2em;
-      grid-column: 3;
+      grid-column: 2;
       height: 100%;
 
       &:hover{
@@ -1110,6 +1114,7 @@ body{
     max-height: 100%;
     display: grid;
     grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+    gap: 30px;
 
     #titulo{
       padding: 0px 0px 0px 10px;
@@ -1128,7 +1133,7 @@ body{
       box-shadow: 1px 1px 2px 0px #999999;
       background-color: #55bb55;
       font-size: 1.2em;
-      grid-column: 3;
+      grid-column: 2;
       height: 100%;
 
       &:hover{
