@@ -41,6 +41,9 @@ function adiciona_event_listener(item){
 }
 
 var mapa_classe_eventos_turbo_load = [
+	{classe:'modal-confirmar-exclusao',evento:'click',callbacks:[helpers.confirma_exclusao]},
+	{classe:'modal-cancelar-exclusao',evento:'click',callbacks:[helpers.cancela_exclusao]},
+	{classe:'manga-excluir',evento:'click',callbacks:[helpers.ativa_modal_exclusao]},
 	{classe:'pagina-remover',evento:'click',callbacks:[helpers.remover_pagina]},
 	{classe:'manga-nao-favorito',evento:'click',callbacks:[ver_manga_callbacks.favoritar]},
 	{classe:'manga-favorito',evento:'click',callbacks:[ver_manga_callbacks.desfavoritar]},

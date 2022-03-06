@@ -42,16 +42,31 @@
 						<% end %>
 						<div class="manga-capitulos"><%= manga.capitulos.count %> capítulos</div>
 						<div class="manga-controles">
-							<form action="<%= ver_manga_path(manga.id) %>" method="get">
-								<button class="manga-ver">Ver</button>
+							<form id="ver-manga-<%= manga.id %>" action="<%= ver_manga_path(manga.id) %>" method="get">
 							</form>
-							<form action="<%= editar_manga_path(manga.id) %>" method="get">
-								<button class="manga-editar">Editar</button>
+							<form id="editar-manga-<%= manga.id %>" action="<%= editar_manga_path(manga.id) %>" method="get">
 							</form>
-							<form action="<%= excluir_manga_path %>" method="post">
+							<form id="excluir-manga-<%= manga.id %>" action="<%= excluir_manga_path %>" method="post" hidden>
+								<%= token_tag %>
 								<input type="hidden" name="manga_id" value="<%= manga.id %>">
-								<button class="manga-excluir">Excluir</button>
 							</form>
+							<button form="ver-manga-<%= manga.id %>" class="manga-ver">Ver</button>
+							<button form="editar-manga-<%= manga.id %>" class="manga-editar">Editar</button>
+							<button id="excluir-manga-<%= manga.id %>-button" class="manga-excluir">Excluir</button>
+							<div id="modal-exclusao-<%= manga.id %>" class="modal-exclusao-escondido" hidden>
+								<div class="modal-exclusao-card">
+									<div class="modal-exclusao-header">
+										Confirmar exclusao
+									</div>
+									<div class="modal-exclusao-body">
+										Deseja excluir o manga "<%= manga.titulo %>"?
+									</div>
+									<div class="modal-exclusao-footer">
+										<button class="modal-confirmar-exclusao">Excluir</button>
+										<button class="modal-cancelar-exclusao">Cancelar</button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -2,6 +2,24 @@ function exists(elemento){
 	return (elemento != null && elemento != undefined)
 }
 
+function ativa_modal_exclusao(evento){
+	console.log('ativa_modal_exclusao')
+	var indice = evento.target.id.split('-')[2]
+	var modal = document.getElementById('modal-exclusao-'+indice)
+	modal.className = 'modal-exclusao'
+}
+
+function cancela_exclusao(evento){
+	var modal = evento.target.parentElement.parentElement.parentElement
+	modal.className = 'modal-exclusao-escondido'
+}
+
+function confirma_exclusao(evento){
+	var indice = evento.target.parentElement.parentElement.parentElement.id.split('-').pop()
+	var form = document.getElementById('excluir-manga-'+indice)
+	form.submit()
+}
+
 function refaz_contagem(){
 	var paginas_existentes = Array.from(document.getElementsByClassName('pagina-capitulo'))
 	var paginas_novas = Array.from(document.getElementsByClassName('pagina-nova'))
@@ -66,5 +84,8 @@ export {
 	apresentar_grade,
 	ver_manga,
 	remover_pagina,
-	refaz_contagem
+	refaz_contagem,
+	ativa_modal_exclusao,
+	cancela_exclusao,
+	confirma_exclusao
 }

@@ -123,12 +123,89 @@ body{
 }
 
 #conteudo{
+  position: relative;
   padding: 0px 0px 60px 0px;
   min-height: #{$default_height};
   background-color: #f0f0f0;
   display: grid;
   grid-template-columns: #{$conteudo_left_column_weight} #{$conteudo_principal_column_weight} #{$conteudo_right_column_weight};
   grid-template-rows: calc(0.5/4 * #{$default_height}) calc(0.5/4 * #{$default_height}) calc(0.3/4 * #{$default_height}) 1fr;
+}
+
+.modal-exclusao-escondido{
+  visibility: hidden;
+}
+
+.modal-exclusao{
+  z-index:1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(#999999,0.5);
+}
+
+.modal-exclusao-card{
+  padding: 20px 20px 20px 20px;
+  font-family: helvetica;
+  width: 600px;
+  height: 200px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+
+  .modal-exclusao-header{
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .modal-exclusao-body{
+    font-size: 1.2em;
+  }
+
+  .modal-exclusao-footer{
+    padding: 20px 20px 20px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+
+    .modal-confirmar-exclusao{
+      margin: 0px 10px 0px 0px;
+      padding: 10px 10px 10px 10px;
+      border-radius: 5px;
+      border: none;
+      color: #ffffff;
+      background-color: #333333;
+      font-size: 1.2em;
+
+      &:hover{
+        background-color: #555555;
+      }
+
+    }
+
+    .modal-cancelar-exclusao{
+      padding: 10px 10px 10px 10px;
+      border-radius: 5px;
+      border: none;
+      color: #ffffff;
+      background-color: #333377;
+      font-size: 1.2em;
+
+      &:hover{
+        background-color: #555599;
+      }
+
+    }
+
+  }
+
 }
 
 #cabecalho{
