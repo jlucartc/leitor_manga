@@ -27,7 +27,6 @@ function refaz_contagem(){
 function remover_pagina(evento){
 	var pagina = evento.target.parentElement
 	pagina.parentElement.removeChild(pagina)
-
 	refaz_contagem()
 }
 

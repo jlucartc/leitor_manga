@@ -18,16 +18,18 @@
 				<div id="status-pagina">Em andamento</div>
 			<% end %>
 		</div>
-		<div id="ver-manga-controles">
-			<form class="formulario-controle" action="<%= editar_manga_path(@manga.id) %>" method="get">
-				<button id="botao-editar">Editar</button>
-			</form>
-			<form class="formulario-controle" action="<%= excluir_manga_path %>" method="post">
-				<%= token_tag %>
-				<input type="hidden" name="manga_id" value="<%= @manga.id %>">
-				<button id="botao-excluir">Excluir</button>
-			</form>
-		</div>
+		<% if @autorizado %>
+			<div id="ver-manga-controles">
+				<form class="formulario-controle" action="<%= editar_manga_path(@manga.id) %>" method="get">
+					<button id="botao-editar">Editar</button>
+				</form>
+				<form class="formulario-controle" action="<%= excluir_manga_path %>" method="post">
+					<%= token_tag %>
+					<input type="hidden" name="manga_id" value="<%= @manga.id %>">
+					<button id="botao-excluir">Excluir</button>
+				</form>
+			</div>
+		<% end %>
 	</div>
 	<div id="apresentacao-manga">
 		<div id="imagem-container">
@@ -49,9 +51,11 @@
 		<div id="lista-capitulos">
 			<div id="lista-cabecalho">
 				<div id="lista-titulo">Capítulos</div>
-				<form class="formulario-controle" action="<%= novo_capitulo_path(@manga.id)%>" method="get">
-					<button id="botao-novo-capitulo">Novo capítulo</button>	
-				</form>
+				<% if @autorizado %>
+					<form class="formulario-controle" action="<%= novo_capitulo_path(@manga.id)%>" method="get">
+						<button id="botao-novo-capitulo">Novo capítulo</button>	
+					</form>
+				<% end %>
 			</div>
 			<div id="capitulos-container">
 				<% if @capitulos.present? %>

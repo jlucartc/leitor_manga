@@ -112,12 +112,15 @@ class MangaController < ApplicationController
 		
 		if capitulo.manga.usuario_id == current_usuario.id and capitulo.save
 			flash[:success] = 'Capitulo criado com sucesso'
-			params[:imagens].each_with_index do |imagem|
-				Imagem.create({
-					capitulo_id: capitulo.id,
-					sequencia: sequencia_imagem(params,imagem.original_filename),
-					arquivo: imagem.tempfile.read
-				})
+
+			if params[:imagens].present?
+				params[:imagens].each_with_index do |imagem|
+					Imagem.create({
+						capitulo_id: capitulo.id,
+						sequencia: sequencia_imagem(params,imagem.original_filename),
+						arquivo: imagem.tempfile.read
+					})
+				end
 			end
 			redirect_to ver_manga_path(params[:manga_id])
 		else
@@ -219,7 +222,8 @@ class MangaController < ApplicationController
 
 		def sequencia_imagem(params,filename)
 			sequencia = cria_hash_sequencia(params)
-			sequencia.filter{|sequencia| sequencia["nome"] == filename}.first["sequencia"]
+			sequencia_item = sequencia.filter{|sequencia| sequencia["nome"] == filename}.first
+			sequencia_item["sequencia"] if sequencia_item.present?
 		end
 
 		def imagem_por_nome(params,nome)

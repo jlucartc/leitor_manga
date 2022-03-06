@@ -9,11 +9,12 @@
 		<div id="cabecalho-pagina">
 			<div id="titulo">
 				<div id="titulo-texto">
-					Ver capítulo
+					<%= @capitulo.manga.titulo.capitalize %> - <%= @capitulo.titulo %>
 				</div>
 			</div>
-			<div id="status-pagina"><%= @capitulo.imagens.count %> imagens</div>
+			<div id="status-pagina"><%= @capitulo.imagens.count %> páginas</div>
 		</div>
+		<% if @autorizado %>
 		<div id="ver-manga-controles">
 			<form class="formulario-controle" action="<%= editar_capitulo_path(@capitulo.id) %>" method="get">
 				<button id="botao-editar">Editar</button>
@@ -24,6 +25,7 @@
 				<button id="botao-excluir">Excluir</button>
 			</form>
 		</div>
+		<% end %>
 	</div>
 	<div id="conteudo_ver_capitulo">
 		<% if @capitulo.imagens.present? %>

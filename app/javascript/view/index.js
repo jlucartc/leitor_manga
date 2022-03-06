@@ -61,6 +61,16 @@ var mapa_id_eventos_turbo_load = [
 var lista_executar_turbo_load = [
 ]
 
+var mapa_classe_eventos_insere_paginas = [
+	{classe:'pagina-remover',evento:'click',callbacks:[helpers.remover_pagina]},
+]
+
+var mapa_id_eventos_insere_paginas = [
+]
+
+var lista_executar_insere_paginas = [
+]
+
 document.addEventListener('turbo:load',function(){
 
 	mapa_classe_eventos_turbo_load.forEach((item)=>{
@@ -80,6 +90,20 @@ document.addEventListener('turbo:load',function(){
 })
 
 document.addEventListener('insere-paginas',function(){
+
+	mapa_classe_eventos_insere_paginas.forEach((item)=>{
+		remove_event_listener(item)
+		adiciona_event_listener(item)
+	})
+
+	mapa_id_eventos_insere_paginas.forEach((item)=>{
+		remove_event_listener(item)
+		adiciona_event_listener(item)
+	})
+
+	lista_executar_insere_paginas.forEach((method) => {
+		method()
+	})
 
 	document.removeEventListener('dragstart',novo_capitulo_callbacks.inicia_drag)
 	document.removeEventListener('dragend',novo_capitulo_callbacks.troca_drag)
