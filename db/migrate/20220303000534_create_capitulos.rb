@@ -1,6 +1,7 @@
 class CreateCapitulos < ActiveRecord::Migration[7.0]
   def change
     create_table :capitulos do |t|
+      t.integer :sequencia
       t.integer :manga_id
       t.string :titulo
       t.timestamps

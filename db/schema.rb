@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_03_000946) do
   end
 
   create_table "capitulos", force: :cascade do |t|
+    t.integer "sequencia"
     t.integer "manga_id"
     t.string "titulo"
     t.datetime "created_at", null: false
