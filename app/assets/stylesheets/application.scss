@@ -554,6 +554,12 @@ body{
     font-size: 1.2em;
   }
 
+  .manga-capitulos{
+    margin: 10px 0px 0px 0px;
+    font-family: helvetica;
+    font-size: 1em;
+  }
+
   .manga-controles{
     position: absolute;
     bottom: 20px;
@@ -898,6 +904,76 @@ body{
         background-color: #dd3333;
       }
     }
+  }
+
+}
+
+#formulario-buscar-manga{
+  grid-column:  2;
+  grid-row: 4;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr;
+
+  #grupo-input{
+    grid-column: 1;
+    grid-row: 1;
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: #{$titulo_pagina_column_weight} #{$menu_apresentacao_column_weight} #{$cabecalho_free_column_weight};
+
+    #input-busca{
+      padding: 0px 0px 0px 10px;
+      margin: 0px 10px 0px 0px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 1px 1px 2px 0px #999999;
+      box-sizing: border-box;
+      font-size: 1.5em;
+      grid-column: 1;
+      height: 100%;
+    }
+
+    #botao-buscar{
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px 0px #999999;
+      background-color: #55bb55;
+      font-size: 1.2em;
+      grid-column: 2;
+      height: 100%;
+
+      &:hover{
+        background-color: #33aa33;
+        box-shadow: 1px 1px 5px 2px #999999;
+      }
+    }
+  }
+
+  #itens-container-lista{
+    margin: 60px 0px 0px 0px;
+    width:  100%;
+    min-height:  #{$conteudo_principal_height};
+    grid-column:  1;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: #{$item_lista_row_height};
+    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+  }
+
+  #itens-container-grade{
+    margin: 60px 0px 0px 0px;
+    width:  100%;
+    min-height:  #{$conteudo_principal_height};
+    grid-column:  1;
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+    grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
   }
 
 }

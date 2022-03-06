@@ -1,22 +1,48 @@
-<h1>Buscar mangás</h1>
-<form action="<%= buscar_manga_path %>" method="get">
-	<input type="text" name="busca">
-	<button type="submit">Buscar</button>
-	<div>
-		<% if @resultados.present? %>
-			<% @resultados.each do |resultado| %>
-				<div>
-					<h3><%= resultado.titulo %></h3>
-					<% if resultado.capa.present? %>
-						<img src="<%= resultado.capa.path %>">
-					<% else %>
-						<img src="/dummy.png">
-					<% end %>
-					<a href="<%= ver_manga_path(resultado.id) %>">Ver mangá</a>
-				</div>
-			<% end %>
-		<% else %>
-			Não há resultados
-		<% end %>
+<div id="conteudo">
+	<div id="cabecalho">
+		<div id="cabecalho-pagina">
+			<div id="titulo-pagina">Buscar mangás</div>
+		</div>
+		<div id="menu-apresentacao">
+			<div id="botao-apresentacao-lista">Lista</div>
+			<div id="botao-apresentacao-grade">Grade</div>
+		</div>
 	</div>
-</form>
+	<div id="formulario-buscar-manga">
+		<div id="grupo-input">
+			<form id="buscar" action="<%= buscar_manga_path %>" method="get" hidden></form>
+			<input id="input-busca" name="busca" form="buscar" type="text" placeholder="Pesquisar título de mangá">
+			<button form="buscar" type="submit" id="botao-buscar">Buscar</button>
+		</div>
+		<div id="itens-container-lista">
+			<% if @resultados.present? %>
+				<% @resultados.each do |resultado| %>
+					<div class="manga-item-lista">
+						<div class="manga-imagem-container">
+							<% if resultado.capa.present? %>
+								<img class="manga-imagem" src="<%= resultado.capa.path %>">
+							<% else %>
+								<img class="manga-imagem" src="/dummy.png">
+							<% end %>
+							<div class="manga-imagem-cover"></div>
+						</div>
+						<div class="manga-informacoes">
+							<div class="manga-titulo"><%= resultado.titulo %></div>
+							<% if resultado.finalizado %>
+								<div class="manga-status">Finalizado</div>
+							<% else %>
+								<div class="manga-status">Em andamento</div>
+							<% end %>
+							<div class="manga-capitulos"><%= resultado.capitulos.count %> capítulos</div>
+							<div class="manga-controles">
+								<form action="<%= ver_manga_path(resultado.id) %>" method="get">
+									<button class="manga-ver">Ver</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

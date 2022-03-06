@@ -28,6 +28,7 @@
 						<% else %>
 							<div class="manga-status">Em andamento</div>
 						<% end %>
+						<div class="manga-capitulos"><%= manga.capitulos.count %> capítulos</div>
 						<div class="manga-controles">
 							<form action="<%= ver_manga_path(manga.id) %>" method="get">
 								<button class="manga-ver">Ver</button>

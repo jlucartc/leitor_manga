@@ -3,6 +3,7 @@ class Manga < ApplicationRecord
 	validates :finalizado, inclusion: [true,false]
 	after_destroy :destroy_capitulos, :destroy_capa
 	has_one :capa
+	has_many :capitulos
 	has_many :favoritos
 	belongs_to :usuario
 
