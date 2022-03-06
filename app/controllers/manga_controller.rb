@@ -54,6 +54,27 @@ class MangaController < ApplicationController
 	end
 	
 	def ler_manga
+		@manga = Manga.find(params[:manga_id])
+
+		if @manga.present?
+			@capitulo = Capitulo.where(manga_id: @manga.id, sequencia: params[:sequencia_capitulo]).first
+
+			if @capitulo.present?
+				@pagina = Pagina.where(capitulo_id: @capitulo.id, sequencia: params[:sequencia_pagina]).first
+			
+				if @pagina.nil?
+					redirect_to ler_manga_path(params[:manga_id],params[:sequencia_capitulo].to_i+1,1)
+				end
+
+			else
+				flash[:danger] = "Não há mais capítulos para este mangá :("
+				redirect_to ver_manga_path(params[:manga_id])
+			end
+
+		else
+			flash[:danger] = "Este mangá não está disponível."
+			redirect_back
+		end
 	end
 
 	def novo_manga

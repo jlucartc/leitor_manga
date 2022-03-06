@@ -41,6 +41,7 @@ function adiciona_event_listener(item){
 }
 
 var mapa_classe_eventos_turbo_load = [
+	{classe:'pagina-cover-link',evento:'click',callbacks:[ver_capitulo_callbacks.ler_manga]},
 	{classe:'modal-confirmar-exclusao',evento:'click',callbacks:[helpers.confirma_exclusao]},
 	{classe:'modal-cancelar-exclusao',evento:'click',callbacks:[helpers.cancela_exclusao]},
 	{classe:'manga-excluir',evento:'click',callbacks:[helpers.ativa_modal_exclusao]},

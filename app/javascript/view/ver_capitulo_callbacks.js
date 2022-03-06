@@ -3,6 +3,12 @@ function ver_capitulo(evento){
 	form.submit()
 }
 
+function ler_manga(evento){
+	var link = evento.target.children[0];
+	link.click()
+}
+
 export{
-	ver_capitulo
+	ver_capitulo,
+	ler_manga
 }

@@ -40,12 +40,15 @@
 			</div>
 		<% end %>
 	</div>
-	<div id="conteudo_ver_capitulo">
+	<div id="conteudo-ver-capitulo">
 		<% if @capitulo.paginas.present? %>
 			<% @capitulo.paginas.order(:sequencia).each do |pagina| %>
 				<div class="pagina">
 					<img class="pagina-imagem" src="<%= pagina.path %>">
-					<div class="pagina-cover"><%= pagina.sequencia %></div>
+					<div class="pagina-cover-link">
+						<%= pagina.sequencia %>
+						<a href="<%= ler_manga_path(@capitulo.manga.id,@capitulo.sequencia,pagina.sequencia) %>" hidden></a>		
+					</div>
 				</div>
 			<% end %>
 		<% end %>

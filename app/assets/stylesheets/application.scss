@@ -1295,7 +1295,7 @@ body{
 
 }
 
-#conteudo_ver_capitulo{
+#conteudo-ver-capitulo{
   grid-column:  2;
   grid-row: 4;
   display: grid;
@@ -1312,7 +1312,7 @@ body{
       aspect-ratio: 2/3;
     }
 
-    .pagina-cover{
+    .pagina-cover-link{
       user-select: none;
       font-family: helvetica;
       font-size: 3em;
