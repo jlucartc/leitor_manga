@@ -1,0 +1,30 @@
+<div id="auth-container">
+
+  <div id="auth-card">
+    <div id="auth-title">Criar conta</div>
+
+    <form action="<%= usuario_registration_path %>" method="post" data-turbo="false">
+      <%= token_tag %>
+      <div class="auth-input-group">
+        <div class="auth-label">Email</div>
+        <input type="email" name="usuario[email]" class="auth-input" placeholder="Email">
+      </div>
+
+      <div class="auth-input-group">
+        <div class="auth-label">Senha</div>
+        <input type="password" name="usuario[password]" class="auth-input" placeholder="Senha">
+      </div>
+
+      <div class="auth-input-group">
+        <div class="auth-label">Confirmar senha</div>
+        <input type="password" name="usuario[password_confirmation]" class="auth-input" placeholder="Confirmar senha">
+      </div>
+
+      <button id="auth-button" type="submit">Cadastrar</button>
+    </form>
+
+    <div id="auth-links">
+      <a class="auth-link" href="<%= new_usuario_session_path %>">Já possuo conta</a>
+    </div>
+  </div>
+</div>

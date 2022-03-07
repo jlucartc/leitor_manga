@@ -1,0 +1,16 @@
+<div id="auth-container">
+
+  <div id="auth-card">
+    <div id="auth-title">Resetar senha</div>
+
+    <form action="<%= usuario_password_path %>" method="post" data-turbo="false">
+      <%= token_tag %>
+      <div class="auth-input-group">
+        <div class="auth-label">Email</div>
+        <input type="email" name="usuario[email]" class="auth-input" placeholder="Email">
+      </div>
+
+      <button id="auth-button" type="submit">Enviar email</button>
+    </form>
+  </div>
+</div>

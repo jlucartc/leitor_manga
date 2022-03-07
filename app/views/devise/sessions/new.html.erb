@@ -1,0 +1,31 @@
+<div id="auth-container">
+
+  <div id="auth-card">
+    <div id="auth-title">Login</div>
+
+    <form action="<%= new_usuario_session_path %>" method="post" data-turbo="false">
+      <%= token_tag %>
+      <div class="auth-input-group">
+        <div class="auth-label">Email</div>
+        <input type="email" name="usuario[email]" class="auth-input" placeholder="Email">
+      </div>
+
+      <div class="auth-input-group">
+        <div class="auth-label">Senha</div>
+        <input type="password" name="usuario[password]" class="auth-input" placeholder="Senha">
+      </div>
+
+      <div class="auth-inline-input-group">
+        <input type="checkbox" name="remember_me" class="auth-input">
+        <div class="auth-label">Remember me</div>
+      </div>
+
+      <button id="auth-button" type="submit">Log in</button>
+    </form>
+
+    <div id="auth-links">
+      <a class="auth-link" href="<%= new_usuario_registration_path %>">Cadastre-se</a>
+      <a class="auth-link" href="<%= new_usuario_password_path %>">Esqueci a senha</a>
+    </div>
+  </div>
+</div>

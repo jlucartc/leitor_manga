@@ -84,7 +84,7 @@ body{
   font-family: helvetica;
   margin: 0px 40px 0px 0px;
   text-decoration: none;
-  color: #f0f0f0;
+  color: #e0e0e0;
   font-size: 1.5em;
   display: flex;
   flex-direction: column;
@@ -92,7 +92,7 @@ body{
   justify-content: center;
 
   &:hover{
-    font-weight: bold;
+    color: #ffffff;
   }
 }
 
@@ -109,7 +109,7 @@ body{
   background: none;
   font-family: helvetica;
   text-decoration: none;
-  color: #f0f0f0;
+  color: #e0e0e0;
   font-size: 1.5em;
   display: flex;
   flex-direction: column;
@@ -117,8 +117,105 @@ body{
   justify-content: center;
 
   &:hover{
-    font-weight: bold;
+    color: #ffffff;
   }  
+}
+
+#auth-container{
+  overflow: hidden;
+  position: relative;
+  padding: 0px 0px 60px 0px;
+  min-height: #{$default_height};
+  background-color: #f0f0f0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  #auth-card{
+    padding: 40px 40px 40px 40px;
+    background-color: #222233;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 0px #999999;
+  }
+
+  #auth-title{
+    margin: 0px 0px 30px 0px;
+    color: #ffffff;
+    font-family: helvetica;
+    font-size: 2em;
+  }
+
+  #auth-button{
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    padding: 5px 10px 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    background-color: #eeeeee;
+
+    &:hover{
+      background-color: #ffffff;
+    }
+
+  }
+
+  .auth-input-group{
+    .auth-input{
+      margin: 5px 0px 20px 0px;
+      font-family: helvetica;
+      color: #111111;
+      font-size: 1em;
+      padding: 5px 5px 5px 5px;
+      border-radius: 5px;
+    }
+
+    .auth-label{
+      font-family: helvetica;
+      color: #ffffff;
+    }
+  }
+
+  .auth-inline-input-group{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+
+    .auth-input{
+      font-family: helvetica;
+      color: #111111;
+      border-radius: 5px;
+    }
+
+    .auth-label{
+      font-family: helvetica;
+      color: #ffffff;
+    }
+  }
+
+  #auth-links{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    .auth-link{
+      margin: 0px 0px 5px 0px;
+      font-family: helvetica;
+      text-decoration: none;
+      color: #dddddd;
+
+      &:hover{
+        color: #ffffff;
+      }
+    } 
+  }
+
+
 }
 
 #conteudo{
@@ -149,65 +246,62 @@ body{
   align-items: center;
   justify-content: center;
   background-color: rgba(#999999,0.5);
-}
 
-.modal-exclusao-card{
-  box-shadow: 1px 1px 5px 0px #999999;
-  padding: 20px 20px 20px 20px;
-  font-family: helvetica;
-  width: 600px;
-  height: 200px;
-  border-radius: 5px;
-  background-color: #f0f0f0;
+  .modal-exclusao-card{
+    box-shadow: 1px 1px 5px 0px #999999;
+    padding: 20px 20px 20px 20px;
+    font-family: helvetica;
+    width: 600px;
+    height: 200px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
 
-  .modal-exclusao-header{
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  .modal-exclusao-body{
-    font-size: 1.2em;
-  }
-
-  .modal-exclusao-footer{
-    padding: 20px 20px 20px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-
-    .modal-confirmar-exclusao{
-      margin: 0px 10px 0px 0px;
-      padding: 10px 10px 10px 10px;
-      border-radius: 5px;
-      border: none;
-      color: #ffffff;
-      background-color: #33dd55;
-      font-size: 1.2em;
-
-      &:hover{
-        background-color: #00bb33;
-        color: #ffffff;
-      }
-
+    .modal-exclusao-header{
+      font-size: 1.5em;
+      font-weight: bold;
     }
 
-    .modal-cancelar-exclusao{
-      padding: 10px 10px 10px 10px;
-      border-radius: 5px;
-      border: none;
-      color: #ffffff;
-      background-color: #ff5555;
+    .modal-exclusao-body{
       font-size: 1.2em;
-
-      &:hover{
-        background-color: #ff3333;
-        color: #ffffff;
-      }
-
     }
 
-  }
+    .modal-exclusao-footer{
+      padding: 20px 20px 20px 0px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
 
+      .modal-confirmar-exclusao{
+        margin: 0px 10px 0px 0px;
+        padding: 10px 10px 10px 10px;
+        border-radius: 5px;
+        border: none;
+        color: #ffffff;
+        background-color: #33dd55;
+        font-size: 1.2em;
+
+        &:hover{
+          background-color: #00bb33;
+          color: #ffffff;
+        }
+      }
+
+      .modal-cancelar-exclusao{
+        padding: 10px 10px 10px 10px;
+        border-radius: 5px;
+        border: none;
+        color: #ffffff;
+        background-color: #ff5555;
+        font-size: 1.2em;
+
+        &:hover{
+          background-color: #ff3333;
+          color: #ffffff;
+        }
+      }
+    }
+  }
 }
 
 #cabecalho{
@@ -215,6 +309,14 @@ body{
   grid-row: 2;
   display: grid;
   grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+}
+
+#cabecalho-pagina{
+  width: 100%;
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 1fr;
 }
 
 #apresentacao-manga{
@@ -349,7 +451,6 @@ body{
   width:  100%;
   aspect-ratio: 2/3;
   justify-self: center;
-  //height:  #{$conteudo_principal_height};
   grid-column:  2;
   grid-row: 4;
   background-color: #dddddd;
@@ -369,7 +470,6 @@ body{
     &:hover{
       background-color: rgba(#999999,0.3);
     }
-
   }
 
   #pagina-anterior{
@@ -382,9 +482,7 @@ body{
     &:hover{
       background-color: rgba(#999999,0.3);
     }
-
   }
-
 }
 
 #apresentacao-manga-editar{
@@ -505,14 +603,6 @@ body{
   }
 }
 
-#cabecalho-pagina{
-  width: 100%;
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 1fr;
-}
-
 #titulo{
   width: 100%;
   display: flex;
@@ -538,9 +628,7 @@ body{
       color: #ffffff;
       background-color: #00bb33;
     }
-
   }
-
 }
 
 #status-pagina{
@@ -828,7 +916,6 @@ body{
       background-color: #ff3333;
     }
   }
-
 }
 
 .manga-item-grade{
@@ -983,7 +1070,6 @@ body{
       background-color: #ff3333;
     }
   }
-
 }
 
 #formulario-novo-capitulo{
@@ -1084,7 +1170,6 @@ body{
           background-color: rgba(#999999,0.9);
         }  
       }
-
     }
   }
 
@@ -1116,7 +1201,6 @@ body{
       }
     }
   }
-
 }
 
 #formulario-buscar-manga{
@@ -1186,7 +1270,6 @@ body{
     grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
     gap: calc(0.2/6.5 * #{$conteudo_principal_width});
   }
-
 }
 
 #formulario-editar-capitulo{
@@ -1340,9 +1423,7 @@ body{
           background-color: rgba(#999999,0.9);
         }  
       }
-
     }
-
   }
 
   #controles{
@@ -1379,7 +1460,6 @@ body{
       }
     }
   }
-
 }
 
 #conteudo-ver-capitulo{
@@ -1420,5 +1500,4 @@ body{
       }
     }
   }
-
 }
