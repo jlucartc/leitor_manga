@@ -39,1465 +39,2922 @@ $item_lista_row_height: calc(1/6.5 * #{$conteudo_principal_width});
 
 $manga_item_imagem_container_width: calc(2/3*#{$item_lista_row_height});
 
+@media screen and (min-width: 1270px){
 
-html{
-  width: 100%;
-  height: 100%;
-}
-
-body{
-  width:  100%;
-  height:  100%;
-  margin:  0;
-}
-
-#flash-success{
-  padding: 10px 10px 10px 10px;
-  font-family: helvetica;
-  width: 100%;
-  font-size: 1.5em;
-  background-color: #33dd55;
-}
-
-#flash-danger{
-  padding: 10px 10px 10px 10px;
-  font-family: helvetica;
-  width: 100%;
-  font-size: 1.2em;
-  background-color: #ff5555;
-  color: #ffffff;
-}
-
-#menu{
-  padding: 10px 10px 10px 40px;
-  display: flex;
-  flex-diretion: row;
-  width:  100%;
-  height:  calc((0.5/4) * #{$default_height});
-  background-color: #222233;
-  box-sizing: border-box;
-}
-
-.menu-link{
-  border: none;
-  background: none;
-  font-family: helvetica;
-  margin: 0px 40px 0px 0px;
-  text-decoration: none;
-  color: #e0e0e0;
-  font-size: 1.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &:hover{
-    color: #ffffff;
-  }
-}
-
-.menu-logout-form{
-  margin: 0px 40px 0px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-logout-button{
-  border: none;
-  background: none;
-  font-family: helvetica;
-  text-decoration: none;
-  color: #e0e0e0;
-  font-size: 1.5em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &:hover{
-    color: #ffffff;
-  }  
-}
-
-#auth-container{
-  overflow: hidden;
-  position: relative;
-  padding: 0px 0px 60px 0px;
-  min-height: #{$default_height};
-  background-color: #f0f0f0;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  #auth-card{
-    padding: 40px 40px 40px 40px;
-    background-color: #222233;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-  }
-
-  #auth-title{
-    margin: 0px 0px 30px 0px;
-    color: #ffffff;
-    font-family: helvetica;
-    font-size: 2em;
-  }
-
-  #auth-button{
-    width: 100%;
-    margin: 10px 0px 10px 0px;
-    padding: 5px 10px 5px 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    background-color: #eeeeee;
-
-    &:hover{
-      background-color: #ffffff;
-    }
-
-  }
-
-  .auth-input-group{
-    .auth-input{
-      margin: 5px 0px 20px 0px;
-      font-family: helvetica;
-      color: #111111;
-      font-size: 1em;
-      padding: 5px 5px 5px 5px;
-      border-radius: 5px;
-    }
-
-    .auth-label{
-      font-family: helvetica;
-      color: #ffffff;
-    }
-  }
-
-  .auth-inline-input-group{
-
+  #menu{
+    padding: 10px 10px 10px 40px;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: start;
+    width:  100%;
+    height:  calc((0.5/4) * #{$default_height});
+    background-color: #222233;
+    box-sizing: border-box;
 
-    .auth-input{
+    .menu-link{
+      border: none;
+      background: none;
       font-family: helvetica;
-      color: #111111;
-      border-radius: 5px;
-    }
-
-    .auth-label{
-      font-family: helvetica;
-      color: #ffffff;
-    }
-  }
-
-  #auth-links{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-
-    .auth-link{
-      margin: 0px 0px 5px 0px;
-      font-family: helvetica;
+      margin: 0px 40px 0px 0px;
       text-decoration: none;
-      color: #dddddd;
+      color: #e0e0e0;
+      font-size: 1.5em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       &:hover{
         color: #ffffff;
       }
-    } 
+    }
+
+    .menu-logout-form{
+      margin: 0px 40px 0px 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .menu-logout-button{
+        border: none;
+        background: none;
+        font-family: helvetica;
+        text-decoration: none;
+        color: #e0e0e0;
+        font-size: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          color: #ffffff;
+        }  
+      }
+    }
   }
 
+  html{
+    width: 100%;
+    height: 100%;
+  }
 
-}
+  body{
+    width:  100%;
+    height:  100%;
+    margin:  0;
+  }
 
-#conteudo{
-  position: relative;
-  padding: 0px 0px 60px 0px;
-  min-height: #{$default_height};
-  background-color: #f0f0f0;
-  display: grid;
-  grid-template-columns: #{$conteudo_left_column_weight} #{$conteudo_principal_column_weight} #{$conteudo_right_column_weight};
-  grid-template-rows: calc(0.5/4 * #{$default_height}) calc(0.5/4 * #{$default_height}) calc(0.3/4 * #{$default_height}) 1fr;
-}
-
-.modal-exclusao-escondido{
-  visibility: hidden;
-}
-
-.modal-exclusao{
-  z-index:1;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(#999999,0.5);
-
-  .modal-exclusao-card{
-    box-shadow: 1px 1px 5px 0px #999999;
-    padding: 20px 20px 20px 20px;
+  #flash-success{
+    padding: 10px 10px 10px 10px;
     font-family: helvetica;
-    width: 600px;
-    height: 200px;
-    border-radius: 5px;
+    width: 100%;
+    font-size: 1.5em;
+    background-color: #33dd55;
+  }
+
+  #flash-danger{
+    padding: 10px 10px 10px 10px;
+    font-family: helvetica;
+    width: 100%;
+    font-size: 1.2em;
+    background-color: #ff5555;
+    color: #ffffff;
+  }
+
+  #auth-container{
+    overflow: hidden;
+    position: relative;
+    padding: 0px 0px 60px 0px;
+    min-height: #{$default_height};
     background-color: #f0f0f0;
 
-    .modal-exclusao-header{
-      font-size: 1.5em;
-      font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    #auth-card{
+      padding: 40px 40px 40px 40px;
+      background-color: #222233;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px 0px #999999;
     }
 
-    .modal-exclusao-body{
+    #auth-title{
+      margin: 0px 0px 30px 0px;
+      color: #ffffff;
+      font-family: helvetica;
+      font-size: 2em;
+    }
+
+    #auth-button{
+      width: 100%;
+      margin: 10px 0px 10px 0px;
+      padding: 5px 10px 5px 10px;
+      border: none;
+      border-radius: 5px;
       font-size: 1.2em;
+      background-color: #eeeeee;
+
+      &:hover{
+        background-color: #ffffff;
+      }
     }
 
-    .modal-exclusao-footer{
-      padding: 20px 20px 20px 0px;
+    .auth-input-group{
+      .auth-input{
+        border: none;
+        margin: 5px 0px 20px 0px;
+        font-family: helvetica;
+        color: #111111;
+        font-size: 1em;
+        padding: 5px 5px 5px 5px;
+        border-radius: 5px;
+      }
+
+      .auth-label{
+        font-family: helvetica;
+        color: #ffffff;
+      }
+    }
+
+    .auth-inline-input-group{
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: start;
 
-      .modal-confirmar-exclusao{
-        margin: 0px 10px 0px 0px;
-        padding: 10px 10px 10px 10px;
-        border-radius: 5px;
+      .auth-input{
         border: none;
-        color: #ffffff;
-        background-color: #33dd55;
-        font-size: 1.2em;
-
-        &:hover{
-          background-color: #00bb33;
-          color: #ffffff;
-        }
+        font-family: helvetica;
+        color: #111111;
+        border-radius: 5px;
       }
 
-      .modal-cancelar-exclusao{
-        padding: 10px 10px 10px 10px;
-        border-radius: 5px;
-        border: none;
+      .auth-label{
+        font-family: helvetica;
         color: #ffffff;
-        background-color: #ff5555;
-        font-size: 1.2em;
-
-        &:hover{
-          background-color: #ff3333;
-          color: #ffffff;
-        }
       }
     }
-  }
-}
 
-#cabecalho{
-  grid-column: 2;
-  grid-row: 2;
-  display: grid;
-  grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
-}
-
-#cabecalho-pagina{
-  width: 100%;
-  grid-column: 1;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 1fr;
-}
-
-#apresentacao-manga{
-  box-shadow: 1px 2px 5px 0px #999999;
-  border-radius: 5px;
-  overflow: hidden;
-  width:  100%;
-  height:  #{$conteudo_principal_height};
-  grid-column:  2;
-  grid-row: 4;
-  background-color: #dddddd;
-  display: grid;
-  grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
-  grid-template-rows: #{$conteudo_principal_height};
-
-  #imagem-container{
-    position: relative;
-    grid-column: 1;
-    overflow: hidden;
-  }
-
-  .manga-favorito{
-    width: calc(0.2/1.8 * #{$conteudo_principal_height});
-    height: calc(0.2/1.8 * #{$conteudo_principal_height});
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/not_fav.png');
-    }
-  }
-
-  .manga-nao-favorito{
-    width: calc(0.2/1.8 * #{$conteudo_principal_height});
-    height: calc(0.2/1.8 * #{$conteudo_principal_height});
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/not_fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/fav.png');
-    }
-  }
-
-  #capa-manga{
-    width: 100%;
-    aspect-ratio: 2/3;
-  }
-
-  #lista-capitulos{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
-
-    #lista-cabecalho{
-      padding:  10px 10px 10px 10px;
-      background-color: #222233;
-      display: grid;
-      grid-template-columns: 8fr 2fr;
-    }
-
-    #lista-titulo{
-      color: #f0f0f0;
+    #auth-links{
       display: flex;
       flex-direction: column;
       align-items: start;
       justify-content: center;
-      font-family: helvetica;
-      font-size: 2em;
+
+      .auth-link{
+        margin: 0px 0px 5px 0px;
+        font-family: helvetica;
+        text-decoration: none;
+        color: #dddddd;
+
+        &:hover{
+          color: #ffffff;
+        }
+      } 
     }
+  }
 
-    #botao-novo-capitulo{
-      padding: 10px 10px 10px 10px;
-      font-family: helvetica;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2em;
-      background-color: #33dd55;
+  #conteudo{
+    position: relative;
+    padding: 0px 0px 60px 0px;
+    min-height: #{$default_height};
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-columns: #{$conteudo_left_column_weight} #{$conteudo_principal_column_weight} #{$conteudo_right_column_weight};
+    grid-template-rows: calc(0.5/4 * #{$default_height}) calc(0.5/4 * #{$default_height}) calc(0.3/4 * #{$default_height}) 1fr;
 
-      &:hover{
-        background-color: #00bb33;
-        color: #ffffff;
+    #conteudo-ver-capitulo{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+      grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .pagina{
+        position: relative;
+        box-shadow: 1px 1px 2px 0px #999999;
+
+        .pagina-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .pagina-cover-link{
+          user-select: none;
+          font-family: helvetica;
+          font-size: 3em;
+          top: 0;
+          position: absolute;
+          width: 100%;
+          aspect-ratio: 2/3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          background-color: rgba(#999999,0.4);
+
+          &:hover{
+            filter: none;
+            background-color: rgba(#999999,0.7);
+          }
+        }
       }
     }
 
-    #capitulos-container{
-      overflow: hidden;
+    #formulario-editar-capitulo{
+      grid-column:  2;
+      grid-row: 4;
       display: grid;
       grid-template-columns: 1fr;
-      grid-auto-rows: calc(0.2/1.8 * #{$conteudo_principal_height});
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.6/1.8 * #{$conteudo_principal_height});
 
-      .capitulo{
-        font-family: helvetica;
-        padding: 10px 10px 10px 10px;
-        height: 100%;
-        background-color: #777788;
+      #grupo-input{
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+        gap: 30px;
+
+        #titulo-capitulo{
+          padding: 0px 0px 0px 10px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #escolher-paginas{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #paginas-container{
+        margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+        .pagina-capitulo{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-capitulo-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-capitulo-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+
+        .pagina-nova{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-nova-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-nova-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+      }
+
+      #controles{
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: start;
+
+        #botao-salvar{
+          margin: 0px 10px 0px 0px;
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+
+        #botao-cancelar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #formulario-novo-capitulo{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.2/1.8 * #{$conteudo_principal_height});
+
+      #grupo-input{
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+        gap: 30px;
+
+        #titulo-capitulo{
+          padding: 0px 0px 0px 10px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #escolher-paginas{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #paginas-container{
+        margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+        .pagina-nova{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-nova-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-nova-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+      }
+
+      #controles{
+        #botao-salvar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+
+        #botao-cancelar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #itens-container-lista{
+      width:  100%;
+      min-height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: #{$item_lista_row_height};
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .manga-item-lista{
+        overflow: hidden;
+        background-color: #dddddd;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: #{$manga_item_imagem_container_width} 1fr;
+        grid-template-rows: 1fr;
+        box-shadow: 1px 1px 2px 0px #999999;
+
+        .manga-imagem-container{
+          width: 100%;
+          height: 100%;
+        }
+
+        .manga-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .manga-informacoes{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: start;
+          padding: 10px 10px 10px 20px;
+        }
+
+        .manga-titulo{
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        .manga-status{
+          font-family: helvetica;
+          font-size: 1.2em;
+        }
+
+        .manga-capitulos{
+          margin: 10px 0px 0px 0px;
+          font-family: helvetica;
+          font-size: 1em;
+        }
+
+        .manga-controles{
+          position: absolute;
+          bottom: 20px;
+          padding: 10px 0px 0px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: start;
+        }
+
+        .manga-ver{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #5555ff;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #3333ff;
+          }
+        }
+
+        .manga-editar{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #33dd55;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #00bb33;
+          }
+        }
+
+        .manga-excluir{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #ff5555;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #formulario-buscar-manga{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr;
+
+      #grupo-input{
+        grid-column: 1;
+        grid-row: 1;
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$menu_apresentacao_column_weight} #{$cabecalho_free_column_weight};
+
+        #input-busca{
+          padding: 0px 0px 0px 10px;
+          margin: 0px 10px 0px 0px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #botao-buscar{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #55bb55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #33aa33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #itens-container-lista{
+        margin: 60px 0px 0px 0px;
+        width:  100%;
+        min-height:  #{$conteudo_principal_height};
+        grid-column:  1;
+        grid-row: 2;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: #{$item_lista_row_height};
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+      }
+
+      #itens-container-grade{
+        margin: 60px 0px 0px 0px;
+        width:  100%;
+        min-height:  #{$conteudo_principal_height};
+        grid-column:  1;
+        grid-row: 2;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+      }
+    }
+
+    #itens-container-grade{
+      width:  100%;
+      min-height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+      grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .manga-item-grade{
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        box-shadow: 1px 1px 2px 0px #999999;
+        border-radius: 5px;
+
+        .manga-imagem-container{
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .manga-favorito{
+          width: 20%;
+          aspect-ratio: 1;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-image: url('/fav.png');
+          background-size: cover;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          &:hover{
+            background-image: url('/not_fav.png');
+          }
+        }
+
+        .manga-nao-favorito{
+          width: 20%;
+          aspect-ratio: 1;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-image: url('/not_fav.png');
+          background-size: cover;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          &:hover{
+            background-image: url('/fav.png');
+          }
+        }
+
+        .manga-imagem-cover{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          background-color: rgba(#999999,0.1);
+
+          &:hover{
+            background-color: rgba(#999999,0.2);
+          }
+        }
+
+        .manga-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .manga-informacoes{
+          display: none;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: start;
+          padding: 10px 10px 10px 20px;
+        }
+
+        .manga-titulo{
+          display: none;
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        .manga-status{
+          display: none;
+          font-family: helvetica;
+          font-size: 1.2em;
+        }
+
+        .manga-controles{
+          display: none;
+          position: absolute;
+          bottom: 20px;
+          padding: 10px 0px 0px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: start;
+        }
+
+        .manga-ver{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #5555ff;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #3333ff;
+          }
+        }
+
+        .manga-editar{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #11cc66;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #00aa33;
+          }
+        }
+
+        .manga-excluir{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #ff5555;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #cabecalho{
+      grid-column: 2;
+      grid-row: 2;
+      display: grid;
+      grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+
+      #menu-apresentacao{
+        width: 100%;
+        max-height: 100%;
+        grid-column: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        align-items: center;
+        justify-items: center;
+
+        #botao-apresentacao-lista{
+          color: #ffffff;
+          width: 80%;
+          aspect-ratio: 1;
+          background-color: #111111;
+          background-image: url('/lista_ativa.png');
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+
+          &:hover{
+            background-color: #333333;
+            width: 85%;
+          }
+        }
+
+        #botao-apresentacao-grade{
+          color: #ffffff;
+          width: 80%;
+          aspect-ratio: 1;
+          background-color: #111111;
+          background-image: url('/grade_ativa.png');
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+
+          &:hover{
+            background-color: #333333;
+            width: 85%;
+          }
+        }
+      }
+
+      #cabecalho-pagina{
+        width: 100%;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3fr 1fr;
+
+        #titulo{
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+
+          #titulo-texto{
+            font-family: helvetica;
+            font-size: 4em;
+          }
+
+          #novo-manga{
+            align-self: center;
+            height: 60%;
+            border: none;
+            box-shadow: 1px 1px 2px 0px #999999;
+            border-radius: 5px;
+            background-color: #33dd55;
+            margin: 0px 0px 0px 20px;
+            font-size: 1.5em;
+            padding: 0px 20px 0px 20px;
+
+            &:hover{
+              color: #ffffff;
+              background-color: #00bb33;
+            }
+          }
+        }
+
+        #status-pagina{
+          font-family: helvetica;
+          font-size: 1.5em;
+          width: 100%;
+          max-height: 100%;
+        }
+
+        #manga-titulo-editar{
+          font-size: 1.5em;
+          padding: 0px 0px 0px 10px;
+          margin: 0px 0px 10px 0px;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+        }
+
+        #manga-status-editar{
+          padding: 0px 0px 0px 10px;
+          background-color: #ffffff;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+        }
+      }
+
+      #ver-manga-controles{
+        width: 100%;
+        grid-column: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 10px;
+
+        #botao-editar{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
+        #botao-excluir{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5em;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+            color: #ffffff;
+          }
+        }
+      }
+
+      #ler-manga-controles{
+        width: 100%;
+        grid-column: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 10px;
+
+        #botao-zoom-mais{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 2em;
+          background-color: #222233;
+          color: #ffffff;
+
+          &:hover{
+            background-color: #333344;
+            color: #ffffff;
+          }
+        }
+
+        #botao-zoom-menos{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 2em;
+          background-color: #222233;
+          color: #ffffff;
+
+          &:hover{
+            background-color: #333344;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    #apresentacao-manga{
+      box-shadow: 1px 2px 5px 0px #999999;
+      border-radius: 5px;
+      overflow: hidden;
+      width:  100%;
+      height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #dddddd;
+      display: grid;
+      grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
+      grid-template-rows: 1fr;
+
+      #imagem-container{
+        position: relative;
+        grid-column: 1;
+        overflow: hidden;
+      }
+
+      .manga-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/fav.png');
+        background-size: cover;
         color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/not_fav.png');
+        }
+      }
+
+      .manga-nao-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/not_fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/fav.png');
+        }
+      }
+
+      #capa-manga{
+        width: 100%;
+        aspect-ratio: 2/3;
+      }
+
+      #lista-capitulos{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
+
+        #lista-cabecalho{
+          padding:  10px 10px 10px 10px;
+          background-color: #222233;
+          display: grid;
+          grid-template-columns: 8fr 2fr;
+        }
+
+        #lista-titulo{
+          color: #f0f0f0;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        #botao-novo-capitulo{
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.2em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
+        #capitulos-container{
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-auto-rows: calc(0.2/1.8 * #{$conteudo_principal_height});
+
+          .capitulo{
+            font-family: helvetica;
+            padding: 10px 10px 10px 10px;
+            height: 100%;
+            background-color: #777788;
+            color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+            box-sizing: border-box;
+
+            &:hover{
+              background-color: #7700ff;
+            }
+          }
+        }
+      }
+    }
+
+    #apresentacao-manga-editar{
+      box-shadow: 1px 2px 5px 0px #999999;
+      border-radius: 5px;
+      overflow: hidden;
+      width:  100%;
+      height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #ff3355;
+      display: grid;
+      grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
+      grid-template-rows: 1fr;
+
+      #imagem-container{
+        position: relative;
+        grid-column: 1;
+        overflow: hidden;
+      }
+
+      .manga-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/not_fav.png');
+        }
+      }
+
+      .manga-nao-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/not_fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/fav.png');
+        }
+      }
+
+      #capa-manga{
+        width: 100%;
+        aspect-ratio: 2/3;
+      }
+
+      #capa-cover{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        aspect-ratio: 5;
+        background-color: rgba(#999999,0.3);
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: start;
-        box-sizing: border-box;
-
-        &:hover{
-          background-color: #7700ff;
-        }
-      }
-    }
-  }
-}
-
-#leitor-manga{
-  position: relative;
-  box-shadow: 1px 2px 5px 0px #999999;
-  border-radius: 5px;
-  overflow: hidden;
-  width:  100%;
-  aspect-ratio: 2/3;
-  justify-self: center;
-  grid-column:  2;
-  grid-row: 4;
-  background-color: #dddddd;
-
-  #pagina-imagem{
-    width: 100%;
-    height: 100%;
-  }
-
-  #proxima-pagina{
-    height: 100%;
-    width: 10%;
-    top: 0;
-    right: 0;
-    position: absolute;
-
-    &:hover{
-      background-color: rgba(#999999,0.3);
-    }
-  }
-
-  #pagina-anterior{
-    height: 100%;
-    width: 10%;
-    top: 0;
-    left: 0;
-    position: absolute;
-
-    &:hover{
-      background-color: rgba(#999999,0.3);
-    }
-  }
-}
-
-#apresentacao-manga-editar{
-  box-shadow: 1px 2px 5px 0px #999999;
-  border-radius: 5px;
-  overflow: hidden;
-  width:  100%;
-  height:  #{$conteudo_principal_height};
-  grid-column:  2;
-  grid-row: 4;
-  background-color: #ff3355;
-  display: grid;
-  grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
-  grid-template-rows: #{$conteudo_principal_height};
-
-  #imagem-container{
-    position: relative;
-    grid-column: 1;
-    overflow: hidden;
-  }
-
-  .manga-favorito{
-    width: calc(0.2/1.8 * #{$conteudo_principal_height});
-    height: calc(0.2/1.8 * #{$conteudo_principal_height});
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/not_fav.png');
-    }
-  }
-
-  .manga-nao-favorito{
-    width: calc(0.2/1.8 * #{$conteudo_principal_height});
-    height: calc(0.2/1.8 * #{$conteudo_principal_height});
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/not_fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/fav.png');
-    }
-  }
-
-  #capa-manga{
-    width: 100%;
-    aspect-ratio: 2/3;
-  }
-
-  #capa-cover{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    aspect-ratio: 5;
-    background-color: rgba(#999999,0.3);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-color: rgba(#999999,0.7);
-    }
-
-    #botao-trocar-capa{
-      border: none;
-      height: 100%;
-      width: 100%;
-      padding: 10px 10px 10px 10px;
-      font-family: helvetica;
-      font-size: 1.2em;
-      background-color: #33dd55;
-
-      &:hover{
-        background-color: #00bb33;
-        color: #ffffff;
-      }
-    }
-
-  }
-
-  #descricao{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
-
-    #descricao-cabecalho{
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: center;
-      padding: 10px 10px 10px 10px;
-      background-color: #5500ff;
-      font-family: helvetica;
-      font-size: 2em;
-    }
-
-    #editar-descricao{
-      font-size: 1.2em;
-      font-family: helvetica;
-      overflow: scroll;
-    }
-  }
-}
-
-#titulo{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-
-  #titulo-texto{
-    font-family: helvetica;
-    font-size: 4em;
-  }
-
-  #novo-manga{
-    align-self: center;
-    height: 60%;
-    border: none;
-    box-shadow: 1px 1px 2px 0px #999999;
-    border-radius: 5px;
-    background-color: #33dd55;
-    margin: 0px 0px 0px 20px;
-    font-size: 1.5em;
-    padding: 0px 20px 0px 20px;
-
-    &:hover{
-      color: #ffffff;
-      background-color: #00bb33;
-    }
-  }
-}
-
-#status-pagina{
-  font-family: helvetica;
-  font-size: 1.5em;
-  width: 100%;
-  max-height: 100%;
-}
-
-#manga-titulo-editar{
-  font-size: 1.5em;
-  padding: 0px 0px 0px 10px;
-  margin: 0px 0px 10px 0px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 1px 2px 0px #999999;
-}
-
-#manga-status-editar{
-  padding: 0px 0px 0px 10px;
-  background-color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 1px 2px 0px #999999;
-}
-
-#menu-apresentacao{
-  width: 100%;
-  max-height: 100%;
-  grid-column: 3;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  align-items: center;
-  justify-items: center;
-}
-
-#botao-apresentacao-lista{
-  color: #ffffff;
-  width: 80%;
-  aspect-ratio: 1;
-  background-color: #111111;
-  background-image: url('/lista_ativa.png');
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-
-  &:hover{
-    background-color: #333333;
-    width: 85%;
-  }
-}
-
-#botao-apresentacao-grade{
-  color: #ffffff;
-  width: 80%;
-  aspect-ratio: 1;
-  background-color: #111111;
-  background-image: url('/grade_ativa.png');
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-
-  &:hover{
-    background-color: #333333;
-    width: 85%;
-  }
-}
-
-#ver-manga-controles{
-  width: 100%;
-  grid-column: 3;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  gap: 10px;
-
-  #botao-editar{
-    height: 60%;
-    padding: 10px 10px 10px 10px;
-    font-family: helvetica;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5em;
-    background-color: #33dd55;
-
-    &:hover{
-      background-color: #00bb33;
-      color: #ffffff;
-    }
-  }
-
-  #botao-excluir{
-    height: 60%;
-    padding: 10px 10px 10px 10px;
-    font-family: helvetica;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5em;
-    background-color: #ff5555;
-
-    &:hover{
-      background-color: #ff3333;
-      color: #ffffff;
-    }
-  }
-}
-
-#ler-manga-controles{
-  width: 100%;
-  grid-column: 3;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  gap: 10px;
-
-  #botao-zoom-mais{
-    height: 60%;
-    padding: 10px 10px 10px 10px;
-    font-family: helvetica;
-    border: none;
-    border-radius: 5px;
-    font-size: 2em;
-    background-color: #222233;
-    color: #ffffff;
-
-    &:hover{
-      background-color: #333344;
-      color: #ffffff;
-    }
-  }
-
-  #botao-zoom-menos{
-    height: 60%;
-    padding: 10px 10px 10px 10px;
-    font-family: helvetica;
-    border: none;
-    border-radius: 5px;
-    font-size: 2em;
-    background-color: #222233;
-    color: #ffffff;
-
-    &:hover{
-      background-color: #333344;
-      color: #ffffff;
-    }
-  }
-}
-
-.formulario-controle{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#itens-container-grade{
-  width:  100%;
-  min-height:  #{$conteudo_principal_height};
-  grid-column:  2;
-  grid-row: 4;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
-  grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
-  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-}
-
-#itens-container-lista{
-  width:  100%;
-  min-height:  #{$conteudo_principal_height};
-  grid-column:  2;
-  grid-row: 4;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: #{$item_lista_row_height};
-  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-}
-
-.manga-item-lista{
-  overflow: hidden;
-  background-color: #dddddd;
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: #{$manga_item_imagem_container_width} 1fr;
-  grid-template-rows: 1fr;
-  box-shadow: 1px 1px 2px 0px #999999;
-
-  .manga-imagem-container{
-    width: 100%;
-    height: 100%;
-  }
-
-  .manga-imagem{
-    width: 100%;
-    aspect-ratio: 2/3;
-  }
-
-  .manga-informacoes{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    padding: 10px 10px 10px 20px;
-  }
-
-  .manga-titulo{
-    font-family: helvetica;
-    font-size: 2em;
-  }
-
-  .manga-status{
-    font-family: helvetica;
-    font-size: 1.2em;
-  }
-
-  .manga-capitulos{
-    margin: 10px 0px 0px 0px;
-    font-family: helvetica;
-    font-size: 1em;
-  }
-
-  .manga-controles{
-    position: absolute;
-    bottom: 20px;
-    padding: 10px 0px 0px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-  }
-
-  .manga-ver{
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #5555ff;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #3333ff;
-    }
-  }
-
-  .manga-editar{
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #33dd55;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #00bb33;
-    }
-  }
-
-  .manga-excluir{
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #ff5555;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #ff3333;
-    }
-  }
-}
-
-.manga-item-grade{
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  box-shadow: 1px 1px 2px 0px #999999;
-  border-radius: 5px;
-
-  .manga-imagem-container{
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .manga-favorito{
-    width: 20%;
-    aspect-ratio: 1;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/not_fav.png');
-    }
-  }
-
-  .manga-nao-favorito{
-    width: 20%;
-    aspect-ratio: 1;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-image: url('/not_fav.png');
-    background-size: cover;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    &:hover{
-      background-image: url('/fav.png');
-    }
-  }
-
-  .manga-imagem-cover{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    background-color: rgba(#999999,0.1);
-
-    &:hover{
-      background-color: rgba(#999999,0.2);
-    }
-  }
-
-  .manga-imagem{
-    width: 100%;
-    aspect-ratio: 2/3;
-  }
-
-  .manga-informacoes{
-    display: none;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    padding: 10px 10px 10px 20px;
-  }
-
-  .manga-titulo{
-    display: none;
-    font-family: helvetica;
-    font-size: 2em;
-  }
-
-  .manga-status{
-    display: none;
-    font-family: helvetica;
-    font-size: 1.2em;
-  }
-
-  .manga-controles{
-    display: none;
-    position: absolute;
-    bottom: 20px;
-    padding: 10px 0px 0px 0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-  }
-
-  .manga-ver{
-    display: none;
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #5555ff;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #3333ff;
-    }
-  }
-
-  .manga-editar{
-    display: none;
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #11cc66;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #00aa33;
-    }
-  }
-
-  .manga-excluir{
-    display: none;
-    width: 80px;
-    margin: 0px 10px 0px 0px;
-    padding: 5px 5px 5px 5px;
-    background-color: #ff5555;
-    color: #ffffff;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    &:hover{
-      background-color: #ff3333;
-    }
-  }
-}
-
-#formulario-novo-capitulo{
-  grid-column:  2;
-  grid-row: 4;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.2/1.8 * #{$conteudo_principal_height});
-
-  #grupo-input{
-    max-height: 100%;
-    display: grid;
-    grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
-    gap: 30px;
-
-    #titulo{
-      padding: 0px 0px 0px 10px;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 1px 1px 2px 0px #999999;
-      box-sizing: border-box;
-      font-size: 1.5em;
-      grid-column: 1;
-      height: 100%;
-    }
-
-    #escolher-paginas{
-      border: none;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #55bb55;
-      font-size: 1.2em;
-      grid-column: 2;
-      height: 100%;
-
-      &:hover{
-        background-color: #33aa33;
-        box-shadow: 1px 1px 5px 2px #999999;
-      }
-    }
-  }
-
-  #paginas-container{
-    margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
-    grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
-    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-
-    .pagina-nova{
-      position: relative;
-      box-shadow: 1px 1px 2px 0px #999999;
-
-      .pagina-nova-imagem{
-        width: 100%;
-        aspect-ratio: 2/3;
-      }
-
-      .pagina-nova-cover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 3em;
-        top: 0;
-        position: absolute;
-        width: 100%;
-        aspect-ratio: 2/3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.4);
 
         &:hover{
-          filter: none;
           background-color: rgba(#999999,0.7);
         }
+
+        #botao-trocar-capa{
+          border: none;
+          height: 100%;
+          width: 100%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          font-size: 1.2em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
       }
 
-      .pagina-remover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 2em;
-        top: 0;
-        right: 0;
-        position: absolute;
-        width: 20%;
-        aspect-ratio: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.6);
+      #descricao{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
 
-        &:hover{
-          filter: none;
-          background-color: rgba(#999999,0.9);
-        }  
-      }
-    }
-  }
+        #descricao-cabecalho{
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          padding: 10px 10px 10px 10px;
+          background-color: #5500ff;
+          font-family: helvetica;
+          font-size: 2em;
+        }
 
-  #controles{
-    #botao-salvar{
-      border: none;
-      font-size: 1.5em;
-      padding: 10px 10px 10px 10px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #55bb55;
-
-      &:hover{
-        background-color: #33aa33;
-        box-shadow: 1px 1px 5px 2px #999999;
-      }
-    }
-
-    #botao-cancelar{
-      border: none;
-      font-size: 1.5em;
-      padding: 10px 10px 10px 10px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #ff5555;
-
-      &:hover{
-        background-color: #dd3333;
-      }
-    }
-  }
-}
-
-#formulario-buscar-manga{
-  grid-column:  2;
-  grid-row: 4;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr;
-
-  #grupo-input{
-    grid-column: 1;
-    grid-row: 1;
-    max-height: 100%;
-    display: grid;
-    grid-template-columns: #{$titulo_pagina_column_weight} #{$menu_apresentacao_column_weight} #{$cabecalho_free_column_weight};
-
-    #input-busca{
-      padding: 0px 0px 0px 10px;
-      margin: 0px 10px 0px 0px;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 1px 1px 2px 0px #999999;
-      box-sizing: border-box;
-      font-size: 1.5em;
-      grid-column: 1;
-      height: 100%;
-    }
-
-    #botao-buscar{
-      border: none;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #55bb55;
-      font-size: 1.2em;
-      grid-column: 2;
-      height: 100%;
-
-      &:hover{
-        background-color: #33aa33;
-        box-shadow: 1px 1px 5px 2px #999999;
-      }
-    }
-  }
-
-  #itens-container-lista{
-    margin: 60px 0px 0px 0px;
-    width:  100%;
-    min-height:  #{$conteudo_principal_height};
-    grid-column:  1;
-    grid-row: 2;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: #{$item_lista_row_height};
-    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-  }
-
-  #itens-container-grade{
-    margin: 60px 0px 0px 0px;
-    width:  100%;
-    min-height:  #{$conteudo_principal_height};
-    grid-column:  1;
-    grid-row: 2;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
-    grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
-    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-  }
-}
-
-#formulario-editar-capitulo{
-  grid-column:  2;
-  grid-row: 4;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.6/1.8 * #{$conteudo_principal_height});
-
-  #grupo-input{
-    max-height: 100%;
-    display: grid;
-    grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
-    gap: 30px;
-
-    #titulo{
-      padding: 0px 0px 0px 10px;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 1px 1px 2px 0px #999999;
-      box-sizing: border-box;
-      font-size: 1.5em;
-      grid-column: 1;
-      height: 100%;
-    }
-
-    #escolher-paginas{
-      border: none;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #55bb55;
-      font-size: 1.2em;
-      grid-column: 2;
-      height: 100%;
-
-      &:hover{
-        background-color: #33aa33;
-        box-shadow: 1px 1px 5px 2px #999999;
-      }
-    }
-  }
-
-  #paginas-container{
-    margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
-    grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
-    gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-
-    .pagina-capitulo{
-      position: relative;
-      box-shadow: 1px 1px 2px 0px #999999;
-
-      .pagina-capitulo-imagem{
-        width: 100%;
-        aspect-ratio: 2/3;
-      }
-
-      .pagina-capitulo-cover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 3em;
-        top: 0;
-        position: absolute;
-        width: 100%;
-        aspect-ratio: 2/3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.4);
-
-        &:hover{
-          filter: none;
-          background-color: rgba(#999999,0.7);
+        #editar-descricao{
+          font-size: 1.2em;
+          font-family: helvetica;
+          overflow: scroll;
         }
       }
-
-      .pagina-remover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 2em;
-        top: 0;
-        right: 0;
-        position: absolute;
-        width: 20%;
-        aspect-ratio: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.6);
-
-        &:hover{
-          filter: none;
-          background-color: rgba(#999999,0.9);
-        }  
-      }
     }
 
-    .pagina-nova{
+    #leitor-manga{
       position: relative;
-      box-shadow: 1px 1px 2px 0px #999999;
-
-      .pagina-nova-imagem{
-        width: 100%;
-        aspect-ratio: 2/3;
-      }
-
-      .pagina-nova-cover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 3em;
-        top: 0;
-        position: absolute;
-        width: 100%;
-        aspect-ratio: 2/3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.4);
-
-        &:hover{
-          filter: none;
-          background-color: rgba(#999999,0.7);
-        }
-      }
-
-      .pagina-remover{
-        user-select: none;
-        font-family: helvetica;
-        font-size: 2em;
-        top: 0;
-        right: 0;
-        position: absolute;
-        width: 20%;
-        aspect-ratio: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        background-color: rgba(#999999,0.6);
-
-        &:hover{
-          filter: none;
-          background-color: rgba(#999999,0.9);
-        }  
-      }
-    }
-  }
-
-  #controles{
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: start;
-
-    #botao-salvar{
-      margin: 0px 10px 0px 0px;
-      border: none;
-      font-size: 1.5em;
-      padding: 10px 10px 10px 10px;
+      box-shadow: 1px 2px 5px 0px #999999;
       border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #55bb55;
-
-      &:hover{
-        background-color: #33aa33;
-        box-shadow: 1px 1px 5px 2px #999999;
-      }
-    }
-
-    #botao-cancelar{
-      border: none;
-      font-size: 1.5em;
-      padding: 10px 10px 10px 10px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 2px 0px #999999;
-      background-color: #ff5555;
-
-      &:hover{
-        background-color: #dd3333;
-      }
-    }
-  }
-}
-
-#conteudo-ver-capitulo{
-  grid-column:  2;
-  grid-row: 4;
-  display: grid;
-  grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
-  grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
-  gap: calc(0.2/6.5 * #{$conteudo_principal_width});
-
-  .pagina{
-    position: relative;
-    box-shadow: 1px 1px 2px 0px #999999;
-
-    .pagina-imagem{
-      width: 100%;
+      overflow: hidden;
+      width:  100%;
       aspect-ratio: 2/3;
+      justify-self: center;
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #dddddd;
+
+      #pagina-imagem{
+        width: 100%;
+        height: 100%;
+      }
+
+      #proxima-pagina{
+        height: 100%;
+        width: 10%;
+        top: 0;
+        right: 0;
+        position: absolute;
+
+        &:hover{
+          background-color: rgba(#999999,0.3);
+        }
+      }
+
+      #pagina-anterior{
+        height: 100%;
+        width: 10%;
+        top: 0;
+        left: 0;
+        position: absolute;
+
+        &:hover{
+          background-color: rgba(#999999,0.3);
+        }
+      }
     }
 
-    .pagina-cover-link{
-      user-select: none;
-      font-family: helvetica;
-      font-size: 3em;
+    .modal-exclusao-escondido{
+      visibility: hidden;
+    }
+
+    .modal-exclusao{
+      z-index:1;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
       top: 0;
-      position: absolute;
-      width: 100%;
-      aspect-ratio: 2/3;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(#999999,0.5);
+
+      .modal-exclusao-card{
+        box-shadow: 1px 1px 5px 0px #999999;
+        padding: 20px 20px 20px 20px;
+        font-family: helvetica;
+        width: 600px;
+        height: 200px;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+
+        .modal-exclusao-header{
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .modal-exclusao-body{
+          font-size: 1.2em;
+        }
+
+        .modal-exclusao-footer{
+          padding: 20px 20px 20px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: start;
+
+          .modal-confirmar-exclusao{
+            margin: 0px 10px 0px 0px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            background-color: #33dd55;
+            font-size: 1.2em;
+
+            &:hover{
+              background-color: #00bb33;
+              color: #ffffff;
+            }
+          }
+
+          .modal-cancelar-exclusao{
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            background-color: #ff5555;
+            font-size: 1.2em;
+
+            &:hover{
+              background-color: #ff3333;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 1270px){
+
+  #menu{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width:  100%;
+    //height:  calc((0.5/4) * #{$default_height});
+    background-color: #222233;
+    box-sizing: border-box;
+
+    .menu-link{
+      border: none;
+      background: none;
+      font-family: helvetica;
+      margin: 0px 0px 10px 0px;
+      text-decoration: none;
+      color: #e0e0e0;
+      font-size: 1.5em;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
-      background-color: rgba(#999999,0.4);
 
       &:hover{
-        filter: none;
-        background-color: rgba(#999999,0.7);
+        color: #ffffff;
+      }
+    }
+
+    .menu-logout-form{
+      margin: 0px 0px 0px 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .menu-logout-button{
+        padding: 0px 0px 0px 0px;
+        border: none;
+        background: none;
+        font-family: helvetica;
+        text-decoration: none;
+        color: #e0e0e0;
+        font-size: 1.5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          color: #ffffff;
+        }  
       }
     }
   }
+
+  html{
+    width: 100%;
+    height: 100%;
+  }
+
+  body{
+    width:  100%;
+    height:  100%;
+    margin:  0;
+  }
+
+  #flash-success{
+    padding: 10px 10px 10px 10px;
+    font-family: helvetica;
+    width: 100%;
+    font-size: 1.5em;
+    background-color: #33dd55;
+  }
+
+  #flash-danger{
+    padding: 10px 10px 10px 10px;
+    font-family: helvetica;
+    width: 100%;
+    font-size: 1.2em;
+    background-color: #ff5555;
+    color: #ffffff;
+  }
+
+  #auth-container{
+    overflow: hidden;
+    position: relative;
+    padding: 0px 0px 60px 0px;
+    min-height: #{$default_height};
+    background-color: #f0f0f0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    #auth-card{
+      padding: 40px 40px 40px 40px;
+      background-color: #222233;
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px 0px #999999;
+    }
+
+    #auth-title{
+      margin: 0px 0px 30px 0px;
+      color: #ffffff;
+      font-family: helvetica;
+      font-size: 2em;
+    }
+
+    #auth-button{
+      width: 100%;
+      margin: 10px 0px 10px 0px;
+      padding: 5px 10px 5px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      background-color: #eeeeee;
+
+      &:hover{
+        background-color: #ffffff;
+      }
+    }
+
+    .auth-input-group{
+      .auth-input{
+        border: none;
+        margin: 5px 0px 20px 0px;
+        font-family: helvetica;
+        color: #111111;
+        font-size: 1em;
+        padding: 5px 5px 5px 5px;
+        border-radius: 5px;
+      }
+
+      .auth-label{
+        font-family: helvetica;
+        color: #ffffff;
+      }
+    }
+
+    .auth-inline-input-group{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+
+      .auth-input{
+        border: none;
+        font-family: helvetica;
+        color: #111111;
+        border-radius: 5px;
+      }
+
+      .auth-label{
+        font-family: helvetica;
+        color: #ffffff;
+      }
+    }
+
+    #auth-links{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+
+      .auth-link{
+        margin: 0px 0px 5px 0px;
+        font-family: helvetica;
+        text-decoration: none;
+        color: #dddddd;
+
+        &:hover{
+          color: #ffffff;
+        }
+      } 
+    }
+  }
+
+  #conteudo{
+    position: relative;
+    padding: 0px 0px 60px 0px;
+    min-height: #{$default_height};
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-columns: #{$conteudo_left_column_weight} #{$conteudo_principal_column_weight} #{$conteudo_right_column_weight};
+    grid-template-rows: calc(0.5/4 * #{$default_height}) calc(1.5/4 * #{$default_height}) calc(0.3/4 * #{$default_height}) 1fr;
+
+    #conteudo-ver-capitulo{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+      grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .pagina{
+        position: relative;
+        box-shadow: 1px 1px 2px 0px #999999;
+
+        .pagina-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .pagina-cover-link{
+          user-select: none;
+          font-family: helvetica;
+          font-size: 3em;
+          top: 0;
+          position: absolute;
+          width: 100%;
+          aspect-ratio: 2/3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          background-color: rgba(#999999,0.4);
+
+          &:hover{
+            filter: none;
+            background-color: rgba(#999999,0.7);
+          }
+        }
+      }
+    }
+
+    #formulario-editar-capitulo{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.6/1.8 * #{$conteudo_principal_height});
+
+      #grupo-input{
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+        gap: 30px;
+
+        #titulo-capitulo{
+          padding: 0px 0px 0px 10px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #escolher-paginas{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #paginas-container{
+        margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+        .pagina-capitulo{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-capitulo-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-capitulo-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+
+        .pagina-nova{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-nova-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-nova-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+      }
+
+      #controles{
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: start;
+
+        #botao-salvar{
+          margin: 0px 10px 0px 0px;
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+
+        #botao-cancelar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #formulario-novo-capitulo{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr calc( 0.2/1.8 * #{$conteudo_principal_height});
+
+      #grupo-input{
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$cabecalho_free_column_weight} #{$menu_apresentacao_column_weight};
+        gap: 30px;
+
+        #titulo-capitulo{
+          padding: 0px 0px 0px 10px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #escolher-paginas{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #paginas-container{
+        margin: calc(0.2/1.8 * #{$conteudo_principal_height}) 0px 0px 0px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+        .pagina-nova{
+          position: relative;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          .pagina-nova-imagem{
+            width: 100%;
+            aspect-ratio: 2/3;
+          }
+
+          .pagina-nova-cover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 3em;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.4);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.7);
+            }
+          }
+
+          .pagina-remover{
+            user-select: none;
+            font-family: helvetica;
+            font-size: 2em;
+            top: 0;
+            right: 0;
+            position: absolute;
+            width: 20%;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background-color: rgba(#999999,0.6);
+
+            &:hover{
+              filter: none;
+              background-color: rgba(#999999,0.9);
+            }  
+          }
+        }
+      }
+
+      #controles{
+        #botao-salvar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+
+        #botao-cancelar{
+          border: none;
+          font-size: 1.5em;
+          padding: 10px 10px 10px 10px;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #itens-container-lista{
+      width:  100%;
+      min-height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: #{$item_lista_row_height};
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .manga-item-lista{
+        overflow: hidden;
+        background-color: #dddddd;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: #{$manga_item_imagem_container_width} 1fr;
+        grid-template-rows: 1fr;
+        box-shadow: 1px 1px 2px 0px #999999;
+
+        .manga-imagem-container{
+          width: 100%;
+          height: 100%;
+        }
+
+        .manga-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .manga-informacoes{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: start;
+          padding: 10px 10px 10px 20px;
+        }
+
+        .manga-titulo{
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        .manga-status{
+          font-family: helvetica;
+          font-size: 1.2em;
+        }
+
+        .manga-capitulos{
+          margin: 10px 0px 0px 0px;
+          font-family: helvetica;
+          font-size: 1em;
+        }
+
+        .manga-controles{
+          position: absolute;
+          bottom: 20px;
+          padding: 10px 0px 0px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: start;
+          justify-content: start;
+        }
+
+        .manga-ver{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #5555ff;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #3333ff;
+          }
+        }
+
+        .manga-editar{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #33dd55;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #00bb33;
+          }
+        }
+
+        .manga-excluir{
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #ff5555;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #formulario-buscar-manga{
+      grid-column:  2;
+      grid-row: 4;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: calc( 0.2/1.8 * #{$conteudo_principal_height}) 1fr;
+
+      #grupo-input{
+        grid-column: 1;
+        grid-row: 1;
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: #{$titulo_pagina_column_weight} #{$menu_apresentacao_column_weight} #{$cabecalho_free_column_weight};
+
+        #input-busca{
+          padding: 0px 0px 0px 10px;
+          margin: 0px 10px 0px 0px;
+          border-radius: 5px;
+          border: none;
+          box-shadow: 1px 1px 2px 0px #999999;
+          box-sizing: border-box;
+          font-size: 1.5em;
+          grid-column: 1;
+          height: 100%;
+        }
+
+        #botao-buscar{
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+          background-color: #55bb55;
+          font-size: 1.2em;
+          grid-column: 2;
+          height: 100%;
+
+          &:hover{
+            background-color: #33aa33;
+            box-shadow: 1px 1px 5px 2px #999999;
+          }
+        }
+      }
+
+      #itens-container-lista{
+        margin: 60px 0px 0px 0px;
+        width:  100%;
+        min-height:  #{$conteudo_principal_height};
+        grid-column:  1;
+        grid-row: 2;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: #{$item_lista_row_height};
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+      }
+
+      #itens-container-grade{
+        margin: 60px 0px 0px 0px;
+        width:  100%;
+        min-height:  #{$conteudo_principal_height};
+        grid-column:  1;
+        grid-row: 2;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+        grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+        gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+      }
+    }
+
+    #itens-container-grade{
+      width:  100%;
+      min-height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+
+      display: grid;
+      grid-template-columns: repeat(auto-fill,calc(0.7/6.5 * #{$conteudo_principal_width}));
+      grid-auto-rows: calc(1.05/6.5 * #{$conteudo_principal_width});
+      gap: calc(0.2/6.5 * #{$conteudo_principal_width});
+
+      .manga-item-grade{
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        box-shadow: 1px 1px 2px 0px #999999;
+        border-radius: 5px;
+
+        .manga-imagem-container{
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .manga-favorito{
+          width: 20%;
+          aspect-ratio: 1;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-image: url('/fav.png');
+          background-size: cover;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          &:hover{
+            background-image: url('/not_fav.png');
+          }
+        }
+
+        .manga-nao-favorito{
+          width: 20%;
+          aspect-ratio: 1;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-image: url('/not_fav.png');
+          background-size: cover;
+          color: #ffffff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          &:hover{
+            background-image: url('/fav.png');
+          }
+        }
+
+        .manga-imagem-cover{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          background-color: rgba(#999999,0.1);
+
+          &:hover{
+            background-color: rgba(#999999,0.2);
+          }
+        }
+
+        .manga-imagem{
+          width: 100%;
+          aspect-ratio: 2/3;
+        }
+
+        .manga-informacoes{
+          display: none;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: start;
+          padding: 10px 10px 10px 20px;
+        }
+
+        .manga-titulo{
+          display: none;
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        .manga-status{
+          display: none;
+          font-family: helvetica;
+          font-size: 1.2em;
+        }
+
+        .manga-controles{
+          display: none;
+          position: absolute;
+          bottom: 20px;
+          padding: 10px 0px 0px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: start;
+        }
+
+        .manga-ver{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #5555ff;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #3333ff;
+          }
+        }
+
+        .manga-editar{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #11cc66;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #00aa33;
+          }
+        }
+
+        .manga-excluir{
+          display: none;
+          width: 80px;
+          margin: 0px 10px 0px 0px;
+          padding: 5px 5px 5px 5px;
+          background-color: #ff5555;
+          color: #ffffff;
+          font-size: 1.2em;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+
+          &:hover{
+            background-color: #ff3333;
+          }
+        }
+      }
+    }
+
+    #cabecalho{
+      grid-column: 2;
+      grid-row: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-columns: 2.5fr 1fr;
+      gap: 10px;
+
+      #menu-apresentacao{
+        width: 100%;
+        height: 100%;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(50px,70px));
+        grid-template-rows: minmax(50px,70px);
+        gap: 10px;
+        align-items: center;
+        justify-items: center;
+
+        #botao-apresentacao-lista{
+          color: #ffffff;
+          height: 100%;
+          aspect-ratio: 1;
+          background-color: #111111;
+          background-image: url('/lista_ativa.png');
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+
+          &:hover{
+            background-color: #333333;
+            height: 85%;
+          }
+        }
+
+        #botao-apresentacao-grade{
+          color: #ffffff;
+          height: 100%;
+          aspect-ratio: 1;
+          background-color: #111111;
+          background-image: url('/grade_ativa.png');
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          border-radius: 5px;
+
+          &:hover{
+            background-color: #333333;
+            height: 85%;
+          }
+        }
+      }
+
+      #cabecalho-pagina{
+        width: 100%;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2fr 1fr;
+
+        #titulo{
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+
+          #titulo-texto{
+            font-family: helvetica;
+            font-size: 4em;
+          }
+
+          #novo-manga{
+            align-self: center;
+            height: 60%;
+            border: none;
+            box-shadow: 1px 1px 2px 0px #999999;
+            border-radius: 5px;
+            background-color: #33dd55;
+            margin: 0px 0px 0px 20px;
+            font-size: 1.5em;
+            padding: 0px 20px 0px 20px;
+
+            &:hover{
+              color: #ffffff;
+              background-color: #00bb33;
+            }
+          }
+        }
+
+        #status-pagina{
+          font-family: helvetica;
+          font-size: 1.5em;
+          width: 100%;
+          max-height: 100%;
+        }
+
+        #manga-titulo-editar{
+          font-size: 1.5em;
+          padding: 0px 0px 0px 10px;
+          margin: 0px 0px 10px 0px;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+        }
+
+        #manga-status-editar{
+          padding: 0px 0px 0px 10px;
+          background-color: #ffffff;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 1px 1px 2px 0px #999999;
+        }
+      }
+
+      #ver-manga-controles{
+        width: 100%;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 10px;
+
+        #botao-editar{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
+        #botao-excluir{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.5em;
+          background-color: #ff5555;
+
+          &:hover{
+            background-color: #ff3333;
+            color: #ffffff;
+          }
+        }
+      }
+
+      #ler-manga-controles{
+        width: 100%;
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        gap: 10px;
+
+        #botao-zoom-mais{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 2em;
+          background-color: #222233;
+          color: #ffffff;
+
+          &:hover{
+            background-color: #333344;
+            color: #ffffff;
+          }
+        }
+
+        #botao-zoom-menos{
+          height: 60%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 2em;
+          background-color: #222233;
+          color: #ffffff;
+
+          &:hover{
+            background-color: #333344;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    #apresentacao-manga{
+      box-shadow: 1px 2px 5px 0px #999999;
+      border-radius: 5px;
+      overflow: hidden;
+      width:  100%;
+      height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #dddddd;
+      display: grid;
+      grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
+      grid-template-rows: 1fr;
+
+      #imagem-container{
+        position: relative;
+        grid-column: 1;
+        overflow: hidden;
+      }
+
+      .manga-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/not_fav.png');
+        }
+      }
+
+      .manga-nao-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/not_fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/fav.png');
+        }
+      }
+
+      #capa-manga{
+        width: 100%;
+        aspect-ratio: 2/3;
+      }
+
+      #lista-capitulos{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
+
+        #lista-cabecalho{
+          padding:  10px 10px 10px 10px;
+          background-color: #222233;
+          display: grid;
+          grid-template-columns: 8fr 2fr;
+        }
+
+        #lista-titulo{
+          color: #f0f0f0;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        #botao-novo-capitulo{
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.2em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
+        #capitulos-container{
+          overflow: hidden;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-auto-rows: calc(0.2/1.8 * #{$conteudo_principal_height});
+
+          .capitulo{
+            font-family: helvetica;
+            padding: 10px 10px 10px 10px;
+            height: 100%;
+            background-color: #777788;
+            color: #ffffff;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+            box-sizing: border-box;
+
+            &:hover{
+              background-color: #7700ff;
+            }
+          }
+        }
+      }
+    }
+
+    #apresentacao-manga-editar{
+      box-shadow: 1px 2px 5px 0px #999999;
+      border-radius: 5px;
+      overflow: hidden;
+      width:  100%;
+      height:  #{$conteudo_principal_height};
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #ff3355;
+      display: grid;
+      grid-template-columns: calc(1.2/6.5 * #{$conteudo_principal_width}) 1fr;
+      grid-template-rows: 1fr;
+
+      #imagem-container{
+        position: relative;
+        grid-column: 1;
+        overflow: hidden;
+      }
+
+      .manga-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/not_fav.png');
+        }
+      }
+
+      .manga-nao-favorito{
+        width: calc(0.2/1.8 * #{$conteudo_principal_height});
+        height: calc(0.2/1.8 * #{$conteudo_principal_height});
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-image: url('/not_fav.png');
+        background-size: cover;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-image: url('/fav.png');
+        }
+      }
+
+      #capa-manga{
+        width: 100%;
+        aspect-ratio: 2/3;
+      }
+
+      #capa-cover{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        aspect-ratio: 5;
+        background-color: rgba(#999999,0.3);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &:hover{
+          background-color: rgba(#999999,0.7);
+        }
+
+        #botao-trocar-capa{
+          border: none;
+          height: 100%;
+          width: 100%;
+          padding: 10px 10px 10px 10px;
+          font-family: helvetica;
+          font-size: 1.2em;
+          background-color: #33dd55;
+
+          &:hover{
+            background-color: #00bb33;
+            color: #ffffff;
+          }
+        }
+
+      }
+
+      #descricao{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(0.3/1.8 * #{$conteudo_principal_height}) 1fr;
+
+        #descricao-cabecalho{
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          padding: 10px 10px 10px 10px;
+          background-color: #5500ff;
+          font-family: helvetica;
+          font-size: 2em;
+        }
+
+        #editar-descricao{
+          font-size: 1.2em;
+          font-family: helvetica;
+          overflow: scroll;
+        }
+      }
+    }
+
+    #leitor-manga{
+      position: relative;
+      box-shadow: 1px 2px 5px 0px #999999;
+      border-radius: 5px;
+      overflow: hidden;
+      width:  100%;
+      aspect-ratio: 2/3;
+      justify-self: center;
+      grid-column:  2;
+      grid-row: 4;
+      background-color: #dddddd;
+
+      #pagina-imagem{
+        width: 100%;
+        height: 100%;
+      }
+
+      #proxima-pagina{
+        height: 100%;
+        width: 10%;
+        top: 0;
+        right: 0;
+        position: absolute;
+
+        &:hover{
+          background-color: rgba(#999999,0.3);
+        }
+      }
+
+      #pagina-anterior{
+        height: 100%;
+        width: 10%;
+        top: 0;
+        left: 0;
+        position: absolute;
+
+        &:hover{
+          background-color: rgba(#999999,0.3);
+        }
+      }
+    }
+
+    .modal-exclusao-escondido{
+      visibility: hidden;
+    }
+
+    .modal-exclusao{
+      z-index:1;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(#999999,0.5);
+
+      .modal-exclusao-card{
+        box-shadow: 1px 1px 5px 0px #999999;
+        padding: 20px 20px 20px 20px;
+        font-family: helvetica;
+        width: 600px;
+        height: 200px;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+
+        .modal-exclusao-header{
+          font-size: 1.5em;
+          font-weight: bold;
+        }
+
+        .modal-exclusao-body{
+          font-size: 1.2em;
+        }
+
+        .modal-exclusao-footer{
+          padding: 20px 20px 20px 0px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: start;
+
+          .modal-confirmar-exclusao{
+            margin: 0px 10px 0px 0px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            background-color: #33dd55;
+            font-size: 1.2em;
+
+            &:hover{
+              background-color: #00bb33;
+              color: #ffffff;
+            }
+          }
+
+          .modal-cancelar-exclusao{
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            border: none;
+            color: #ffffff;
+            background-color: #ff5555;
+            font-size: 1.2em;
+
+            &:hover{
+              background-color: #ff3333;
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

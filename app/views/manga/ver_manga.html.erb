@@ -65,9 +65,9 @@
 			<div id="lista-cabecalho">
 				<div id="lista-titulo">Capítulos</div>
 				<% if @autorizado %>
-					<form class="formulario-controle" action="<%= novo_capitulo_path(@manga.id)%>" method="get">
-						<button id="botao-novo-capitulo">Novo capítulo</button>	
+					<form id="novo-capitulo" action="<%= novo_capitulo_path(@manga.id)%>" method="get" hidden>
 					</form>
+					<button form="novo-capitulo" id="botao-novo-capitulo">Novo capítulo</button>	
 				<% end %>
 			</div>
 			<div id="capitulos-container">
