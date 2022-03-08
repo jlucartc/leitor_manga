@@ -28,7 +28,7 @@
 		<div id="paginas-container">
 		</div>
 		<div id="controles">
-			<form id="cancelar-edicao" action="<%= ver_manga_path(@manga.id) %>" method="get"></form>
+			<form id="cancelar-edicao" action="<%= ver_manga_path(@manga.id) %>" method="get" hidden></form>
 			<button form="salvar-capitulo" type="submit" id="botao-salvar">Salvar</button>
 			<button form="cancelar-edicao" type="submit" id="botao-cancelar">Cancelar</button>
 		</div>

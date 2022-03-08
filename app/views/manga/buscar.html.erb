@@ -12,6 +12,11 @@
 					Buscar mangás
 				</div>
 			</div>
+			<% if @resultados.present? %>
+				<div id="status-pagina"><%= @resultados.count %> resultados</div>
+			<% else %>
+				<div id="status-pagina">0 resultados</div>
+			<% end%>
 		</div>
 		<div id="menu-apresentacao">
 			<div id="botao-apresentacao-lista"></div>
