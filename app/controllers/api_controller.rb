@@ -24,7 +24,7 @@ class ApiController < ApplicationController
 
 	def login
 		usuario = Usuario.find_by(email: params[:email])
-		if usuario.valid_password?(params[:password])
+		if usuario.present? and usuario.valid_password?(params[:password])
 			Token.create(usuario_id: usuario.id)
 			render json: {token: usuario.tokens.last.codigo}
 		else

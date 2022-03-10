@@ -11,4 +11,9 @@ class ApiControllerTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+
+  test "rejeita login com email inexistente" do
+    post api_login_path, params: {email: 'three@gmail.com', password: '123457'}
+    assert_response :unauthorized
+  end
 end
