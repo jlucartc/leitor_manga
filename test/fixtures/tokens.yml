@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one: {
-  usuario_id: 2,
+  usuario_id: 1,
   codigo: "token1"
 }
 # column: value

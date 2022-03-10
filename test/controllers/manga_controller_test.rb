@@ -143,27 +143,27 @@ class MangaControllerTest < ActionDispatch::IntegrationTest
 
   test "usuário favorita mangá" do
     sign_in(usuarios(:one))
-    get favoritar_manga_path(manga_id: 1)
-    assert Favorito.where(usuario_id: usuarios(:one).id, manga_id: 1).present?
+    get favoritar_manga_path(manga_id: 3)
+    assert Favorito.where(usuario_id: usuarios(:one).id, manga_id: 3).present?
   end
 
   test "usuário desfavorita mangá" do
     sign_in(usuarios(:one))
-    get favoritar_manga_path(manga_id: 1)
-    get desfavoritar_manga_path(manga_id: 1)
-    assert Favorito.where(usuario_id: usuarios(:one).id, manga_id: 1).empty?
+    get favoritar_manga_path(manga_id: 3)
+    get desfavoritar_manga_path(manga_id: 3)
+    assert Favorito.where(usuario_id: usuarios(:one).id, manga_id: 3).empty?
   end
 
   test "usuário não deve poder favoritar mangá que já pertence a seus favoritos" do
     sign_in(usuarios(:one))
-    get favoritar_manga_path(manga_id: 1)
-    get favoritar_manga_path(manga_id: 1)
+    get favoritar_manga_path(manga_id: 3)
+    get favoritar_manga_path(manga_id: 3)
     assert flash[:danger].present?
   end
 
   test "usuário não deve poder desfavoritar mangá que não é seu favorito" do
     sign_in(usuarios(:one))
-    get desfavoritar_manga_path(manga_id: 1)
+    get desfavoritar_manga_path(manga_id: 3)
     assert flash[:danger].present?
   end
 

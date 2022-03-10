@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   get "/api/manga/buscar", to: "api#buscar_manga", as: "api_buscar_manga"
   get "/api/capitulo/ler/:id", to: "api#ler_capitulo", as: "api_ler_capitulo"
   post "/api/usuario/cadastrar", to: "api#cadastrar_usuario", as: "api_cadastrar_usuario"
-  get "/api/manga/favoritar", to: "api#favoritar_manga", as: "api_favoritar_manga"
-  get "/api/manga/desfavoritar", to: "api#desfavoritar_manga", as: "api_desfavoritar_manga"
   get "/api/capitulos/baixar", to: "api#baixar_capitulos", as: "api_baixar_capitulos"
   post "/api/usuario/login", to: "api#login", as: "api_login"
+  post "/api/usuario/favoritos", to: "api#favoritos", as: "api_favoritos"
+  post "/api/manga/favoritar", to: "api#favoritar_manga", as: "api_favoritar_manga"
+  post "/api/manga/desfavoritar", to: "api#desfavoritar_manga", as: "api_desfavoritar_manga"
 end
