@@ -29,5 +29,5 @@ Rails.application.routes.draw do
   get "/api/manga/favoritar", to: "api#favoritar_manga", as: "api_favoritar_manga"
   get "/api/manga/desfavoritar", to: "api#desfavoritar_manga", as: "api_desfavoritar_manga"
   get "/api/capitulos/baixar", to: "api#baixar_capitulos", as: "api_baixar_capitulos"
-  post "/api/usuario/login", to: "api#usuario_login", as: "api_usuario_login"
+  post "/api/usuario/login", to: "api#login", as: "api_login"
 end
