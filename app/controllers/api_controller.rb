@@ -45,6 +45,13 @@ class ApiController < ApplicationController
 	end
 
 	def cadastrar_usuario
+		usuario = Usuario.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+		if usuario.save
+			token = Token.create(usuario_id: usuario.id)
+			render json: {token: token.codigo}
+		else
+			render json: {mensagem: 'Cadastro inválido.'}, status: :unauthorized
+		end
 	end
 
 	def favoritar_manga

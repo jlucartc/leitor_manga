@@ -174,4 +174,31 @@ class ApiControllerTest < ActionDispatch::IntegrationTest
     post api_buscar_manga_path, params: {token: 'token1'}
     assert_response :unauthorized
   end
+
+  test "cadastra novo usuario" do
+    post api_cadastrar_usuario_path, params: {email: 'user@gmail.com', password: '123456', password_confirmation: '123456'}
+    assert_response :success
+    assert response_body["token"].present?
+  end
+
+  test "não deve cadastrar usuario com email já existente no banco" do
+    post api_cadastrar_usuario_path, params: {email: 'one@gmail.com', password: '123456', password_confirmation: '123456'}
+    assert_response :unauthorized
+  end
+
+  test "não deve cadastrar usuario caso email não tenha sido informado" do
+    post api_cadastrar_usuario_path, params: {password: '123456', password_confirmation: '123456'}
+    assert_response :unauthorized
+  end
+
+  test "não deve cadastrar usuario caso password não tenha sido informado" do
+    post api_cadastrar_usuario_path, params: {email: 'user@gmail.com', password_confirmation: '123456'}
+    assert_response :unauthorized
+  end
+
+  test "não deve cadastrar usuario caso password_confirmation não tenha sido informado" do
+    post api_cadastrar_usuario_path, params: {email: 'user@gmail.com', password: '123456'}
+    assert_response :unauthorized
+  end
+
 end
