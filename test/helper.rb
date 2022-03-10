@@ -16,4 +16,8 @@ module Helper
     File.open('test/fixtures/files/images/naruto.jpeg','rb').read()
   end
 
+  def response_body
+    JSON.parse(response.body)
+  end
+
 end
