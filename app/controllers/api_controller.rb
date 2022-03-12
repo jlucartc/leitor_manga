@@ -2,10 +2,10 @@ class ApiController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def ver_manga
-		manga = Manga.where(id: params[:manga_id])
+		manga = Manga.where(id: params[:manga_id]).first
 		token = Token.find_by(codigo: params[:token])
 		if manga.present? and token.present?
-			render json: {manga: formata_lista_mangas(manga).first}
+			render json: {manga: formata_lista_mangas([manga]).first, capitulos: formata_lista_capitulos(manga.capitulos)}
 		else
 			render json: {mensagem: 'Requisição inválida'}, status: :unauthorized
 		end
@@ -109,6 +109,12 @@ class ApiController < ApplicationController
 	end
 
 	private
+
+		def formata_lista_capitulos(capitulos)
+			campos_autorizados = ['titulo','sequencia']
+			capitulos = capitulos.map{|capitulo| capitulo.as_json.filter{|campo| campos_autorizados.include?(campo) }}
+			capitulos
+		end
 
 		def formata_lista_mangas(mangas)
 			campos_autorizados = ['id','titulo','descricao','finalizado']

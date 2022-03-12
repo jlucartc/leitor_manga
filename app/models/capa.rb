@@ -3,6 +3,7 @@ class Capa < ApplicationRecord
 	validates :manga_id, :arquivo, presence: true
 	validates :nome, uniqueness: true
 	before_create :escolhe_nome
+	after_update :atualiza_arquivo
 
 	def escolhe_nome
 		nome = "#{SecureRandom.hex(20)}_"
@@ -25,12 +26,36 @@ class Capa < ApplicationRecord
 		end
 	end
 
+	def atualiza_arquivo
+		if array_arquivos_capas.empty?
+			retorna_novo_path
+		else
+			if arquivo_existe?
+				exclui_arquivo
+				retorna_novo_path
+			else
+				retorna_novo_path
+			end
+		end
+	end
+
 	private
 
 		def retorna_novo_path
-			capa = Tempfile.new([self.nome,'.jpeg'],caminho_diretorio_capa,binmode: true)
-			capa.write(self.arquivo)
-			capa.path.gsub(/^.+\/public/,'')
+			filename = "#{self.nome}#{SecureRandom.hex(20)}.jpeg"
+			if File.exist?("#{caminho_diretorio_capa}/#{filename}")
+				retorna_novo_path
+			else
+				capa = File.open("#{caminho_diretorio_capa}/#{filename}",'wb')
+				capa.write(self.arquivo)
+				capa.close
+				capa.path.gsub(/^.+\/public/,'')
+			end
+		end
+
+		def exclui_arquivo
+			full_path = "#{caminho_diretorio_capa}/#{array_arquivos_capas.filter{|arquivo| arquivo.match(Regexp.new("^#{self.nome}.*\.jpeg$")) }.first}"
+			File.delete(full_path) if File.exist?(full_path)
 		end
 
 		def arquivo_existe?
@@ -38,7 +63,8 @@ class Capa < ApplicationRecord
 		end
 
 		def retorna_path_arquivo
-			array_arquivos_capas.filter{|arquivo| arquivo.match(Regexp.new("^#{self.nome}.*\.jpeg$")) }.first
+			full_path = "#{caminho_diretorio_capa}/#{array_arquivos_capas.filter{|arquivo| arquivo.match(Regexp.new("^#{self.nome}.*\.jpeg$")) }.first}"
+			full_path.gsub(/^.+\/public/,'')
 		end
 
 		def array_arquivos_capas
