@@ -14,17 +14,38 @@ class Capa < ApplicationRecord
 	end
 
 	def path
-		arquivos_existentes = Dir.glob("#{self.nome}*\.jpeg",base: "#{Rails.public_path.to_s}/tmp/capas")
-		if arquivos_existentes.empty?
-			capa = Tempfile.new([self.nome,'.jpeg'],"#{Rails.public_path.to_s}/tmp/capas",binmode: true)
-			capa.write(self.arquivo)
-			capa.path.gsub(/^.+\/public/,'')
+		if array_arquivos_capas.empty?
+			retorna_novo_path
 		else
-			arquivos_existentes.each do |arquivo|
-				File.delete("#{Rails.public_path.to_s}/tmp/capas/#{arquivo}")
+			if arquivo_existe?
+				retorna_path_arquivo
+			else
+				retorna_novo_path
 			end
-			path
 		end
 	end
 
+	private
+
+		def retorna_novo_path
+			capa = Tempfile.new([self.nome,'.jpeg'],caminho_diretorio_capa,binmode: true)
+			capa.write(self.arquivo)
+			capa.path.gsub(/^.+\/public/,'')
+		end
+
+		def arquivo_existe?
+			retorna_path_arquivo.present?
+		end
+
+		def retorna_path_arquivo
+			array_arquivos_capas.filter{|arquivo| arquivo.match(Regexp.new("^#{self.nome}.*\.jpeg$")) }.first
+		end
+
+		def array_arquivos_capas
+			Dir.glob("#{self.nome}*\.jpeg",base: caminho_diretorio_capa)
+		end
+
+		def caminho_diretorio_capa
+			"#{Rails.public_path.to_s}/tmp/capas"
+		end
 end

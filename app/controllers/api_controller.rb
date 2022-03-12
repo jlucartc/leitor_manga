@@ -113,7 +113,7 @@ class ApiController < ApplicationController
 		def formata_lista_mangas(mangas)
 			campos_autorizados = ['id','titulo','descricao','finalizado']
 			mangas = mangas.map{|manga| manga.as_json.filter{|campo| campos_autorizados.include?(campo) } }
-			mangas = mangas.map{|manga| manga["capa_path"] = Manga.find(manga["id"]).capa.path; manga }
+			mangas = mangas.map{|manga| manga_row = Manga.find(manga["id"]); manga["capa_path"] = manga_row.capa.present? ? manga_row.capa.path : '/dummy.png'; manga }
 			mangas
 		end
 

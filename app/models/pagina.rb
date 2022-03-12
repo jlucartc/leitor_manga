@@ -29,18 +29,31 @@ class Pagina < ApplicationRecord
 
 	def path
 		if array_arquivos_paginas.empty?
-			pagina = Tempfile.new([self.nome,'.jpeg'],caminho_diretorio_pagina,binmode: true)
-			pagina.write(self.arquivo)
-			pagina.path.gsub(/^.+\/public/,'')
+			retorna_novo_path
 		else
-			array_arquivos_paginas.each do |arquivo|
-				File.delete(caminho_arquivo_pagina(arquivo))
+			if arquivo_existe?
+				retorna_path_arquivo
+			else
+				retorna_novo_path
 			end
-			path
 		end
 	end
 
 	private
+
+		def retorna_novo_path
+			capa = Tempfile.new([self.nome,'.jpeg'],caminho_diretorio_pagina,binmode: true)
+			capa.write(self.arquivo)
+			capa.path.gsub(/^.+\/public/,'')
+		end
+
+		def arquivo_existe?
+			retorna_path_arquivo.present?
+		end
+
+		def retorna_path_arquivo
+			array_arquivos_paginas.filter{|arquivo| arquivo.match(Regexp.new("^#{self.nome}.*\.jpeg$")) }.first
+		end
 
 		def array_arquivos_paginas
 			Dir.glob("#{self.nome}*\.jpeg",base: "#{caminho_diretorio_pagina}")
@@ -49,9 +62,4 @@ class Pagina < ApplicationRecord
 		def caminho_diretorio_pagina
 			"#{Rails.public_path.to_s}/tmp/paginas"
 		end
-
-		def caminho_arquivo_pagina(arquivo)
-			"#{caminho_diretorio_pagina}/#{arquivo}"
-		end
-
 end
